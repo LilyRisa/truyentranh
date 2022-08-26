@@ -10,8 +10,31 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+ var fs = require('fs');
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+ const CSS_PATH = 'resources/css/';
+ const JS_PATH = 'resources/js/';
+
+ var css = fs.readdirSync(CSS_PATH);
+ var js = fs.readdirSync(JS_PATH);
+ js = js.map((item) => JS_PATH+item)
+css.map((item) =>{
+    let path = CSS_PATH+item;
+    let file = item.split('.');
+    ext = file[file.length - 1];
+    let filename = file.slice(0, -1);
+    filename = filename.join('.')+'.css';
+    
+    console.log(filename);
+    console.log(ext);
+    if(ext == 'css'){
+        mix.styles(path, 'public/css/'+filename);
+    }else{
+        mix.sass(path, 'public/css/'+filename);
+    }
+    
+})
+
+
+mix.js(js, 'public/js/app.js');
+
