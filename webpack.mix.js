@@ -25,8 +25,7 @@ css.map((item) =>{
     let filename = file.slice(0, -1);
     filename = filename.join('.')+'.css';
     
-    console.log(filename);
-    console.log(ext);
+    console.log('Đang biên dịch file: '+filename+'.'+ext);
     if(ext == 'css'){
         mix.styles(path, 'public/css/'+filename);
     }else{
