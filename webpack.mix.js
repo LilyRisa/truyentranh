@@ -17,20 +17,29 @@ const mix = require('laravel-mix');
 
  var css = fs.readdirSync(CSS_PATH);
  var js = fs.readdirSync(JS_PATH);
- js = js.map((item) => JS_PATH+item)
+
+ js = js.map((item) => {
+    let path = fs.statSync(JS_PATH+item);
+    if(path.isFile()){
+        console.log('\x1b[36m%s\x1b[0m','File detected:' + CSS_PATH + item);
+        return JS_PATH+item
+    }
+})
+
 css.map((item) =>{
-    let path = CSS_PATH+item;
-    let file = item.split('.');
-    ext = file[file.length - 1];
-    let filename = file.slice(0, -1);
-    filename = filename.join('.')+'.css';
-    
-    console.log(filename);
-    console.log(ext);
-    if(ext == 'css'){
-        mix.styles(path, 'public/css/'+filename);
-    }else{
-        mix.sass(path, 'public/css/'+filename);
+    let path = fs.statSync(CSS_PATH+item);
+    if(path.isFile()){
+        console.log('\x1b[36m%s\x1b[0m','File detected:' + CSS_PATH+ item);
+        let path = CSS_PATH+item;
+        let file = item.split('.');
+        ext = file[file.length - 1];
+        let filename = file.slice(0, -1);
+        filename = filename.join('.')+'.css';
+        if(ext == 'css'){
+            mix.styles(path, 'public/css/'+filename);
+        }else{
+            mix.sass(path, 'public/css/'+filename);
+        }
     }
     
 })
