@@ -38761,9 +38761,9 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/css/test.scss":
+/***/ "./resources/css/main.scss":
 /*!*********************************!*\
-  !*** ./resources/css/test.scss ***!
+  !*** ./resources/css/main.scss ***!
   \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -38824,14 +38824,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ 0:
 /*!*****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/css/test.scss ***!
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/css/main.scss ***!
   \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xemhentai\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\xemhentai\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! D:\xemhentai\resources\css\test.scss */"./resources/css/test.scss");
+__webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\css\main.scss */"./resources/css/main.scss");
 
 
 /***/ })
