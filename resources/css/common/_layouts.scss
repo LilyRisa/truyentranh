@@ -1,0 +1,16 @@
+
+
+.bg_primary{
+    background-color: $primary_color !important;
+}
+
+.nav-link.active{
+        color: $secondary_color !important;
+}
+.nav-link{
+    font-weight: bold;
+    font-size: 15px !important;
+}
+.form-rounded{
+    border-radius: 5px;
+}
