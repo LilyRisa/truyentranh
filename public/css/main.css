@@ -11737,6 +11737,18 @@ fieldset:disabled .btn {
   background-color: #4a4a4a !important;
 }
 
+body {
+  background-color: #FFFBFB !important;
+}
+
+.bg_secondary {
+  background-color: #FFAE00 !important;
+}
+
+.text_secondary {
+  color: #FFAE00 !important;
+}
+
 .nav-link.active {
   color: #FFAE00 !important;
 }
@@ -11744,5 +11756,87 @@ fieldset:disabled .btn {
 .nav-link {
   font-weight: bold;
   font-size: 15px !important;
+}
+
+.form-rounded {
+  border-radius: 5px;
+}
+
+.absolute-center {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  /* Need a specific value to work */
+}
+
+.cate-bar {
+  height: 60px;
+  margin-top: -30px;
+}
+
+.all-button {
+  margin-top: -5px;
+}
+
+.dark-linear {
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.84) 85%, #000);
+}
+
+.sq-2 {
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+}
+
+.w-18 {
+  width: 18rem;
+}
+
+.fs-15 {
+  font-size: 15px !important;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+}
+
+.fs-13 {
+  font-size: 13px !important;
+}
+
+.fs-12 {
+  font-size: 12px !important;
+}
+
+.fs-11 {
+  font-size: 11px !important;
+}
+
+.fs-10 {
+  font-size: 10px !important;
+}
+
+.footer {
+  background-image: url(/images/footer-bar.png?6d36f5ebc702e381b8ef07773fe60fa1);
+  height: 12rem;
+}
+
+.rounded-pill-left {
+  border-top-left-radius: 50rem !important;
+  border-bottom-left-radius: 50rem !important;
+}
+
+.rounded-pill-right {
+  border-top-right-radius: 50rem !important;
+  border-bottom-right-radius: 50rem !important;
+}
+
+.border-left-none {
+  border-left: none !important;
+}
+
+.border-right-none {
+  border-right: none !important;
 }
 
