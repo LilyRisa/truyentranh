@@ -11840,6 +11840,22 @@ body {
   border-right: none !important;
 }
 
+.max-100 {
+  max-width: 100% !important;
+}
+
+.max-100 .img {
+  max-width: 100% !important;
+}
+
+.max-100 .p {
+  max-width: 100% !important;
+}
+
+.bg-detail {
+  height: 25rem;
+}
+
 @font-face {
   font-family: "icomoon";
   src: url(/fonts/icomoon.eot?d9ccc19fcfc98c60d5cfa35f278da422);
