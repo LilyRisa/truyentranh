@@ -38,10 +38,6 @@
             <a href="" class="h-100 text-decoration-none"><i class="icon-history text-white"></i></a>
             <p class="ms-2 text-white">Get App</p>
           </div
-            <!-- <div class="top-bar-avatar-con me-2"> <a
-                href="https://login/?from=%2f%3ffbclid%3dIwAR3cDf5LZ5rNuu7bHt8fLHFS7b5Xb8oYSJ_ldGCXmlflDeUC-QKgqZcpqUY"> <img
-                  class="top-bar-avatar-img"
-                  src="img/avt.png"> </a> </div> -->
           </form>
         </div>
       </div>
