@@ -92,3 +92,18 @@ body{
 .border-right-none{
     border-right: none !important;
 }
+
+.max-100{
+    max-width: 100% !important;
+    .img{
+        max-width: 100% !important;
+    }
+    .p{
+        max-width: 100% !important;
+    }
+}
+
+// trang menu book
+.bg-detail{
+    height: 25rem;
+}

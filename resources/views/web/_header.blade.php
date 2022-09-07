@@ -24,10 +24,10 @@
         <div class="h-100 align-items-center">
           <form class="d-flex mt-3">
             <div class="d-flex">
-              <input type="text" class="form-control w-50 rounded-pill-left border-right-none" placeholder="search"
+              <input type="text" class="form-control w-50 rounded-pill-left border-0 border-right-none" placeholder="search"
                 aria-label="search" aria-describedby="basic-addon2">
               <div class="input-group-append h-100">
-                <button class="input-group-text rounded-pill-right bg-white shadow-none border-left-none h-100" id="basic-addon2"><i class="icon-search fs-16"></i></button>
+                <button class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100" id="basic-addon2"><i class="icon-search fs-16"></i></button>
               </div>
             </div>
             <div class="input-group-text bg_primary border-0 p-0">
@@ -38,7 +38,6 @@
             <a href="" class="h-100 text-decoration-none"><i class="icon-history text-white"></i></a>
             <p class="ms-2 text-white">Get App</p>
           </div
-        
           </form>
         </div>
       </div>

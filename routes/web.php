@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('web.home.index');
 });
+
+Route::get('/menu', function () {
+    return view('web.menubook.index');
+});

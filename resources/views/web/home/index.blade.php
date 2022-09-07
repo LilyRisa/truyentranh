@@ -51,18 +51,25 @@
     </div>
 
 
-    <div class="main container">
+    <div class="main container-lg">
         {{-- section1 --}}
 
         <div class="section-1 mt-5 row">
 
             <div class="col-lg-9">
+                <div class="d-flex">
                 <p class="fs-16 text-uppercase">
                     truyện hot!
                 </p>
+                <a class="ms-auto text-decoration-none" href="#">
+                <p class="text_secondary">
+                    xem thêm >>
+                </p>
+                </a>
+                </div>
                 <div class="row justify-content-between mt-am-2">
                     @for ($i = 0; $i < 8; $i++)
-                        <div class="col-lg-3 mt-2">
+                        <div class="col-lg-3 mt-2 col-6">
                             <div class="card p-0 ml-2">
                                 <img src="img/book1.jpeg" class="card-img-top w-100 img-fluid" alt="book1">
                                 <div class="card-body dark-linear position-absolute fixed-bottom">
@@ -75,10 +82,21 @@
                     @endfor
                 </div>
             </div>
-            {{-- end-section1 --}}
+            
 
-            <div class="col-lg-3">
-                <p class="fs-16 ms-2">BXH</p>
+            <div class="col-lg-3 mt-5 mt-lg-0">
+                <div class="ms-2 d-flex">
+                    <p class="fs-16 text-uppercase">
+                        BXH
+                    </p>
+                    <div class="ms-auto pe-0">
+                    <a class="text-end text_secondary text-decoration-none" href="#">
+                    
+                        xem thêm >>
+                    
+                    </div>
+                    </a>
+                    </div>
 
                 <div class="pt-1">
                     @for ($i = 1; $i < 8; $i++)
@@ -93,136 +111,133 @@
                                 <div class="m-0 p-0">Tên truyện</div>
                                 <div class="row mt-2">
                                     <div class="col-9 fs-12">Chương 123</div>
-                                    <div class="col-3 text-end fs-12 fst-italic">10002</div>
+                                    <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
                                 </div>
                             </div>
                         </div>
                     @endfor
                 </div>
             </div>
+        </div>
+{{-- end-section1 --}}
+        <div class="section-2 mt-5">
+            <p class="fs-16 text-uppercase">
+                truyện đề cử!
+            </p>
 
-
-            <div class="section-2 mt-5">
-                <p class="fs-16 text-uppercase">
-                    truyện hot!
-                </p>
-
-                <div class="row justify-content-between">
-                    @for ($i = 0; $i < 6; $i++)
-                      <div class="col-lg-2">
-                          <div class="card">
-                              <img src="img/book3.jpeg" width="200" height="200"
-                                  class="card-img-top rounded-circle w-100 h-100 p-0 img-fluid px-2" alt="book1" />
-                              <div class="card-body justify-content-center">
-                                  <h5 class="card-title text-center">Truyện số {{ $i }}</h5>
-                                  <div class="w-100 d-flex justify-content-center">
-                                      <a href="#" class="btn btn-secondary">Đọc truyện</a>
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
-                    @endfor
-                </div>
-            </div>
-
-            <div class="section-3 mt-5">
-                <img src="img/section3.jpg" class="w-100 img-fluid">
-            </div>
-
-            <div class="section-4 mt-5 row">
-                <div class="col-lg-9">
-                    <p class="fs-16 text-uppercase">
-                        truyện hot!
-                    </p>
-                    <div class="row justify-content-between mt-am-2">
-                      @for($i=0;$i<16;$i++)
-                        <div class="col-lg-3 mt-2">
-                              <div class="card p-0 ml-2">
-                                  <img src="img/book1.jpeg" class="card-img-top w-100 img-fluid" alt="book1">
-                                  <div class="card-body dark-linear position-absolute fixed-bottom">
-                                      <p class="p-0 m-0 text-white border-bottom">Senju harasama</p>
-                                      <p class="p-0 m-0 text-info">Manhwa</p>
-                                      <p class="p-0 m-0 text_secondary">Chap 12</p>
-                                  </div>
-                              </div>
-                          </div>
-                      @endfor
-                    </div>
-                    <div class="text-center">
-                    <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
-                  </div>
-                    <div class="bg-info p-2 mt-5 rounded">
-                        <p class="p-0 text-uppercase">Từ khóa hot!</p>
-                        <div class="d-flex">
-                            <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
-                                girl
-                            </div>
-
-                            <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
-                                wife house
-                            </div>
-
-                            <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
-                                harem
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="mt-5 d-flex justify-content-between">
-                        @for($i=0;$i<3;$i++)
-                        <div class="col-lg-4 col-12">
-                          <div class="">
-                        <a href="#" class="">
-                            <img src="img/naruto.jpg" class="w-100 max-100 m-0 p-0 rounded img-fluid" alt="">
-                        </a>
-                      </div>
-                      </div>
-                      @endfor
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3">
-                    <p class="fs-16 ms-2 text-uppercase">Truyện xu hướng</p>
-                    @for($i=1;$i<13;$i++)
-                    <div class="ms-2 mt-2 pb-2 border-bottom row">
-                        <div class="col-1 p-0 mt-1 bg-danger rounded sq-2">
-                            <p class="text-center rounded {{ $i == 1 ? 'bg-danger' : ($i == 2 ? 'bg-success' : ($i == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$i}}</p>
-                        </div>
-                        <div class="col-11">
-                            <div class="m-0 p-0">Truyện số {{$i}}</div>
-                            <div class="row">
-                                <div class="col-6 fs-12">Chương 21</div>
-                                <div class="col-6 text-end fs-12 fst-italic">1205</div>
+            <div class="row justify-content-between">
+                @for ($i = 0; $i < 6; $i++)
+                    <div class="col-lg-2 col-6">
+                        <div class="card">
+                            <img src="img/book3.jpeg" width="200" height="200"
+                                class="card-img-top rounded-circle w-100 h-100 p-0 img-fluid px-2" alt="book1" />
+                            <div class="card-body justify-content-center">
+                                <h5 class="card-title text-center">Truyện số {{ $i }}</h5>
+                                <div class="w-100 d-flex justify-content-center">
+                                    <a href="#" class="btn btn-secondary">Đọc truyện</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    @endfor
-                    
-
-                    <p class="ms-2 p-0 mt-2 text-uppercase">
-                        truyện theo chủ đề
-                    </p>
-                    <div class="w-100">
-                        <a href="#" class="ms-2">
-                            <img src="img/category1.jpg" alt="" class="img-fluid w-100 max-100">
-                        </a>
-                    </div>
-
-                    <div class="w-100 mt-2">
-                        <a href="#" class="ms-2">
-                            <img src="img/category1.jpg" alt="" class="img-fluid w-100 max-100">
-                        </a>
-                    </div>
-
-                    <div class="w-100 mt-2">
-                        <a href="#" class="ms-2">
-                            <img src="img/category1.jpg" alt="" class="img-fluid w-100 max-100">
-                        </a>
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
+
+        <div class="section-3 mt-5">
+            <img src="img/section3.jpg" class="w-100 img-fluid">
+        </div>
+
+        <div class="section-4 mt-5 row">
+            <div class="col-lg-9">
+                <p class="fs-16 text-uppercase">
+                    truyện mới cập nhật!
+                </p>
+                <div class="row justify-content-between mt-am-2">
+                    @for($i=0;$i<16;$i++)
+                    <div class="col-lg-3 col-6 mt-2">
+                            <div class="card p-0 ml-2">
+                                <img src="img/book1.jpeg" class="card-img-top w-100 img-fluid" alt="book1">
+                                <div class="card-body dark-linear position-absolute fixed-bottom">
+                                    <p class="p-0 m-0 text-white border-bottom">Senju harasama</p>
+                                    <p class="p-0 m-0 text-info">Manhwa</p>
+                                    <p class="p-0 m-0 text_secondary">Chap 12</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+                <div class="text-center">
+                <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
+                </div>
+                <div class="bg-info p-2 mt-5 rounded">
+                    <p class="p-0 text-uppercase">Từ khóa hot!</p>
+                    <div class="d-flex">
+                        <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
+                            girl
+                        </div>
+
+                        <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
+                            wife house
+                        </div>
+
+                        <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
+                            harem
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="mt-5 d-flex justify-content-between max-100">
+                    <div class="row">
+                    @for($i=0;$i<3;$i++)
+                    <div class="col-lg-4 col-12">
+                        <div class="">
+                    <a href="#" class="">
+                        <img src="img/naruto.jpg" class="w-100 max-100 m-0 p-0 mt-2 mt-lg-0 rounded img-fluid" alt="">
+                    </a>
+                    </div>
+                    </div>
+                    @endfor
+                </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3">
+                <p class="fs-16 ms-2 mt-5 mt-lg-0 text-uppercase">Truyện xu hướng</p>
+                <div class="row">
+                @for($i=1;$i<13;$i++)
+                <div class="ms-2 mt-2 pb-2 border-bottom col-6 col-lg-12 row">
+                    <div class="col-1 p-0 mt-1 bg-danger rounded sq-2">
+                        <p class="text-center rounded {{ $i == 1 ? 'bg-danger' : ($i == 2 ? 'bg-success' : ($i == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$i}}</p>
+                    </div>
+                    <div class="col-11">
+                        <div class="m-0 p-0 col-12">Truyện số {{$i}}</div>
+                        <div class="row">
+                            <div class="col-9 fs-12">Chương 21</div>
+                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
+                        </div>
+                    </div>
+                </div>
+                @endfor
+                </div>
+                
+
+                <p class="ms-2 p-0 mt-2 text-uppercase">
+                    truyện theo chủ đề
+                </p>
+                <div class="row">
+                @for($i=0;$i<4;$i++)
+                <div class=" col-lg-12 col-6 w-100 ms-2 mt-2 max-100">
+                    <a href="#" class="">
+                        <img src="img/category1.jpg" alt="" class="img-fluid w-100 max-100">
+                    </a>
+                </div>
+                @endfor
+            </div>
+                
+            </div>
+        </div>
+    </div>
     @endsection
