@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/main.css?0.2">
+  <link rel="stylesheet" href="css/main.css?ver=1.6">
   <script src="js/app.js"></script>
 </head>
 

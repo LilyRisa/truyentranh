@@ -11864,8 +11864,55 @@ body {
   max-width: 100% !important;
 }
 
+.content-reading .img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
 .bg-detail {
   height: 25rem;
+}
+
+.triangle-right-1 {
+  width: 0;
+  height: 0;
+  border-left: 1.1rem solid #A5630D !important;
+  border-top: 0.8rem solid transparent;
+  border-bottom: 1.2rem solid transparent;
+}
+
+.triangle-right-2 {
+  width: 0;
+  height: 0;
+  border-left: 1.1rem solid #D47F11 !important;
+  border-top: 0.8rem solid transparent;
+  border-bottom: 1.2rem solid transparent;
+}
+
+.triangle-right-3 {
+  width: 0;
+  height: 0;
+  border-left: 1.1rem solid #ED992A !important;
+  border-top: 0.8rem solid transparent;
+  border-bottom: 1.2rem solid transparent;
+}
+
+.bg-1 {
+  background-color: #A5630D;
+}
+
+.bg-2 {
+  background-color: #D47F11;
+}
+
+.bg-3 {
+  background-color: #ED992A;
+}
+
+.bg-grey1 {
+  background-color: #F0F0F0;
 }
 
 @font-face {

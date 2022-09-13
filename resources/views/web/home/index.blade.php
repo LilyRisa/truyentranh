@@ -118,6 +118,7 @@
                     @endfor
                 </div>
             </div>
+            
         </div>
 {{-- end-section1 --}}
         <div class="section-2 mt-5">

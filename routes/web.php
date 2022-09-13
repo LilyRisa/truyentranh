@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/menu', function () {
     return view('web.menubook.index');
 });
+
+Route::get('/book', function () {
+    return view('web.menubook.book');
+});
