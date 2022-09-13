@@ -43,8 +43,13 @@
 
     </div>
 
-    <div class="bg-secondary w-100 max-100 content-reading">
+    <div class="bg-secondary mt-3 w-100 max-100 content-reading">
         <img src="img/book1.jpeg" class="" alt="">
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-primary"><i class="icon-home"></i></button>
+        <button class="btn btn-primary"><i class="icon-home"></i></button>
     </div>
 </div>
 
