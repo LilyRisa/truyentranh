@@ -24,3 +24,7 @@ Route::get('/menu', function () {
 Route::get('/book', function () {
     return view('web.menubook.book');
 });
+
+Route::get('/category', function () {
+    return view('web.category.index');
+});

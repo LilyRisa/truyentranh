@@ -11915,6 +11915,19 @@ body {
   background-color: #F0F0F0;
 }
 
+.img-back-to-top {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
+
 @font-face {
   font-family: "icomoon";
   src: url(/fonts/icomoon.eot?d9ccc19fcfc98c60d5cfa35f278da422);
