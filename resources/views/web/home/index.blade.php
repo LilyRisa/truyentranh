@@ -1,7 +1,7 @@
 @extends('web.layout')
 @section('main')
     <div>
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide d-none d-lg-block" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="img/img1.jpeg" class="d-block w-100" alt="...">
@@ -57,12 +57,12 @@
         <div class="section-1 mt-5 row">
 
             <div class="col-lg-9">
-                <div class="d-flex">
-                <p class="fs-16 text-uppercase">
+                <div class="d-flex bg_secondary p-0 rounded">
+                <p class="fs-32 text-uppercase fw-bold">
                     truyện hot!
                 </p>
                 <a class="ms-auto text-decoration-none" href="#">
-                <p class="text_secondary">
+                <p class="text-white fs-25">
                     xem thêm >>
                 </p>
                 </a>
@@ -86,7 +86,7 @@
 
             <div class="col-lg-3 mt-5 mt-lg-0">
                 <div class="ms-2 d-flex">
-                    <p class="fs-16 text-uppercase">
+                    <p class="fs-32 text-uppercase">
                         BXH
                     </p>
                     <div class="ms-auto pe-0">
@@ -122,7 +122,7 @@
         </div>
 {{-- end-section1 --}}
         <div class="section-2 mt-5">
-            <p class="fs-16 text-uppercase">
+            <p class="fs-32 text-uppercase">
                 truyện đề cử!
             </p>
 
@@ -150,7 +150,7 @@
 
         <div class="section-4 mt-5 row">
             <div class="col-lg-9">
-                <p class="fs-16 text-uppercase">
+                <p class="fs-32 text-uppercase">
                     truyện mới cập nhật!
                 </p>
                 <div class="row justify-content-between mt-am-2">

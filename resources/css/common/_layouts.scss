@@ -47,7 +47,9 @@ body{
     height: 1.5rem !important;
     width: 1.5rem !important;
 }
-
+.fs-32{
+    font-size: 32px !important;;
+}
 .w-18{
     width:18rem;
 }
@@ -172,4 +174,11 @@ body{
     bottom: 20px;
     right: 20px;
     display: none;
+  }
+
+  .hover-dr{
+    &:hover{
+        background-color: $secondary_color !important;
+        color: aqua !important;
+    }
   }
