@@ -11797,6 +11797,14 @@ body {
   font-size: 25px !important;
 }
 
+.fs-20 {
+  font-size: 20px !important;
+}
+
+.fs-22 {
+  font-size: 22px !important;
+}
+
 .fs-16 {
   font-size: 16px !important;
 }
@@ -11917,21 +11925,52 @@ body {
 
 .img-back-to-top {
   position: fixed;
-  bottom: 70px;
-  right: 20px;
+  bottom: 90px;
+  right: 5px;
 }
 
 #btn-back-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  width: 55px;
+  height: 55px;
+  text-align: center;
   display: none;
+}
+
+.w-5 {
+  width: 5% !important;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+.btn-change-chapter {
+  height: 38px !important;
+}
+
+.border_secondary {
+  border-bottom: 3px solid #FFAE00;
+}
+
+a:hover {
+  color: #FFAE00;
+}
+
+.hover-info:hover {
+  color: aqua !important;
 }
 
 @font-face {
   font-family: "icomoon";
-  src: url(/fonts/icomoon.eot?d9ccc19fcfc98c60d5cfa35f278da422);
-  src: url(/fonts/icomoon.eot?d9ccc19fcfc98c60d5cfa35f278da422) format("embedded-opentype"), url(/fonts/icomoon.ttf?70f29953f19d5c30e0f1555751e5b558) format("truetype"), url(/fonts/icomoon.woff?81f4cfe58f9b96c38e0ffb9392fde82e) format("woff"), url(/fonts/icomoon.svg?17447a07a5b4f9a734d417892ff645ed) format("svg");
+  src: url(/fonts/icomoon.eot?7813cdfdd88b90540d9549c475b55ac2);
+  src: url(/fonts/icomoon.eot?7813cdfdd88b90540d9549c475b55ac2) format("embedded-opentype"), url(/fonts/icomoon.ttf?74fa97b8135b2f9be4dd2593fcc1e5a4) format("truetype"), url(/fonts/icomoon.woff?c9a6c58745057dd860529e8785ba4358) format("woff"), url(/fonts/icomoon.svg?597503d58f0f61c32fa1c8459d50aafc) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -11950,6 +11989,18 @@ body {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu1:before {
+  content: "\E912";
+}
+
+.icon-keyboard_arrow_right1:before {
+  content: "\E910";
+}
+
+.icon-keyboard_arrow_left:before {
+  content: "\E911";
 }
 
 .icon-arrow_forward_ios:before {
@@ -12116,6 +12167,22 @@ body {
   content: "\E959";
 }
 
+.icon-spinner2:before {
+  content: "\E97B";
+}
+
+.icon-spinner11:before {
+  content: "\E984";
+}
+
+.icon-cog:before {
+  content: "\E994";
+}
+
+.icon-list2:before {
+  content: "\E9BB";
+}
+
 .icon-eye:before {
   content: "\E9CE";
 }
@@ -12134,6 +12201,26 @@ body {
 
 .icon-heart:before {
   content: "\E9DA";
+}
+
+.icon-arrow-up2:before {
+  content: "\EA3A";
+}
+
+.icon-arrow-right2:before {
+  content: "\EA3C";
+}
+
+.icon-arrow-left2:before {
+  content: "\EA40";
+}
+
+.icon-circle-right:before {
+  content: "\EA42";
+}
+
+.icon-circle-left:before {
+  content: "\EA44";
 }
 
 .icon-youtube:before {

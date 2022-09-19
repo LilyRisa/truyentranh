@@ -54,6 +54,12 @@ body{
 .fs-25{
     font-size: 25px !important;;
 }
+.fs-20{
+    font-size: 20px !important;;
+}
+.fs-22{
+    font-size: 22px !important;;
+}
 .fs-16{
     font-size: 16px !important;;
 }
@@ -163,13 +169,47 @@ body{
 
 .img-back-to-top {
     position: fixed;
-    bottom: 70px;
-    right: 20px;
+    bottom: 90px;
+    right: 5px;
   }
 
   #btn-back-to-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    width: 55px;
+    height: 55px;
+    text-align: center;
     display: none;
   }
+
+
+.w-5{
+    width: 5% !important;
+}
+
+.w-10{
+    width: 10% !important;
+}
+
+.w-15{
+    width: 15% !important;
+}
+
+.btn-change-chapter{
+    height: 38px !important;
+}
+
+.border_secondary{
+    border-bottom: 3px solid $secondary_color;
+}
+a{
+    &:hover{
+        color: $secondary_color;
+    }
+}
+.hover-info{
+    &:hover{
+        color:aqua !important;
+    }
+}
