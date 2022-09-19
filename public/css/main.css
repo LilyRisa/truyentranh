@@ -11789,6 +11789,10 @@ body {
   width: 1.5rem !important;
 }
 
+.fs-32 {
+  font-size: 32px !important;
+}
+
 .w-18 {
   width: 18rem;
 }
@@ -11939,6 +11943,7 @@ body {
   display: none;
 }
 
+<<<<<<< HEAD
 .w-5 {
   width: 5% !important;
 }
@@ -11964,6 +11969,10 @@ a:hover {
 }
 
 .hover-info:hover {
+=======
+.hover-dr:hover {
+  background-color: #FFAE00 !important;
+>>>>>>> f8628a6a3897711e7fdf26311266bc903df9d3be
   color: aqua !important;
 }
 
