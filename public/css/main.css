@@ -11943,43 +11943,15 @@ body {
   display: none;
 }
 
-<<<<<<< HEAD
-.w-5 {
-  width: 5% !important;
-}
-
-.w-10 {
-  width: 10% !important;
-}
-
-.w-15 {
-  width: 15% !important;
-}
-
-.btn-change-chapter {
-  height: 38px !important;
-}
-
-.border_secondary {
-  border-bottom: 3px solid #FFAE00;
-}
-
-a:hover {
-  color: #FFAE00;
-}
-
-.hover-info:hover {
-=======
 .hover-dr:hover {
   background-color: #FFAE00 !important;
->>>>>>> f8628a6a3897711e7fdf26311266bc903df9d3be
   color: aqua !important;
 }
 
 @font-face {
   font-family: "icomoon";
   src: url(/fonts/icomoon.eot?7813cdfdd88b90540d9549c475b55ac2);
-  src: url(/fonts/icomoon.eot?7813cdfdd88b90540d9549c475b55ac2) format("embedded-opentype"), url(/fonts/icomoon.ttf?74fa97b8135b2f9be4dd2593fcc1e5a4) format("truetype"), url(/fonts/icomoon.woff?c9a6c58745057dd860529e8785ba4358) format("woff"), url(/fonts/icomoon.svg?597503d58f0f61c32fa1c8459d50aafc) format("svg");
+  src: url(/fonts/icomoon.eot?7813cdfdd88b90540d9549c475b55ac2) format("embedded-opentype"), url(/fonts/icomoon.ttf?74fa97b8135b2f9be4dd2593fcc1e5a4) format("truetype"), url(/fonts/icomoon.woff?c9a6c58745057dd860529e8785ba4358) format("woff"), url(/fonts/icomoon.svg?cffa55585bf8f1e05fc3b06b95ae871d) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;

@@ -100,7 +100,7 @@
 
                 <div class="pt-1">
                     @for ($i = 1; $i < 8; $i++)
-                        <div class="ms-2 mt-2 pb-2 border-bottom row">
+                        <div class="ms-2 mt-2 pb-2 border-bottom d-flex d-nowrap">
                             <div class="col-1 p-0">
                                 <p
                                     class="text-start {{ $i == 1 ? 'text-danger' : ($i == 2 ? 'text-success' : ($i == 3 ? 'text-primary' : 'text-secondary')) }} ">
@@ -108,9 +108,11 @@
                             </div>
                             <div class="col-3"><img src="img/book1.jpeg" class="img-fluid"></div>
                             <div class="col-8">
-                                <div class="m-0 p-0">Tên truyện</div>
-                                <div class="row mt-2">
-                                    <div class="col-9 fs-12">Chương 123</div>
+                                <div class="m-0 p-0 ps-2">Tên truyện</div>
+                                <div class="col-9 fs-12 ps-2">Tác giả</div>
+                                <div class="row mt-1 ms-0">
+
+                                    <div class="col-9 fs-12 ps-2">Chương 123</div>
                                     <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
                                 </div>
                             </div>
@@ -209,14 +211,14 @@
                 <p class="fs-16 ms-2 mt-5 mt-lg-0 text-uppercase">Truyện xu hướng</p>
                 <div class="row">
                 @for($i=1;$i<13;$i++)
-                <div class="ms-2 mt-2 pb-2 border-bottom col-6 col-lg-12 row">
+                <div class="ms-2 mt-2 pb-2 border-bottom col-6 col-lg-12 d-flex d-nowrap">
                     <div class="col-1 p-0 mt-1 bg-danger rounded sq-2">
                         <p class="text-center rounded {{ $i == 1 ? 'bg-danger' : ($i == 2 ? 'bg-success' : ($i == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$i}}</p>
                     </div>
                     <div class="col-11">
-                        <div class="m-0 p-0 col-12">Truyện số {{$i}}</div>
-                        <div class="row">
-                            <div class="col-9 fs-12">Chương 21</div>
+                        <div class="m-0 p-0 col-12 ps-2">Truyện số {{$i}}</div>
+                        <div class="row ms-0">
+                            <div class="col-9 fs-12 ps-2">Chương 21</div>
                             <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
                         </div>
                     </div>

@@ -12,19 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::any('/', 'HomeController@index');
 
-Route::get('/', function () {
-    return view('web.home.index');
-});
+Route::any('/book', 'MenuBookController@index');
 
-Route::get('/menu', function () {
-    return view('web.menubook.index');
-});
+Route::any('/reading', 'ReadingController@index');
 
-Route::get('/book', function () {
-    return view('web.menubook.book');
-});
-
-Route::get('/category', function () {
-    return view('web.category.index');
-});
+Route::any('/cate', 'CategoryController@index');
