@@ -57,12 +57,12 @@
         <div class="section-1 mt-5 row">
 
             <div class="col-lg-9">
-                <div class="d-flex bg_secondary p-0 rounded">
-                <p class="fs-32 text-uppercase fw-bold">
+                <div class="d-flex p-0 rounded">
+                <p class="fs-32 text-uppercase">
                     truyện hot!
                 </p>
                 <a class="ms-auto text-decoration-none" href="#">
-                <p class="text-white fs-25">
+                <p class="text_secondary fs-16">
                     xem thêm >>
                 </p>
                 </a>
@@ -86,11 +86,11 @@
 
             <div class="col-lg-3 mt-5 mt-lg-0">
                 <div class="ms-2 d-flex">
-                    <p class="fs-32 text-uppercase">
-                        BXH
+                    <p class="fs-16">
+                        Bảng xếp hạng
                     </p>
                     <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none" href="#">
+                    <a class="text-end text_secondary text-decoration-none fs-16" href="#">
                     
                         xem thêm >>
                     
@@ -106,7 +106,7 @@
                                     class="text-start {{ $i == 1 ? 'text-danger' : ($i == 2 ? 'text-success' : ($i == 3 ? 'text-primary' : 'text-secondary')) }} ">
                                     0{{ $i }}</p>
                             </div>
-                            <div class="col-3"><img src="img/book1.jpeg" class="img-fluid"></div>
+                            <div class="col-3"><img src="img/book1.jpeg" class="img-fluid ps-2"></div>
                             <div class="col-8">
                                 <div class="m-0 p-0 ps-2">Tên truyện</div>
                                 <div class="col-9 fs-12 ps-2">Tác giả</div>
@@ -124,9 +124,23 @@
         </div>
 {{-- end-section1 --}}
         <div class="section-2 mt-5">
-            <p class="fs-32 text-uppercase">
-                truyện đề cử!
-            </p>
+            
+                
+            
+
+            <div class="ms-2 d-flex">
+                <p class="fs-32 text-uppercase">
+                    truyện đề cử!
+                </p>
+                <div class="ms-auto pe-0">
+                <a class="text-end text_secondary text-decoration-none fs-18" href="#">
+                
+                    xem thêm >>
+                
+                </div>
+                </a>
+                </div>
+
 
             <div class="row justify-content-between">
                 @for ($i = 0; $i < 6; $i++)
@@ -152,9 +166,22 @@
 
         <div class="section-4 mt-5 row">
             <div class="col-lg-9">
-                <p class="fs-32 text-uppercase">
-                    truyện mới cập nhật!
-                </p>
+                
+                    
+                
+                <div class="ms-2 d-flex">
+                    <p class="fs-32 text-uppercase">
+                        truyện mới cập nhật!
+                    </p>
+                    <div class="ms-auto pe-0">
+                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
+                    
+                        xem thêm >>
+                    
+                    </div>
+                    </a>
+                    </div>
+                
                 <div class="row justify-content-between mt-am-2">
                     @for($i=0;$i<16;$i++)
                     <div class="col-lg-3 col-6 mt-2">
@@ -173,7 +200,7 @@
                 <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
                 </div>
                 <div class="bg-info p-2 mt-5 rounded">
-                    <p class="p-0 text-uppercase">Từ khóa hot!</p>
+                    <p class="p-0 text-uppercase fs-32">Từ khóa hot!</p>
                     <div class="d-flex">
                         <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
                             girl
@@ -208,7 +235,22 @@
 
 
             <div class="col-lg-3">
-                <p class="fs-16 ms-2 mt-5 mt-lg-0 text-uppercase">Truyện xu hướng</p>
+                
+
+                <div class="ms-2 d-flex">
+                    <p class="fs-16 text-uppercase fw-bold">
+                        xu hướng
+                    </p>
+                    <div class="ms-auto pe-0">
+                    <a class="text-end text_secondary text-decoration-none fs-16" href="#">
+                    
+                        xem thêm >>
+                    
+                    </div>
+                    </a>
+                    </div>
+                
+
                 <div class="row">
                 @for($i=1;$i<13;$i++)
                 <div class="ms-2 mt-2 pb-2 border-bottom col-6 col-lg-12 d-flex d-nowrap">
@@ -227,9 +269,21 @@
                 </div>
                 
 
-                <p class="ms-2 p-0 mt-2 text-uppercase">
-                    truyện theo chủ đề
-                </p>
+        
+
+                <div class="ms-2 d-flex">
+                    <p class="fs-32 text-uppercase">
+                        truyện theo chủ đề
+                    </p>
+                    <div class="ms-auto pe-0">
+                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
+                    
+                        xem thêm >>
+                    
+                    </div>
+                    </a>
+                    </div>
+                
                 <div class="row">
                 @for($i=0;$i<4;$i++)
                 <div class=" col-lg-12 col-6 w-100 ms-2 mt-2 max-100">

@@ -1,10 +1,11 @@
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/main.css?ver=1.9959">
-  <script src="js/app.js"></script>
+  <link rel="stylesheet" href="css/main.css?ver=1.9969">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+  <script src="js/app.js?1"></script>
   @include('web._header')
   <div class="main">
     @yield('main')
