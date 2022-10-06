@@ -14,6 +14,12 @@ const CONFIG = {
 
 
 
+/**
+ * argument
+ * command: node crawler.js '{link category} {id category local} {update lại chapter}'
+ */
+
+
 
 
 const args = process.argv;
