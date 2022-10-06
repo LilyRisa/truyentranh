@@ -58,7 +58,7 @@
 
             <div class="col-lg-9">
                 <div class="d-flex p-0 rounded">
-                <p class="fs-32 text-uppercase">
+                <p class="fs-22 text-uppercase">
                     truyện hot!
                 </p>
                 <a class="ms-auto text-decoration-none" href="#">
@@ -86,11 +86,11 @@
 
             <div class="col-lg-3 mt-5 mt-lg-0">
                 <div class="ms-2 d-flex">
-                    <p class="fs-16">
-                        Bảng xếp hạng
+                    <p class="fs-22">
+                        BXH
                     </p>
                     <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-16" href="#">
+                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
                     
                         xem thêm >>
                     
@@ -129,7 +129,7 @@
             
 
             <div class="ms-2 d-flex">
-                <p class="fs-32 text-uppercase">
+                <p class="fs-22 text-uppercase">
                     truyện đề cử!
                 </p>
                 <div class="ms-auto pe-0">
@@ -170,8 +170,8 @@
                     
                 
                 <div class="ms-2 d-flex">
-                    <p class="fs-32 text-uppercase">
-                        truyện mới cập nhật!
+                    <p class="fs-22 text-uppercase">
+                        mới cập nhật!
                     </p>
                     <div class="ms-auto pe-0">
                     <a class="text-end text_secondary text-decoration-none fs-18" href="#">
@@ -200,7 +200,7 @@
                 <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
                 </div>
                 <div class="bg-info p-2 mt-5 rounded">
-                    <p class="p-0 text-uppercase fs-32">Từ khóa hot!</p>
+                    <p class="p-0 text-uppercase fs-22">Từ khóa hot!</p>
                     <div class="d-flex">
                         <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
                             girl
@@ -238,11 +238,11 @@
                 
 
                 <div class="ms-2 d-flex">
-                    <p class="fs-16 text-uppercase fw-bold">
+                    <p class="fs-22 pt-lg-0 pt-4 text-uppercase fw-bold">
                         xu hướng
                     </p>
-                    <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-16" href="#">
+                    <div class="ms-auto pt-lg-0 pt-4 pe-0">
+                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
                     
                         xem thêm >>
                     
@@ -253,7 +253,7 @@
 
                 <div class="row">
                 @for($i=1;$i<13;$i++)
-                <div class="ms-2 mt-2 pb-2 border-bottom col-6 col-lg-12 d-flex d-nowrap">
+                <div class="ms-2 mt-2 pb-2 border-bottom d-flex d-nowrap">
                     <div class="col-1 p-0 mt-1 bg-danger rounded sq-2">
                         <p class="text-center rounded {{ $i == 1 ? 'bg-danger' : ($i == 2 ? 'bg-success' : ($i == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$i}}</p>
                     </div>
@@ -271,19 +271,14 @@
 
         
 
-                <div class="ms-2 d-flex">
-                    <p class="fs-32 text-uppercase">
+                <div class="ms-2 mt-4 d-flex">
+                    <p class="fs-22 text-uppercase">
                         truyện theo chủ đề
                     </p>
                     <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
-                    
-                        xem thêm >>
                     
                     </div>
-                    </a>
-                    </div>
-                
+                </div>
                 <div class="row">
                 @for($i=0;$i<4;$i++)
                 <div class=" col-lg-12 col-6 w-100 ms-2 mt-2 max-100">

@@ -2,10 +2,11 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/main.css?ver=1.9969">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <script src="js/app.js?1"></script>
+
   @include('web._header')
   <div class="main">
     @yield('main')
@@ -51,4 +52,5 @@ function backToTop() {
 </script>
 
   @include('web._footer')
+  <script src="js/app.js?1"></script>
 </body>
