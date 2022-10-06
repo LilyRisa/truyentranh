@@ -21,6 +21,11 @@
     },
     "dependencies": {
         "bootstrap": "^5.2.0",
-        "jquery": "^3.6.1"
+        "jquery": "^3.6.1",
+        "jsdom": "^20.0.1",
+        "moment": "^2.29.4",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.3.3",
+        "puppeteer": "^18.2.0"
     }
 }
