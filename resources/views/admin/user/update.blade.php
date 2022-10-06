@@ -165,9 +165,9 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Chức vụ</label>
-                                        <select name="group_id" class="form-control">
+                                        <select name="level_id" class="form-control">
                                             @foreach($listGroup as $item)
-                                            <option {{isset($oneItem->group_id) && $oneItem->group_id == $item->id ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
+                                            <option {{isset($oneItem->level_id) && $oneItem->level_id == $item->id ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

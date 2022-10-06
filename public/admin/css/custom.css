@@ -123,3 +123,20 @@
     display: inline-block;
     color: #000000;
 }
+.font-16{
+    font-size: 16px !important;
+}
+.font-18{
+    font-size: 18px !important;
+}
+.font-14{
+    font-size: 14px !important;
+}
+.font-12{
+    font-size: 12px !important;
+}
+.icon:not(.icon-c-s):not(.icon-custom-size) {
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+}

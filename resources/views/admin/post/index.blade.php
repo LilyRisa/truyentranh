@@ -17,9 +17,6 @@
                                     <input type="text" name="title" class="form-control" value="{{isset($_GET['title'])? $_GET['title'] : ''}}" placeholder="Tiêu đề">
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" name="slug" class="form-control" value="{{isset($_GET['slug'])? $_GET['slug'] : ''}}" placeholder="Url bài viết">
-                                </div>
-                                <div class="col-3">
                                     <input type="text" name="time_range" class="form-control datetimes" data-date="{{isset($_GET['time_range'])? $_GET['time_range'] : ''}}" value="{{isset($_GET['time_range'])? $_GET['time_range'] : ''}}" placeholder="Khoảng thời gian">
                                 </div>
                             </div>
@@ -69,6 +66,7 @@
                                 <th class="text-center w-10">Ngày đăng bài</th>
                                 <th class="text-center w-10">Số từ</th>
                                 <th class="text-center w-10">Điểm SEO</th>
+                                <th class="text-center w-10">Nổi bật trang chủ</th>
                                 {{--<th class="text-center w-10">Link</th>--}}
                                 <th class="text-center w-15">Thao tác</th>
                             </tr>
@@ -82,10 +80,13 @@
                                 <td class="text-center align-middle">{{date('d-m-Y H:i', strtotime($item->displayed_time))}}</td>
                                 <td class="text-center align-middle">{{$item->word_count ?? ''}}</td>
                                 <td class="text-center align-middle"><span class="@if(empty($item->seo_score)) @elseif($item->seo_score <= 60) bg-danger @elseif($item->seo_score >= 61 && $item->seo_score <= 89) bg-warning @else bg-success @endif text-white p-2">{{$item->seo_score ?? ''}}</span></td>
-                                {{--<td class="text-center">
-                                    <p>Link đi: <span class="font-weight-bold">{{$item->count_link_out}}</span></p>
-                                    <p class="mb-0">Link về: <span class="font-weight-bold">{{$item->count_link_ve}}</span></p>
-                                </td>--}}
+                                <td class="text-center">
+                                   <a href="#" class="home_feature star_home" data-id="{{$item->id}}" style="{{$item->is_feature_home ? 'color: yellow;' : ''}}">
+                                    <svg class="c-icon">
+                                        <use xlink:href="/admin/images/icon-svg/free.svg#cil-star"></use>
+                                    </svg>
+                                   </a>
+                                </td>
                                 <td class="text-center">
                                     <a class="btn btn-info" href="/admin/post/update/{{$item->id}}">
                                         <svg class="c-icon">

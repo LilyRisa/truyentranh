@@ -233,8 +233,12 @@ var SEO = {
             $('.keyword-length').attr('data-score', 0);
         }
 
-        var wordcount = tinymce.get('full-featured').plugins.wordcount;
-        $('input[name="word_count"]').val(wordcount.body.getWordCount());
+        var wordcount = tinymce.get('full-featured');
+        wordcount = wordcount.plugins.wordcount;
+        if(typeof wordcount !== 'undefined' ){
+            $('input[name="word_count"]').val(wordcount.body.getWordCount());
+        }
+       
     },
     yoats_seo_score: function (){
         let sum = 0;

@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // Barryvdh\Elfinder\ElfinderServiceProvider::class
+        App\Providers\WebProvider::class,
+        App\Providers\AdminProvider::class,
 
     ],
 

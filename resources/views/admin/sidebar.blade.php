@@ -91,6 +91,17 @@
         </li>
         @endif
 
+        @if(!empty($permission['googleindex']))
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="/admin/google_index">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="/admin/images/icon-svg/free.svg#cil-audio"></use>
+                    </svg>
+                    Google index
+                </a>
+            </li>
+        @endif
+
         @if(!empty($permission['internallink']))
                 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
                     <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">

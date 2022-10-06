@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Group;
+use App\Models\Level;
 use Redirect;
 use Response;
 
@@ -43,7 +43,7 @@ class UserController extends Controller
             User::updateOrInsert(['id' => $id], $post_data);
             return Redirect::to('/admin/user');
         }
-        $data['listGroup'] = Group::all();
+        $data['listGroup'] = Level::all();
         return view('admin.user.update', $data);
     }
 

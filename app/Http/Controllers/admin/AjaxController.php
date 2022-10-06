@@ -10,10 +10,15 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Response;
 use Hash;
 use App\Models\Post_tag;
 use App\Models\Video_tag;
+use App\Service\GoogleApi;
+use Cache;
+use Illuminate\Support\Facades\Http;
 
 class AjaxController extends Controller
 {
@@ -111,5 +116,104 @@ class AjaxController extends Controller
             ];
         }
         return Response::json($data);
+    }
+
+    public function google_index(Request $request){
+        $action = $request->input('action');
+        $url = $request->input('url');
+
+        $data = GoogleApi::init()->addScope();
+
+        if($action == 'check'){
+            $check = $data->check($url);
+            $resp = [
+                'status' => !empty($check) ? true : false,
+                'mess' => !empty($check) ? 'Đã được lập chỉ mục' : 'Chưa được lập chỉ mục'
+            ];
+
+        }else if($action == 'update'){
+
+            $check = $data->index($url);
+            $resp = [
+                'status' => !empty($check) ? true : false,
+                'mess' => !empty($check) ? 'Đã yêu cầu lập chỉ mục' : 'Lỗi'
+            ];
+
+        }else{
+            $check = $data->index($url, 'delete');
+            $resp = [
+                'status' => !empty($check) ? true : false,
+                'mess' => !empty($check) ? 'Đã yêu cầu xóa lập chỉ mục' : 'Lỗi'
+            ];
+        }
+
+        return \response()->json($resp);
+    }
+
+    public function home_feature(Request $request){
+        $id = $request->input('id');
+
+        $id_post_old = Post::where('is_feature_home', 1)->first()->id;
+        // dd($id_post_old);
+
+        try{
+            Post::where('id', $id_post_old)->update(['is_feature_home' => 0]);
+            $data = Post::find($id);
+            $data->is_feature_home = 1;
+            $data->save();
+            $cache_post_feature = md5('post_feature-with-category-user-displayed_time-desc');
+            if(Cache::has($cache_post_feature)){
+                Cache::forget($cache_post_feature);
+            }
+            return \Response::json(['status' => true, 'mess' => 'Cập nhật thành công bài viết có id:'.$id]);
+        }catch(\Exception $e){
+            return \Response::json(['status' => false, 'mess' => 'Lỗi hệ thống']);
+        }
+
+    }
+
+    public function getTrafficNow(){
+        $data = GoogleApi::init()->addScope('analytics')->getRealtimeUser();
+        $data_result = [];
+        if(!empty($data->rows)){
+            foreach($data->rows as $d){
+                $data_result[] = [
+                    'country' => $d->dimensionValues[0]->value,
+                     'count' => $d->metricValues[0]->value,
+                ];
+            }
+        }
+        
+        return \response()->json($data_result);
+    }
+
+    public function getTrafficCount(){
+        $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults();
+        $user_traffic = !empty($user_traffic->rows) ? $user_traffic->rows[0][0] : 0;
+
+        return \response()->json([
+            'data' => $user_traffic
+        ]);
+    }
+
+    public function RemoveCacheCloudflare(){
+        $id_zone = \Config::get('cloudflare.id_zone');
+        $api_key = \Config::get('cloudflare.api_key');
+        $email = \Config::get('cloudflare.email');
+        $req = Http::acceptJson()->withHeaders([
+            'X-Auth-Email' => $email,
+            'X-Auth-Key' => $api_key,
+            'Content-Type' => 'application/json'
+        ])->post('https://api.cloudflare.com/client/v4/zones/'.$id_zone.'/purge_cache', [
+            'purge_everything' => true,
+        ]);
+        
+        $data = json_decode($req->body());
+        if($data->success) return \response()->json(['status' => true]);
+        return \response()->json(['status' => false]);
+        
+    }
+    public function graphqlCloudflareAnalytic(){
+        
     }
 }

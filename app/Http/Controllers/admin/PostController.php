@@ -37,9 +37,7 @@ class PostController extends Controller
         } elseif (!empty($_GET['status'])) {
             $condition[] = ['displayed_time', '<=', Post::raw('NOW()')];
         }
-        if (!empty($_GET['keyword'])) {
-            $condition[] = ['slug', 'LIKE', '%'.toSlug($_GET['keyword']).'%'];
-        }
+        
         if (!empty($_GET['category_id'])) {
             $condition[] = ['category_primary_id', $_GET['category_id']];
         }
@@ -52,12 +50,12 @@ class PostController extends Controller
         if (!empty($_GET['time_range'])) {
             
             $date = explode(' - ',$_GET['time_range']);
-            $date_start = $date[0];
-            $date_end = $date[1];
-
+            $date_start = date('Y-m-d H:i:s', strtotime($date[0]));
+            $date_end = date('Y-m-d H:i:s', strtotime($date[1]));        
             $condition[] = ['created_at','>=', $date_start];
             $condition[] = ['created_at','<=', $date_end];
         }
+        // dd($condition);
         #
         $data['categoryTree'] = Category::getTree();
         $data['listUser'] = User::where('status', 1)->get();
@@ -77,7 +75,7 @@ class PostController extends Controller
         $data['url_referer'] = Request::server('HTTP_REFERER') ?? '/admin/post?status=1';
         $data['categoryTree'] = Category::getTree();
         $data['user_id'] = Auth::id();
-        $data['group_id'] = Auth::user()->group_id;
+        $data['level_id'] = Auth::user()->level_id;
 
         if ($id > 0) {
             $data['oneItem'] = $oneItem = Post::findOrFail($id);

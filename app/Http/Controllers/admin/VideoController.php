@@ -65,7 +65,7 @@ class VideoController extends Controller
         $data['url_referer'] = Request::server('HTTP_REFERER') ?? '/admin/post?status=1';
         $data['categoryTree'] = Category::getTree();
         $data['user_id'] = Auth::id();
-        $data['group_id'] = Auth::user()->group_id;
+        $data['level_id'] = Auth::user()->level_id;
 
         if ($id > 0) {
             $data['oneItem'] = $oneItem = Video::findOrFail($id);

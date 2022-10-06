@@ -26,6 +26,14 @@
                     </svg>
                     Xóa cache database
                 </a>
+
+                <a class="dropdown-item" href="javascript:;" data-toggle="modal" data-target="#clouflare_remove">
+                    <svg class="c-icon mr-2">
+                        <use xlink:href="/admin/images/icon-svg/free.svg#cil-leaf"></use>
+                    </svg>
+                    Xóa cache static clouflare
+                </a>
+
                 <a class="dropdown-item" href="javascript:;" data-toggle="modal" data-target="#shorturl">
                     <svg class="c-icon mr-2">
                         <use xlink:href="/admin/images/icon-svg/free.svg#cil-tag"></use>
@@ -119,6 +127,21 @@
         Trong khoảng thời gian này. Hệ thống sẽ hoạt động chậm hơn bình thường
         <div class="d-flex mt-3 px-2 justify-content-center">
             <button class="btn btn-success mx-2" type="button" id="yes_del_cache">Có</button>
+            <button class="btn btn-primary mx-2" type="button" data-dismiss="modal">Không</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-sm" id="clouflare_remove" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content p-2">
+        Thao tác này sẽ xóa cache trên cloudflare<br/>
+        Sẽ mất một khoảng thời gian ngắn để cloudflare thu thập lại cache mới<br/>
+        Trong khoảng thời gian này người dùng truy cập có thể chậm hơn bình thường.<br/>
+        <b>Thao tác này giúp thay đổi nội dung của các file tĩnh như css, js,..</b>
+        <div class="d-flex mt-3 px-2 justify-content-center">
+            <button class="btn btn-success mx-2" type="button" id="delcache_cloudflare">Có</button>
             <button class="btn btn-primary mx-2" type="button" data-dismiss="modal">Không</button>
         </div>
       </div>

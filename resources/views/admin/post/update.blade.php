@@ -127,7 +127,7 @@
                                                         <label>Tag</label>
                                                         <div id="select-multi-tag" data-post-id="{{!empty($oneItem->id) ? $oneItem->id : 0}}"></div>
                                                     </div>
-                                                    @if ($group_id == 1)
+                                                    @if ($level_id == 1)
                                                         <div class="form-group row">
                                                             <div class="col-md-6">
                                                                 <label>Trạng thái</label>

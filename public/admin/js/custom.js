@@ -552,5 +552,115 @@ $(function() {
         alert('Lỗi hệ thống');
     })
 
- })
+ });
+ 
+ const googleIndex = (status, obj) => {
+    console.log(status);
+    $(obj).find('img').attr('style', '');
+    let url = $('#url').val();
+    if(url == '' || url == null || typeof url === 'undefined'){
+        console.log('url empty');
+        $(obj).find('img').attr('style', 'display:none');
+        showToastr('error', 'Nhập url');
+        return 0;
+    }
+    $.ajax({
+        url: '/admin/ajax/google_index',
+        type: 'POST',
+        data: {
+            url : url,
+            action : status
+        }
+    }).done(resp => {
+        $(obj).find('img').attr('style', 'display:none');
+        if(resp.status){
+            showToastr('success', resp.mess);
+        }else{
+            showToastr('error', resp.mess);
+        }
+    }).fail(e => {
+        $(obj).find('img').attr('style', 'display:none');
+        showToastr('error', 'lỗi mạng');
+    });
+}
+
+ $('.home_feature').on('click', function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+
+    var thas = $(this);
+
+    $.ajax({
+        url: '/admin/ajax/add_feature_home',
+        type: 'post',
+        data: {
+            id : id
+        }
+    }).done(resp => {
+        if(resp.status){
+            showToastr('success', resp.mess);
+            $(thas).attr('style', 'color: yellow;');
+            $('.star_home').attr('style','');
+            $('.star_home').attr('class','home_feature');
+            $(thas).attr('class','home_feature star_home');
+        }else{
+            showToastr('error', resp.mess);
+        }
+        
+    }).fail(e => {
+        showToastr('error', 'Lỗi hệ thống');
+    });
+ });
+
+
+ function user_traffic_realtime(){
+    $.ajax({
+        url: '/admin/get_user_now',
+        type : 'get'
+    }).done(resp => {
+        if(resp != null){
+            let tmp = '<div>';
+            resp.forEach((v, i) => {
+                tmp += `<div><span>${v.country}: </span> ${v.count}</div>`
+            })
+            tmp += '</div>'
+            $('#user_traffic_realtime').html(tmp);
+        }
+        
+    });
+ }
+
+ function user_traffic(){
+    $.ajax({
+        url: '/admin/get_user_count',
+        type : 'get'
+    }).done(resp => {
+        $('#user_traffic').text(resp.data);
+    });
+ }
+
+ setInterval(() => {
+    user_traffic_realtime();
+    user_traffic();
+ }, 30 * 1000);
+
+ $('#delcache_cloudflare').on('click', function(){
+    $.ajax({
+        url: '/admin/cloudflare_cache_remove',
+        type: 'get',
+    }).done((e) => {
+        if(e.status){
+            alert('Thành công');
+        }else{
+            alert('Lỗi');
+        }
+        $('#clouflare_remove').modal('hide');
+        
+        // alert(e);
+    }).fail((e) => {
+        $('#clouflare_remove').modal('hide');
+        alert('Lỗi!');
+    });
+});
+ 
 

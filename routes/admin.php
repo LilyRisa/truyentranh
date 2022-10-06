@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth', 'checkPermission']], function () {
     Route::post('/ajax/loadTag','AjaxController@loadTag');
     Route::post('/ajax/loadCategory','AjaxController@loadCategory');
     Route::post('/ajax/loadCategoryAuthor','AjaxController@loadCategoryAuthor');
+
+    Route::post('/ajax/google_index','AjaxController@google_index');
+    Route::post('/ajax/add_feature_home','AjaxController@home_feature');
     /*Category*/
     Route::get('/category','CategoryController@index');
     Route::any('/category/update','CategoryController@update');
@@ -108,4 +111,11 @@ Route::group(['middleware' => ['auth', 'checkPermission']], function () {
     //Clear Cache facade value:
     Route::get('/clear-cache', 'HomeController@cache_clear');
     Route::post('/ajax-short-url', 'HomeController@shorturl');
+    Route::get('/get_user_now', 'AjaxController@getTrafficNow');
+    Route::get('/get_user_count', 'AjaxController@getTrafficCount');
+    // google index 
+    Route::get('/google_index','GoogleIndexController@index');
+
+    // cloudflare
+    Route::get('/cloudflare_cache_remove', 'AjaxController@RemoveCacheCloudflare');
 });
