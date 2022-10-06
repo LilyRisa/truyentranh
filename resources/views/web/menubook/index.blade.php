@@ -32,19 +32,56 @@
         </div>
     </div>
 </div>
-<div class="container bg-primary">
-    <div class="row">
+<div class="container bg-white">
+    <div class="row mt-0 pt-3">
     <div class="col-lg-9">
-        <span class="">
+        <div class="d-flex container mt-2">
+        <p class="">
             Chương (321)
-        </span>
-        <p class="text-end p-0">
+        </p>
+        <p class="ms-auto">
             Cập nhật lần cuối 25/12/2021
         </p>
     </div>
-    <div class="col-lg-3">
-        Cùng tác giả
+
+        
+    <div class="col-12 container">
+        <ul class="list-unstyled row">
+            @for($i=0;$i<16;$i++)
+            <li class="col-6"><div class="list-group-item bg-light my-1 mx-0"><p>Ch.132</p><p class="small text-secondary">12/05/2022</p></div></li>
+            @endfor
+        </ul>
+        </div>
+        
     </div>
+    <div class="col-lg-3">
+        <div class="mt-2 d-flex">
+            <p class="fs-16 text-uppercase">
+                Cùng tác giả
+            </p>
+            <div class="ms-auto pe-0">
+            <a class="text-end text_secondary text-decoration-none" href="#">
+                xem thêm >>
+            </div>
+            </a>
+        </div>
+        <div class="">
+            @for ($i = 1; $i < 8; $i++)
+                <div class="mt-2 pb-2 border-bottom row">
+                    <div class="col-3"><img src="img/book1.jpeg" class="img-fluid"></div>
+                    <div class="col-9">
+                        <div class="m-0 p-0">Tên truyện</div>
+                        <div class="row mt-2">
+                            <div class="col-9 fs-12">Chương 123</div>
+                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
+                        </div>
+                    </div>
+                </div>
+            @endfor
+        </div>
+    
+        
+    
     </div>
 </div>
 

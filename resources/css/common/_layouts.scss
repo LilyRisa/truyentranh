@@ -47,12 +47,20 @@ body{
     height: 1.5rem !important;
     width: 1.5rem !important;
 }
-
+.fs-32{
+    font-size: 32px !important;;
+}
 .w-18{
     width:18rem;
 }
 .fs-25{
     font-size: 25px !important;;
+}
+.fs-20{
+    font-size: 20px !important;;
+}
+.fs-22{
+    font-size: 22px !important;;
 }
 .fs-16{
     font-size: 16px !important;;
@@ -103,15 +111,139 @@ body{
 
 .max-100{
     max-width: 100% !important;
-    .img{
+    img{
         max-width: 100% !important;
     }
-    .p{
+    p{
         max-width: 100% !important;
+    }
+}
+.content-reading{
+    img{
+        width: 100%;
+        height:auto;
+        object-fit: fill;
     }
 }
 
 // trang menu book
 .bg-detail{
     height: 25rem;
+}
+
+
+.triangle-right-1 {
+    width: 0;
+    height: 0;
+    border-left: 1.1rem solid #A5630D!important;
+    border-top: 0.8rem solid transparent;
+    border-bottom: 1.2rem solid transparent;
+  }
+
+  .triangle-right-2 {
+    width: 0;
+    height: 0;
+    border-left: 1.1rem solid #D47F11!important;
+    border-top: 0.8rem solid transparent;
+    border-bottom: 1.2rem solid transparent;
+  }
+
+  .triangle-right-3 {
+    width: 0;
+    height: 0;
+    border-left: 1.1rem solid #ED992A!important;
+    border-top: 0.8rem solid transparent;
+    border-bottom: 1.2rem solid transparent;
+  }
+.bg-1{
+    background-color: #A5630D;
+}
+.bg-2{
+    background-color: #D47F11;
+}
+.bg-3{
+    background-color: #ED992A;
+}
+
+.bg-grey1{
+    background-color: #F0F0F0;
+}
+
+.img-back-to-top {
+    position: fixed;
+    bottom: 90px;
+    right: 5px;
+  }
+
+  #btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    display: none;
+  }
+
+  .hover-dr{
+    &:hover{
+        background-color: $secondary_color !important;
+        color: aqua !important;
+    }
+  }
+
+
+
+  //navi
+
+  .sidebar,
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+.sidebar {
+  left: -100%;
+  max-width: 300px;
+  transition: all ease 0.25s;
+  overflow-y: auto;
+  z-index: 1032;
+}
+.overlay {
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  visibility: hidden;
+  z-index: 1031;
+}
+
+.main-navigation.active .sidebar {
+  left: 0;
+}
+
+.main-navigation.active .overlay {
+  visibility: visible;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    flex-direction: row;
+    max-width: 100%;
+    transform: none;
+    transition: none;
+    overflow-y: visible;
+    z-index: auto;
+  }
+}
+
+.main-heading {
+  position: relative;
+  z-index: 100;
 }
