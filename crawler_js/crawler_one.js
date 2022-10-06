@@ -24,7 +24,7 @@ const CONFIG = {
 
 const args = process.argv;
 
-let link_category = typeof args[2] == 'undefined' ? null : args[2];
+let link_tales = typeof args[2] == 'undefined' ? null : args[2];
 let category_id = typeof args[3] == 'undefined' ? null : args[3];
 let update_chapter = typeof args[4] == 'undefined' ? null : args[3];
 
@@ -44,21 +44,6 @@ const page = await browser.newPage();
 await page.setUserAgent('Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0');
 
 
-const get_link_page = async () => {
-
-    await page.goto(link_category);
-    const data = await page.evaluate(() => Array.from(document.querySelectorAll('.jtip[href]'), a => a.getAttribute('href')) );
-
-    for(let item of data){
-        let { data_truyen, chapter } = await get_link_truyen(item);
-        let id_tales = await insert_truyen(data_truyen);
-        await insert_chapter(chapter, id_tales);
-    }
-    // let { data_truyen, chapter } = await get_link_truyen(data[0]);
-    // let id_tales = await insert_truyen(data_truyen);
-    // await insert_chapter([chapter[0]], id_tales);
-    
-}
 
 const insert_chapter = async (chapter, id) => {
     for(let chap of chapter){
@@ -222,11 +207,11 @@ const get_link_truyen = async (link) => {
 
 }
 
-const get_chapter = async (link) => {
-    await page.goto(link);
-}
 
-await get_link_page();
+let { data_truyen, chapter } = await get_link_truyen(link_tales);
+let id_tales = await insert_truyen(data_truyen);
+await insert_chapter(chapter, id_tales);
+
 
 await browser.close();
 })();
