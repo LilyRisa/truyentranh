@@ -75,6 +75,7 @@ const insert_chapter = async (chapter, id) => {
                         content,
                         moment().format('YYYY-MM-DD HH:mm:ss')
                     ]);
+                    console.log('Updated url chapter: '+ chap);
                 }catch(e){
                     return 0;
                 }
@@ -212,8 +213,9 @@ let { data_truyen, chapter } = await get_link_truyen(link_tales);
 let id_tales = await insert_truyen(data_truyen);
 await insert_chapter(chapter, id_tales);
 
-
+console.log('done!');
 await browser.close();
+return 0;
 })();
 
 
