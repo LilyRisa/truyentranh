@@ -3,7 +3,11 @@ const mysql = require("mysql2/promise");
 var jsdom = require("jsdom");
 
 require('dotenv').config({path: __dirname+'/../.env'});
-const moment = require('moment');
+const moment = require('moment');                                                                                
+var fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+const axios = require('axios');
+
 
 const CONFIG = {
     host: process.env.DB_HOST,
@@ -51,12 +55,12 @@ const get_link_page = async () => {
 
     for(let item of data){
         let { data_truyen, chapter } = await get_link_truyen(item);
-        let id_tales = await insert_truyen(data_truyen);
-        await insert_chapter(chapter, id_tales);
+        let id_story = await insert_truyen(data_truyen);
+        await insert_chapter(chapter, id_story);
     }
     // let { data_truyen, chapter } = await get_link_truyen(data[0]);
-    // let id_tales = await insert_truyen(data_truyen);
-    // await insert_chapter([chapter[0]], id_tales);
+    // let id_story = await insert_truyen(data_truyen);
+    // await insert_chapter([chapter[0]], id_story);
     
 }
 
@@ -100,7 +104,7 @@ const insert_chapter = async (chapter, id) => {
             
         }else{
             try{
-                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, tales_id) values (?,?,?,?,?,?,?,?,?,?)', [
+                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id) values (?,?,?,?,?,?,?,?,?,?)', [
                     title_other+title,
                     title_other+title,
                     `✔️ Đọc truyện tranh ${title_other+title} Tiếng Việt bản đẹp chất lượng cao, cập nhật nhanh và sớm nhất ${process.env.APP_NAME}`,
@@ -123,13 +127,13 @@ const insert_chapter = async (chapter, id) => {
 }
 
 const insert_truyen = async (data) => {
-    let [rows, fields] = await CONNECT.execute('select id from tales where slug_origin = ?', [data.slug_origin]);
+    let [rows, fields] = await CONNECT.execute('select id from story where slug_origin = ?', [data.slug_origin]);
     if(rows.length > 0) {
         console.log('Duplicate url: '+ data.title);
         return rows[0].id;
     }
     try{
-        let ins = await CONNECT.execute('INSERT INTO tales (title, slug, description, meta_title, meta_description, meta_keyword, keyword, thumbnail, name, other_name, status, content, is_home, is_feature, category_primary_id, author, views, source_origin, slug_origin, is_update, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        let ins = await CONNECT.execute('INSERT INTO story (title, slug, description, meta_title, meta_description, meta_keyword, keyword, thumbnail, name, other_name, status, content, is_home, is_feature, author, views, source_origin, slug_origin, is_update, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
         [
             data.title,
             data.slug,
@@ -145,7 +149,6 @@ const insert_truyen = async (data) => {
             data.content,
             data.is_home,
             data.is_feature,
-            data.category_primary_id,
             data.author,
             data.views,
             data.source_origin,
@@ -154,14 +157,13 @@ const insert_truyen = async (data) => {
             moment().format('YYYY-MM-DD HH:mm:ss'),
         ]);
         console.log('Tao thanh cong truyen :'+ data.title);
-       let [rows] = await CONNECT.execute('SELECT id from tales where source_origin = ?', [data.source_origin]);
+       let [rows] = await CONNECT.execute('SELECT id from story where source_origin = ?', [data.source_origin]);
        // insert category
        try{
-            await CONNECT.execute('INSERT INTO tales_categories (tales_id, category_id, is_primary, created_at) VALUES (?,?,?,?)', [
+            await CONNECT.execute('INSERT INTO story_category (story_id, category_id, is_primary) VALUES (?,?,?)', [
                 rows[0].id,
                 category_id,
-                1,
-                moment().format('YYYY-MM-DD HH:mm:ss'),
+                1
             ]);
        }catch(e){
         console.log('khong the tạo category\n');
@@ -194,8 +196,9 @@ const get_link_truyen = async (link) => {
     const chapter_list = await page.evaluate(() => Array.from(document.querySelectorAll('#nt_listchapter .chapter a[href]'), a => a.getAttribute('href')) );
     let thumbnail = await page.$$eval('.detail-info .col-image img[src]', imgs => imgs.map(img => img.getAttribute('src')));
 
-    if(thumbnail.length >= 0)
-        thumbnail = thumbnail[0];
+    if(thumbnail.length >= 0){
+        thumbnail = await movefile(thumbnail[0]);
+    }
     
     data.data_truyen.title = title;
     data.data_truyen.slug_origin = link_origin;
@@ -212,7 +215,6 @@ const get_link_truyen = async (link) => {
     data.data_truyen.content = content;
     data.data_truyen.is_home = 0;
     data.data_truyen.is_feature = 0;
-    data.data_truyen.category_primary_id = category_id;
     data.data_truyen.author = author;
     data.data_truyen.source_origin = link;
     data.data_truyen.is_update = is_update;
@@ -252,3 +254,40 @@ function slugify(string){
         .replace(/^-+/, '')
         .replace(/-+$/, '')
     }
+
+    
+async function movefile(url, dest){
+    url = 'http:'+url;
+
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var year = dateObj.getUTCFullYear();
+    let dir_filename = '../public/upload/admin/story/'+year+'/'+month+'/';
+
+    let filename = url.split('/');
+    filename = filename[filename.length - 1];
+    const saveFile = await request(url);
+
+    if (!fs.existsSync(dir_filename)){
+        fs.mkdirSync(dir_filename, { recursive: true });
+    }
+    const download = fs.createWriteStream(dir_filename+'/'+filename);
+    await new Promise((resolve, reject)=> {
+        saveFile.data.pipe(download);
+        download.on("close", resolve);
+        download.on("error", console.error);
+    });
+    return '/upload/admin/story/'+year+'/'+month+'/'+filename;
+}
+
+function request (element) {
+    try{
+      return axios({
+        url: element,
+        method: "GET",
+        responseType: "stream"
+      });
+    } catch(e) {
+      console.log( 'errore: ' + e)
+    }
+  }
