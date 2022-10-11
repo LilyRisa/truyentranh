@@ -15,3 +15,5 @@ Duonghoo - 29/08/2022
 - Truy cập thư mục ./crawler_js
 - Với cào theo chuyên mục chạy script ``` node crawler.js {link category} {id category ở database phía mình} {Tùy chọn update lại chapter}``` . Ví dụ ```node .\crawler.js 'https://www.nettruyenme.com/tim-truyen/dam-my' 1 ```
 - Với cào theo link truyện chạy script ``` node crawler_one.js {link truyện} {id category ở database phía mình} {Tùy chọn update lại chapter}```. Ví dụ ```node .\crawler_one.js 'https://www.nettruyenme.com/truyen-tranh/canh-kiem-chi-phong-68020' 1 ```
+
+page 5
