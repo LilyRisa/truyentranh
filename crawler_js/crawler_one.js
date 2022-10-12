@@ -220,8 +220,9 @@ let { data_truyen, chapter } = await get_link_truyen(link_story);
 let id_story = await insert_truyen(data_truyen);
 await insert_chapter(chapter, id_story);
 
-console.log('done!');
+
 await browser.close();
+console.log('done!');
 return 0;
 })();
 

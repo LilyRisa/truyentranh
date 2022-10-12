@@ -237,6 +237,8 @@ const get_chapter = async (link) => {
 await get_link_page();
 
 await browser.close();
+console.log('done!');
+return 0;
 })();
 
 
