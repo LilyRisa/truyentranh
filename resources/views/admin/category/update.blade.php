@@ -62,6 +62,14 @@
                                                 </label>
                                                 <textarea class="form-control" name="meta_description" rows="4" placeholder="Mô tả SEO">{{!empty($oneItem->meta_description) ? $oneItem->meta_description : ''}}</textarea>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label>
+                                                    Từ khóa chính
+                                                </label>
+                                                <input class="form-control" name="main_meta_keyword" value="{{!empty($oneItem->main_meta_keyword) ? $oneItem->main_meta_keyword : ''}}" type="text" placeholder="Từ khóa chính">
+                                            </div>
+
                                             <div class="form-group">
                                                 <label>
                                                     Từ khóa liên quan
