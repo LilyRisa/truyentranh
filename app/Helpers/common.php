@@ -149,6 +149,7 @@ function getListPermission() {
         'shortcode' => 'short code',
         'internallink' => 'Internal link',
         'googleindex' => 'gooogle index',
+        'story' => 'Truyện'
     ];
 }
 

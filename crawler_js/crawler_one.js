@@ -121,7 +121,7 @@ const insert_truyen = async (data) => {
         return rows[0].id;
     }
     try{
-        let ins = await CONNECT.execute('INSERT INTO story (title, slug, description, meta_title, meta_description, meta_keyword, keyword, thumbnail, name, other_name, status, content, is_home, is_feature, author, views, source_origin, slug_origin, is_update, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        let ins = await CONNECT.execute('INSERT INTO story (title, slug, description, meta_title, meta_description, meta_keyword, keyword, thumbnail, name, other_name, status, content, is_home, is_feature, author, views, source_origin, slug_origin, is_update, created_at, main_keyword) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
         [
             data.title,
             data.slug,
@@ -143,6 +143,7 @@ const insert_truyen = async (data) => {
             data.slug_origin,
             data.is_update,
             moment().format('YYYY-MM-DD HH:mm:ss'),
+            data.main_keyword,
         ]);
         console.log('Tao thanh cong truyen :'+ data.title);
        let [rows] = await CONNECT.execute('SELECT id from story where source_origin = ?', [data.source_origin]);
@@ -195,7 +196,8 @@ const get_link_truyen = async (link) => {
     data.data_truyen.description = `✔️ Đọc truyện tranh ${title} Tiếng Việt bản dịch Full mới nhất, ảnh đẹp chất lượng cao, cập nhật nhanh và sớm nhất tại ${process.env.APP_NAME}`;
     data.data_truyen.meta_title = title;
     data.data_truyen.meta_description = `✔️ Đọc truyện tranh ${title} Tiếng Việt bản dịch Full mới nhất, ảnh đẹp chất lượng cao, cập nhật nhanh và sớm nhất tại ${process.env.APP_NAME}`;
-    data.data_truyen.meta_keyword = '';
+    data.data_truyen.meta_keyword = title;
+    data.data_truyen.main_keyword = title;
     data.data_truyen.keyword = '';
     data.data_truyen.thumbnail = thumbnail;
     data.data_truyen.name = title;

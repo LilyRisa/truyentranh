@@ -105,13 +105,18 @@ function upload_file(mode,control){
 }
 
 if (document.getElementById('select-multi-category')) {
+    let data = {};
     let post_id = $('#select-multi-category').data('post-id');
+    let story_id = $('#select-multi-category').data('story-id');
+    if(typeof post_id !== 'undefined'){
+        data.post_id = post_id;
+    }else if(typeof story_id !== 'undefined'){
+        data.story_id = story_id;
+    }
     $.ajax({
         url: '/admin/ajax/loadCategory',
         type: 'POST',
-        data: {
-            post_id: post_id
-        },
+        data: data,
         dataType: "json",
         success: function(data) {
             if (data.list_category) {
@@ -219,13 +224,18 @@ if (document.getElementById('select-multi-tag-video')) {
 }
 
 if (document.getElementById('select-multi-tag')) {
-    let post_id = $('#select-multi-tag').data('post-id');
+    let data = {};
+    let post_id = $('#select-multi-category').data('post-id');
+    let story_id = $('#select-multi-category').data('story-id');
+    if(typeof post_id !== 'undefined'){
+        data.post_id = post_id;
+    }else if(typeof story_id !== 'undefined'){
+        data.story_id = story_id;
+    }
     $.ajax({
         url: '/admin/ajax/loadTag',
         type: 'POST',
-        data: {
-            post_id: post_id
-        },
+        data: data,
         dataType: "json",
         success: function(data) {
             if (data.list_tag) {

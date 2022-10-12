@@ -105,6 +105,12 @@ Route::group(['middleware' => ['auth', 'checkPermission']], function () {
     Route::any('/internal_link/update/{id}','InternalLinkController@update')->where(['id' => '[0-9]+']);
     Route::any('/internal_link/delete/{id}','InternalLinkController@delete')->where(['id' => '[0-9]+']);
 
+    /*story*/
+    Route::get('/story','StoryController@index');
+    Route::any('/story/update','StoryController@update');
+    Route::any('/story/update/{id}','StoryController@update')->where(['id' => '[0-9]+']);
+    Route::any('/story/delete/{id}','StoryController@delete')->where(['id' => '[0-9]+']);
+
     //upload image
     Route::post('/upload_image','AdminImagesController@upload');
 
