@@ -87,7 +87,7 @@ var mentionsFetchFunction = function (query, success) {
 tinymce.init({
     selector: 'textarea#full-featured',
     plugins: 'code print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
-    toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | blockquote | link image media | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat | addcomment | code ',
+    toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | blockquote | link image media | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat | addcomment | code |undo redo ',
     rel_list: [
         {title: 'Dofollow', value: 'dofollow'},
         {title: 'Nofollow', value: 'nofollow'}
