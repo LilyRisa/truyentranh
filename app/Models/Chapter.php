@@ -17,6 +17,6 @@ class Chapter extends Model
     }
 
     public function story(){
-        return $this->belongsTo(Story::class, 'id','story_id');
+        return $this->belongsTo(Story::class, 'story_id','id');
     }
 }

@@ -62,11 +62,11 @@
             </a>
             <ul class="c-sidebar-nav-dropdown-items">
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link @if(!empty($_GET['status']) && empty($_GET['hen_gio'])) c-active @endif" href="/admin/story?status=1"><span class="c-sidebar-nav-icon"></span> Danh sách truyện</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link @if(!empty($_GET['status']) && empty($_GET['hen_gio'])) c-active @endif" href="/admin/chapter?status=1"><span class="c-sidebar-nav-icon"></span> Danh sách chapter</a></li>
 {{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link @if(!empty($_GET['status']) && !empty($_GET['hen_gio'])) c-active @endif" href="/admin/post?status=1&hen_gio=1"><span class="c-sidebar-nav-icon"></span> Bài viết hẹn giờ</a></li>--}}
 {{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ request()->is('admin/post') && isset($_GET['status']) && $_GET['status'] == 0 ? 'c-active' : '' }}" href="/admin/post?status=0"><span class="c-sidebar-nav-icon"></span> Bài viết lưu nháp</a></li>--}}
 {{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ request()->is('admin/post/da-ga') && !isset($_GET['status']) ? 'c-active' : '' }}" href="/admin/post/da-ga"><span class="c-sidebar-nav-icon"></span> Bài viết đá gà </a></li>--}}
 {{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ request()->is('admin/post/da-ga') && isset($_GET['status']) && $_GET['status'] == 0 ? 'c-active' : '' }}" href="/admin/post/da-ga?status=0"><span class="c-sidebar-nav-icon"></span> Bài viết đá gà lưu nháp</a></li>--}}
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/story/update"><span class="c-sidebar-nav-icon"></span> Thêm mới</a></li>
                 {{-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{request()->is('admin/video') ? 'c-active' : ''}}" href="{{route('video').'?is_status=1'}}"><span class="c-sidebar-nav-icon"></span> Quản lý video</a></li> --}}
             </ul>
         </li>

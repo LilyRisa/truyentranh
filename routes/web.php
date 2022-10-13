@@ -19,3 +19,5 @@ Route::any('/book', 'MenuBookController@index');
 Route::any('/reading', 'ReadingController@index');
 
 Route::any('/cate', 'CategoryController@index');
+
+Route::get('/img-proxy={url?}', 'ProxyController@img')->where('url', '(.*)');

@@ -17,7 +17,7 @@ class Story extends Model
     }
 
     public function chapter(){
-        return $this->hasMany(Chapter::class, 'story_id','id');
+        return $this->hasMany(Chapter::class, 'id','story_id');
     }
 
     public function categories(){
