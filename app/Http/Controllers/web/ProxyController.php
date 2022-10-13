@@ -10,7 +10,7 @@ class ProxyController extends Controller
 {   
     public function img($url)
     {
-        // dd($url);
+        dd($url);
         if(strpos($url, 'https') == false){
             $url = 'https:'.$url;
         }
