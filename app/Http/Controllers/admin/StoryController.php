@@ -49,11 +49,11 @@ class StoryController extends Controller
         #
         if (!empty($_GET['category_id'])) {
             $cate_id = (int)$_GET['category_id'];
-            $listItem = Story::with('categories')->whereHas('categories', function($q) use ($cate_id){
+            $listItem = Story::with(['categories', 'chapter'])->whereHas('categories', function($q) use ($cate_id){
                 return $q->where('story_category.category_id', $cate_id)->where('story_category.is_primary', 1);
             })->where($condition)->orderBy('created_at', 'DESC')->offset(($page-1)*$limit)->limit($limit)->get();
         }else{
-            $listItem = Story::with('categories')->whereHas('categories', function($q){
+            $listItem = Story::with(['categories', 'chapter'])->whereHas('categories', function($q){
                 return $q->where('story_category.is_primary', 1);
             })->where($condition)->orderBy('created_at', 'DESC')->offset(($page-1)*$limit)->limit($limit)->get();
         }
@@ -61,7 +61,6 @@ class StoryController extends Controller
         // foreach ($listItem as $key => $item) {
         //     $listItem[$key]->count_link_ve = InternalLink::where('post_id_out', $item->id)->count();
         // }
-        // dd($listItem);
         $data['listItem'] = $listItem;
         $data['pagination'] = $pagination;
         $data['page'] = $page;

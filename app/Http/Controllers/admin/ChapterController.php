@@ -26,7 +26,7 @@ class ChapterController extends Controller
         #
         $condition = [];
        
-        
+
         if (!empty($_GET['title'])) {
             $condition[] = ['title','LIKE', '%'.$_GET['title'].'%'];
         }

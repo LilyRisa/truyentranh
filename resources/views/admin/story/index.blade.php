@@ -57,6 +57,7 @@
                                 <th class="text-center w-5">ID</th>
                                 <th>Tiêu đề</th>
                                 <th class="text-center w-15">Chuyên mục</th>
+                                <th class="text-center w-15">Số chapter</th>
                                 <th class="text-center w-10">Ngày tạo</th>
                                 <th class="text-center w-10">Điểm SEO</th>
                                 <th class="text-center w-10">Thumbnail</th>
@@ -71,6 +72,7 @@
                                 <td class="text-center align-middle">{{$item->id}}</td>
                                 <td class="align-middle"><a target="_blank" rel="nofollow" href="{{ getUrlPost($item, 0) }}">{!! $item->title !!}</a></td>
                                 <td class="text-center align-middle">{{$item->categories[0]->title ?? ''}}</td>
+                                <td class="text-center align-middle">{{count($item->chapter)}}</td>
                                 <td class="text-center align-middle">{{date('d-m-Y H:i', strtotime($item->created_at))}}</td>
                                 <td class="text-center align-middle"><span class="@if(empty($item->seo_score)) @elseif($item->seo_score <= 60) bg-danger @elseif($item->seo_score >= 61 && $item->seo_score <= 89) bg-warning @else bg-success @endif text-white p-2">{{$item->seo_score ?? ''}}</span></td>
                                 <td class="text-center align-middle"><img src="{{getThumbnail($item->thumbnail)}}" width="100px" height="100px" style="object-fit: cover"></td>
