@@ -56,7 +56,7 @@
     </div>
 
     <div class="bg-secondary mt-3 w-100 max-100 content-reading">
-        {!! $oneItem->content !!}
+        {!! str_replace('src="//','src="/img-proxy=//',$oneItem->content) !!}
     </div>
 
     <div class="text-center mt-4">
