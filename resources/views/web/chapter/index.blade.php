@@ -15,7 +15,7 @@
     <div class=" triangle-right-1 bd-1 bg-2" style=""></div>
     <div class="bg-2 text-white pt-1 ps-1"><a class="text-decoration-none text-white hover-info" href="{{getUrlCate($oneItem->story->categories[0])}}">{{$oneItem->story->categories[0]->title}}</a></div>
     <div class=" triangle-right-2 bd-2 bg-3" style=""></div>
-    <div class="bg-3 text-white pt-1 ps-1"><a class="text-decoration-none text-white hover-info" href="{{getUrlCate($oneItem->story)}}">{{$oneItem->story->title}}</a></div>
+    <div class="bg-3 text-white pt-1 ps-1"><a class="text-decoration-none text-white hover-info" href="{{getUrlStory($oneItem->story)}}">{{$oneItem->story->title}}</a></div>
     <div class=" triangle-right-3 bd-3" style=""></div>
     <div class="text-info pt-1 ps-1"><a class="text-decoration-none text-info" href="#">{{$oneItem->title}}</a></div>
     </div>
