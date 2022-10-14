@@ -1,8 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/main.css?ver=1.9969">
+  <link rel="stylesheet" href="/css/main.css?ver=1.9969">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="{{$seo_data['index'] ?? ''}}">
+    <title>{{$seo_data['meta_title'] ?? ''}}</title>
+    @if(!empty($seo_data['meta_keyword']))
+        <meta name="keywords" content="{{$seo_data['meta_keyword']}}">
+    @endif
+    <meta name="description" content="{{$seo_data['meta_description'] ?? getSiteSetting('site_description')}}">
+    <link rel="canonical" href="{{$seo_data['canonical'] ?? ''}}" />
+    <meta property="og:title" content="{{$seo_data['meta_title'] ?? ''}}">
+    @if(!empty($seo_data['site_image']))
+        <meta property="og:image" content="{{$seo_data['site_image']}}">
+    @endif
+    <meta property="og:url" content="{{url()->current()}}">
+    <meta property="og:type" content="{{getCurrentController() == 'post' ? 'article' : 'website'}}">
+    <meta property="og:site_name" content="forextradingvn.top">
+    <meta property="og:description" content="{{$seo_data['meta_description'] ?? ''}}">
+    @if(!empty($seo_data['published_time']))
+        <meta property="article:published_time" content="{{$seo_data['published_time']}}" />
+    @endif
+    @if(!empty($seo_data['modified_time']))
+        <meta property="article:modified_time" content="{{$seo_data['modified_time']}}" />
+    @endif
+    @if(!empty($seo_data['updated_time']))
+        <meta property="article:updated_time" content="{{$seo_data['updated_time']}}" />
+    @endif
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{$seo_data['meta_title'] ?? ''}}" />
+    <meta name="twitter:description" content="{{$seo_data['meta_description'] ?? getSiteSetting('site_description')}}" />
+    <meta name="twitter:site" content="@fxtradingvn" />
+    <meta name="twitter:url" content="{{$seo_data['twitter_url'] ?? 'https://forextradingvn.top/'}}" />
+    @if(!empty($seo_data['site_image']))
+        <meta name="twitter:image" content="{{url($seo_data['site_image'])}}" />
+    @endif
+    @if(!empty($seo_data['amphtml']))
+        <link rel="amphtml" href="{{$seo_data['amphtml']}}">
+    @endif
+
+    <link rel="shortcut icon" href="{{url('images/favicon.png')}}" />
+    <link rel="apple-touch-icon" href="{{url('images/favicon.png')}}" />
+    
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	@if(!empty($schema))
+		{!!$schema!!}
+	@endif
 </head>
 
 <body>
@@ -52,5 +104,7 @@ function backToTop() {
 </script>
 
   @include('web._footer')
-  <script src="js/app.js?1"></script>
+  <script src="/js/app.js?1"></script>
 </body>
+
+</html>

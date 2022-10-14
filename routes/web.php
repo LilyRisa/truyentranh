@@ -20,4 +20,6 @@ Route::any('/reading', 'ReadingController@index');
 
 Route::any('/cate', 'CategoryController@index');
 
+Route::get('/truyen/{slug}-c{id}', 'StoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
+
 Route::get('/img-proxy={url?}', 'ProxyController@img')->where('url', '(.*)');

@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use Illuminate\Support\Str;
+
 function getUrlPost($item, $is_amp = IS_AMP){
     $item = (object) $item;
     $url = url($item->slug);
@@ -9,6 +10,25 @@ function getUrlPost($item, $is_amp = IS_AMP){
         $url .= "/amp";
     return $url;
 }
+
+function getUrlStory($item, $is_amp = IS_AMP){
+    $item = (object) $item;
+    $url = 'truyen/'.$item->slug.'-c0';
+    $url = url($item->slug);
+    if ($is_amp)
+        $url .= "/amp";
+    return $url;
+}
+
+function getUrlChapter($item, $is_amp = IS_AMP){
+    $item = (object) $item;
+    $url = 'truyen/'.$item->slug.'-c'.$item->id;
+    $url = url($item->slug);
+    if ($is_amp)
+        $url .= "/amp";
+    return $url;
+}
+
 function getUrlStaticPage($item, $is_amp = 0){
     $url = url($item->slug);
     if ($is_amp)
