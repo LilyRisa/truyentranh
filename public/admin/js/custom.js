@@ -452,7 +452,7 @@ $('.save-draft').on('click', function() {
 
 // convert title to slug
 
-$('input[name=title]').stringToSlug({
+$('input[name=meta_title]').stringToSlug({
     getPut: 'input[name=slug]',
     space: '-',
 });
