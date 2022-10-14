@@ -14,7 +14,7 @@ function getUrlPost($item, $is_amp = IS_AMP){
 function getUrlStory($item, $is_amp = IS_AMP){
     $item = (object) $item;
     $url = 'truyen/'.$item->slug.'-c0';
-    $url = url($item->slug);
+    $url = url($url);
     if ($is_amp)
         $url .= "/amp";
     return $url;
@@ -23,7 +23,7 @@ function getUrlStory($item, $is_amp = IS_AMP){
 function getUrlChapter($item, $is_amp = IS_AMP){
     $item = (object) $item;
     $url = 'truyen/'.$item->slug.'-c'.$item->id;
-    $url = url($item->slug);
+    $url = url($url);
     if ($is_amp)
         $url .= "/amp";
     return $url;

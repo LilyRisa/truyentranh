@@ -55,7 +55,7 @@
             @if(!empty($oneItem->chapter))
                 @foreach($oneItem->chapter as $chapter)
                 <li class="col-6">
-                    <a href="" class="d-block list-group-item bg-light my-1 mx-0">
+                    <a href="{{getUrlChapter($chapter)}}" class="d-block list-group-item bg-light my-1 mx-0">
                         @php
                             $title = explode("- ", $chapter->title);
                             $title = end($title);
