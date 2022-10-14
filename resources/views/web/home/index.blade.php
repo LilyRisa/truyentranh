@@ -183,18 +183,25 @@
                     </div>
                 
                 <div class="row justify-content-between mt-am-2">
-                    @for($i=0;$i<16;$i++)
-                    <div class="col-lg-3 col-6 mt-2">
-                            <div class="card p-0 ml-2">
-                                <img src="img/book1.jpeg" class="card-img-top w-100 img-fluid" alt="book1">
-                                <div class="card-body dark-linear position-absolute fixed-bottom">
-                                    <p class="p-0 m-0 text-white border-bottom">Senju harasama</p>
-                                    <p class="p-0 m-0 text-info">Manhwa</p>
-                                    <p class="p-0 m-0 text_secondary">Chap 12</p>
-                                </div>
+                    @if (!empty($new))
+                        @foreach($new as $n)
+                            @php
+                                $chap = explode('- ', $n->chapter[0]->title);
+                                $chap = end($chap);
+                              
+                            @endphp
+                        <div class="col-lg-3 col-6 mt-2">
+                                <a href="{{getUrlStory($n)}}" class="card p-0 ml-2">
+                                    {!! genImage($n->thumbnail, 222, 295, 'card-img-top w-100 img-fluid') !!}
+                                    <div class="card-body dark-linear position-absolute fixed-bottom">
+                                        <p class="p-0 m-0 text-white border-bottom">{{$n->title}}</p>
+                                        <p class="p-0 m-0 text-info">{{$n->categories[0]->title}}</p>
+                                        <p class="p-0 m-0 text_secondary">{{ $chap }}</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    @endfor
+                        @endforeach
+                    @endif
                 </div>
                 <div class="text-center">
                 <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
