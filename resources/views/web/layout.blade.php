@@ -18,6 +18,7 @@
     @if(!empty($seo_data['site_image']))
         <meta property="og:image" content="{{$seo_data['site_image']}}">
     @endif
+    
     <meta property="og:url" content="{{url()->current()}}">
     <meta property="og:type" content="{{getCurrentController() == 'post' ? 'article' : 'website'}}">
     <meta property="og:site_name" content="forextradingvn.top">
