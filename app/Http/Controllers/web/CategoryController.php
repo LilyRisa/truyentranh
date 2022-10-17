@@ -10,4 +10,9 @@ class CategoryController extends Controller
     {
         return view('web.category.index');
     }
+
+    public function blog()
+    {
+        return view('web.category.blog');
+    }
 }

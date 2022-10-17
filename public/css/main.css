@@ -12014,6 +12014,14 @@ body {
   max-height: 15.625rem;
 }
 
+.max-line-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 @font-face {
   font-family: "icomoon";
   src: url(/fonts/icomoon.eot?7813cdfdd88b90540d9549c475b55ac2);

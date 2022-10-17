@@ -60,7 +60,7 @@
                     </li>
                 </ul>
                 <div class="h-100 align-items-center">
-                    <form class="d-flex mt-3">
+                    <form class="d-flex my-2">
                         <div class="d-flex">
                             <input type="text" class="form-control w-50 rounded-pill-left ms-3 border-0 border-right-none bg-grey1"
                                 placeholder="search" aria-label="search" aria-describedby="basic-addon2">

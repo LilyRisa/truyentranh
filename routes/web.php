@@ -19,6 +19,9 @@ Route::any('/book', 'MenuBookController@index');
 Route::any('/reading', 'ReadingController@index');
 
 Route::any('/cate', 'CategoryController@index');
+Route::any('/blog', 'CategoryController@blog');
+
+Route::any('/post', 'PostController@index');
 
 Route::get('/truyen/{slug}-c{id}', 'StoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
 

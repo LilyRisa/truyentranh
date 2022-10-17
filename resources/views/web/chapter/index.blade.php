@@ -25,7 +25,7 @@
     </div>
 
     <div class="bg-grey1 text-center mt-4">
-        <div><p class="mb-0 pt-4">Nếu không xem được vui lòng đổi "serve" khác để có trải nghiệm tốt hơn</p>
+        <div><p class="mb-0 pt-4">Nếu không xem được vui lòng đổi "server" khác để có trải nghiệm tốt hơn</p>
             <p class="text-danger p-0">Hướng dẫn khắc phục lỗi nếu ảnh bị lỗi ở tất cả các tập</p>
         </div>
         <button class="btn btn-success">Server VIP</button>
