@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/main.css?ver=2.03">
+  <link rel="stylesheet" href="/css/main.css?ver=2.50">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <meta charset="utf-8">
