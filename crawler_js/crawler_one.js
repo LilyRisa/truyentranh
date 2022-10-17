@@ -3,7 +3,10 @@ const mysql = require("mysql2/promise");
 var jsdom = require("jsdom");
 
 require('dotenv').config({path: __dirname+'/../.env'});
-const moment = require('moment');
+const moment = require('moment');                                                                                
+var fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+const axios = require('axios');
 
 const CONFIG = {
     host: process.env.DB_HOST,
@@ -24,7 +27,7 @@ const CONFIG = {
 
 const args = process.argv;
 
-let link_tales = typeof args[2] == 'undefined' ? null : args[2];
+let link_story = typeof args[2] == 'undefined' ? null : args[2];
 let category_id = typeof args[3] == 'undefined' ? null : args[3];
 let update_chapter = typeof args[4] == 'undefined' ? null : args[3];
 
@@ -39,13 +42,16 @@ if(CONNECT){
     return 0;
 }
 
-const browser = await puppeteer.launch();
+const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox']
+ });
 const page = await browser.newPage();
 await page.setUserAgent('Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0');
 
 
 
-const insert_chapter = async (chapter, id) => {
+const insert_chapter = async (chapter, id, slug) => {
     for(let chap of chapter){
         await page.goto(chap);
         
@@ -86,7 +92,7 @@ const insert_chapter = async (chapter, id) => {
             
         }else{
             try{
-                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, tales_id) values (?,?,?,?,?,?,?,?,?,?)', [
+                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id, slug) values (?,?,?,?,?,?,?,?,?,?,?)', [
                     title_other+title,
                     title_other+title,
                     `✔️ Đọc truyện tranh ${title_other+title} Tiếng Việt bản đẹp chất lượng cao, cập nhật nhanh và sớm nhất ${process.env.APP_NAME}`,
@@ -96,7 +102,8 @@ const insert_chapter = async (chapter, id) => {
                     moment().format('YYYY-MM-DD HH:mm:ss'),
                     Math.floor(Math.random() * 1000) + 100,
                     moment().format('YYYY-MM-DD HH:mm:ss'),
-                    id
+                    id,
+                    slug
                 ]);
                 console.log('Tao thanh cong chapter:'+title_other+title);
             }catch(e){
@@ -109,13 +116,13 @@ const insert_chapter = async (chapter, id) => {
 }
 
 const insert_truyen = async (data) => {
-    let [rows, fields] = await CONNECT.execute('select id from tales where slug_origin = ?', [data.slug_origin]);
+    let [rows, fields] = await CONNECT.execute('select id from story where slug_origin = ?', [data.slug_origin]);
     if(rows.length > 0) {
         console.log('Duplicate url: '+ data.title);
         return rows[0].id;
     }
     try{
-        let ins = await CONNECT.execute('INSERT INTO tales (title, slug, description, meta_title, meta_description, meta_keyword, keyword, thumbnail, name, other_name, status, content, is_home, is_feature, category_primary_id, author, views, source_origin, slug_origin, is_update, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        let ins = await CONNECT.execute('INSERT INTO story (title, slug, description, meta_title, meta_description, meta_keyword, keyword, thumbnail, name, other_name, status, content, is_home, is_feature, author, views, source_origin, slug_origin, is_update, created_at, main_keyword) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
         [
             data.title,
             data.slug,
@@ -131,23 +138,22 @@ const insert_truyen = async (data) => {
             data.content,
             data.is_home,
             data.is_feature,
-            data.category_primary_id,
             data.author,
             data.views,
             data.source_origin,
             data.slug_origin,
             data.is_update,
             moment().format('YYYY-MM-DD HH:mm:ss'),
+            data.main_keyword,
         ]);
         console.log('Tao thanh cong truyen :'+ data.title);
-       let [rows] = await CONNECT.execute('SELECT id from tales where source_origin = ?', [data.source_origin]);
+       let [rows] = await CONNECT.execute('SELECT id from story where source_origin = ?', [data.source_origin]);
        // insert category
        try{
-            await CONNECT.execute('INSERT INTO tales_categories (tales_id, category_id, is_primary, created_at) VALUES (?,?,?,?)', [
+            await CONNECT.execute('INSERT INTO story_category (story_id, category_id, is_primary) VALUES (?,?,?)', [
                 rows[0].id,
                 category_id,
-                1,
-                moment().format('YYYY-MM-DD HH:mm:ss'),
+                1
             ]);
        }catch(e){
         console.log('khong the tạo category\n');
@@ -180,8 +186,10 @@ const get_link_truyen = async (link) => {
     const chapter_list = await page.evaluate(() => Array.from(document.querySelectorAll('#nt_listchapter .chapter a[href]'), a => a.getAttribute('href')) );
     let thumbnail = await page.$$eval('.detail-info .col-image img[src]', imgs => imgs.map(img => img.getAttribute('src')));
 
-    if(thumbnail.length >= 0)
-        thumbnail = thumbnail[0];
+    if(thumbnail.length >= 0){
+        thumbnail = await movefile(thumbnail[0]);
+    }
+        
     
     data.data_truyen.title = title;
     data.data_truyen.slug_origin = link_origin;
@@ -189,7 +197,8 @@ const get_link_truyen = async (link) => {
     data.data_truyen.description = `✔️ Đọc truyện tranh ${title} Tiếng Việt bản dịch Full mới nhất, ảnh đẹp chất lượng cao, cập nhật nhanh và sớm nhất tại ${process.env.APP_NAME}`;
     data.data_truyen.meta_title = title;
     data.data_truyen.meta_description = `✔️ Đọc truyện tranh ${title} Tiếng Việt bản dịch Full mới nhất, ảnh đẹp chất lượng cao, cập nhật nhanh và sớm nhất tại ${process.env.APP_NAME}`;
-    data.data_truyen.meta_keyword = '';
+    data.data_truyen.meta_keyword = title;
+    data.data_truyen.main_keyword = title;
     data.data_truyen.keyword = '';
     data.data_truyen.thumbnail = thumbnail;
     data.data_truyen.name = title;
@@ -198,7 +207,6 @@ const get_link_truyen = async (link) => {
     data.data_truyen.content = content;
     data.data_truyen.is_home = 0;
     data.data_truyen.is_feature = 0;
-    data.data_truyen.category_primary_id = category_id;
     data.data_truyen.author = author;
     data.data_truyen.source_origin = link;
     data.data_truyen.is_update = is_update;
@@ -209,12 +217,13 @@ const get_link_truyen = async (link) => {
 }
 
 
-let { data_truyen, chapter } = await get_link_truyen(link_tales);
-let id_tales = await insert_truyen(data_truyen);
-await insert_chapter(chapter, id_tales);
+let { data_truyen, chapter } = await get_link_truyen(link_story);
+let id_story = await insert_truyen(data_truyen);
+await insert_chapter(chapter, id_story, data_truyen.slug);
 
-console.log('done!');
+
 await browser.close();
+console.log('done!');
 return 0;
 })();
 
@@ -239,3 +248,41 @@ function slugify(string){
         .replace(/^-+/, '')
         .replace(/-+$/, '')
     }
+
+
+    
+    async function movefile(url, dest){
+        url = 'http:'+url;
+    
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var year = dateObj.getUTCFullYear();
+        let dir_filename = '../public/upload/admin/story/'+year+'/'+month+'/';
+    
+        let filename = url.split('/');
+        filename = filename[filename.length - 1];
+        const saveFile = await request(url);
+    
+        if (!fs.existsSync(dir_filename)){
+            fs.mkdirSync(dir_filename, { recursive: true });
+        }
+        const download = fs.createWriteStream(dir_filename+'/'+filename);
+        await new Promise((resolve, reject)=> {
+            saveFile.data.pipe(download);
+            download.on("close", resolve);
+            download.on("error", console.error);
+        });
+        return '/upload/admin/story/'+year+'/'+month+'/'+filename;
+    }
+    
+    function request (element) {
+        try{
+          return axios({
+            url: element,
+            method: "GET",
+            responseType: "stream"
+          });
+        } catch(e) {
+          console.log( 'errore: ' + e)
+        }
+      }

@@ -7,6 +7,7 @@
 {{--    <meta name="csrf-token" content="{{csrf_token()}}" />--}}
     <title>Đăng nhập</title>
     <link href="/admin/css/coreui/coreui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/css/toastr.min.css">
 </head>
 <body class="c-app flex-row align-items-center">
 <div class="container">
@@ -31,7 +32,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 text-center">
-                                    <button class="btn btn-primary px-4 ajax-login" type="button">Đăng nhập</button>
+                                    <button class="btn btn-primary px-4 ajax-login" type="button">Đăng nhập <img width="20px" height="20px" src="/admin/images/icon-svg/loading.svg" id="loading_login" style="display:none"></button>
                                 </div>
                             </div>
                         </div>
@@ -44,4 +45,5 @@
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/admin/js/toastr.js"></script>
 <script src="/admin/js/custom.js"></script>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Story_tag extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,6 @@ class Tag extends Model
     {
         parent::__construct($attributes);
 
-        $this->table = 'tags';
-    }
-
-    public function posts(){
-        return $this->belongsToMany(Post::class, 'tag_post', 'tag_id', 'post_id');
+        $this->table = 'story_tags';
     }
 }

@@ -51,6 +51,28 @@
             </ul>
         </li>
         @endif
+
+        @if(!empty($permission['story']))
+        <li class="c-sidebar-nav-item c-sidebar-nav-dropdown @if(getCurrentController() == 'story') c-show @endif">
+            <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="/admin/images/icon-svg/free.svg#cil-book"></use>
+                </svg>
+                Quản lý truyện
+            </a>
+            <ul class="c-sidebar-nav-dropdown-items">
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link @if(!empty($_GET['status']) && empty($_GET['hen_gio'])) c-active @endif" href="/admin/story?status=1"><span class="c-sidebar-nav-icon"></span> Danh sách truyện</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link @if(!empty($_GET['status']) && empty($_GET['hen_gio'])) c-active @endif" href="/admin/chapter?status=1"><span class="c-sidebar-nav-icon"></span> Danh sách chapter</a></li>
+{{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link @if(!empty($_GET['status']) && !empty($_GET['hen_gio'])) c-active @endif" href="/admin/post?status=1&hen_gio=1"><span class="c-sidebar-nav-icon"></span> Bài viết hẹn giờ</a></li>--}}
+{{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ request()->is('admin/post') && isset($_GET['status']) && $_GET['status'] == 0 ? 'c-active' : '' }}" href="/admin/post?status=0"><span class="c-sidebar-nav-icon"></span> Bài viết lưu nháp</a></li>--}}
+{{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ request()->is('admin/post/da-ga') && !isset($_GET['status']) ? 'c-active' : '' }}" href="/admin/post/da-ga"><span class="c-sidebar-nav-icon"></span> Bài viết đá gà </a></li>--}}
+{{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ request()->is('admin/post/da-ga') && isset($_GET['status']) && $_GET['status'] == 0 ? 'c-active' : '' }}" href="/admin/post/da-ga?status=0"><span class="c-sidebar-nav-icon"></span> Bài viết đá gà lưu nháp</a></li>--}}
+                {{-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{request()->is('admin/video') ? 'c-active' : ''}}" href="{{route('video').'?is_status=1'}}"><span class="c-sidebar-nav-icon"></span> Quản lý video</a></li> --}}
+            </ul>
+        </li>
+        @endif
+
+
         @if(!empty($permission['page']))
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown @if(getCurrentController() == 'page') c-show @endif">
                 <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -71,7 +93,7 @@
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link"
                    href="#"
-                   onclick="MyWindow=window.open('https://forextradingvn.top/admin/libraries/elfinder/file-elfinder.php?mode=chosefile&control=img#elf_l1_Lw','MyWindow','width=800,height=600'); return false;">
+                   onclick="MyWindow=window.open('https://truyen.forextradingvn.top/admin/libraries/elfinder/file-elfinder.php?mode=chosefile&control=img#elf_l1_Lw','MyWindow','width=800,height=600'); return false;">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="/admin/images/icon-svg/free.svg#cil-image-plus"></use>
                     </svg>

@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="fade-in">
                 <form class="form-post" method="post" action="">
-                    <input type="hidden" name="user_id" value="{{!empty($oneItem)? $oneItem->user_id: $user_id}}">
+                    <input type="hidden" name="user_id" value="6">
                     <input type="hidden" name="url_referer" value="{{$url_referer}}">
                     <div class="row">
                         <div class="col-md-8 pr-0">

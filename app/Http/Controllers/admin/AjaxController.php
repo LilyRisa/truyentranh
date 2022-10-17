@@ -16,6 +16,8 @@ use Response;
 use Hash;
 use App\Models\Post_tag;
 use App\Models\Video_tag;
+use App\Models\Story_tag;
+use App\Models\Story_category;
 use App\Service\GoogleApi;
 use Cache;
 use Illuminate\Support\Facades\Http;
@@ -61,6 +63,25 @@ class AjaxController extends Controller
         }
 
         $post_id = $request->input('post_id');
+        $story_id = $request->input('story_id');
+        if(empty($post_id) && !empty($story_id)){
+            $data['tag_selected'] = [];
+            if ($post_id > 0) {
+                $listTag = Story_tag::where(['story_id' => $post_id])->get();
+                foreach ($listTag as $value) {
+                    $data['tag_selected'][] = $value->tag_id;
+                }
+            }
+            $data['list_tag'] = [];
+            $rs = Tag::all();
+            foreach ($rs as $value) {
+                $data['list_tag'][] = [
+                    'value' => $value->id,
+                    'text' => $value->title,
+                ];
+            }
+            return Response::json($data);
+        }
         $data['tag_selected'] = [];
         if ($post_id > 0) {
             $listTag = Post_tag::where(['post_id' => $post_id])->get();
@@ -99,7 +120,28 @@ class AjaxController extends Controller
             }
             return Response::json($data);
         }
+        
         $post_id = $request->input('post_id');
+        $story_id = $request->input('story_id');
+        if(empty($post_id) && !empty($story_id)){
+            $data['category_selected'] = [];
+            if ($story_id > 0) {
+                $listCategory = Story_category::where(['story_id' => $story_id])->orderBy('is_primary', 'DESC')->get();
+                foreach ($listCategory as $value) {
+                    $data['category_selected'][] = $value->category_id;
+                }
+            }
+            $data['list_category'] = [];
+            $rs = Category::all();
+            foreach ($rs as $value) {
+                $data['list_category'][] = [
+                    'value' => $value->id,
+                    'text' => $value->title,
+                ];
+            }
+            return Response::json($data);
+        }
+
         $data['category_selected'] = [];
         if ($post_id > 0) {
             $listCategory = Post_Category::where(['post_id' => $post_id])->orderBy('is_primary', 'DESC')->get();

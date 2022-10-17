@@ -26,21 +26,29 @@ $(document).on('click', '.ajax-login', function (e) {
     let form = $(this).closest('form');
     let url = form.attr('action');
     let data = form.serialize();
+    if(data.indexOf('=&') > -1 || data.substr(data.length - 1) == '='){
+        showToastr('error','Form không được để trống!');
+        return 0;
+     }
+    $('#loading_login').attr('style', '');
     $.ajax({
         url: url,
         data: data,
         type: 'POST',
         dataType: 'json',
-        success: function (res) {
-            if (res.status === 'success'){
-                window.location.href = '/admin/home';
-            } else {
-                alert('Tài khoản hoặc mật khẩu không đúng!');
-                form[0].reset();
-                return false;
-            }
+    }).done( function (res) {
+        $('#loading_login').attr('style', 'display:none');
+        if (res.status === 'success'){
+            window.location.href = '/admin/home';
+        } else {
+            showToastr('error','Tài khoản hoặc mật khẩu không đúng!');
+            form[0].reset();
+            return false;
         }
-    })
+    }).fail(e => {
+        $('#loading_login').attr('style', 'display:none');
+        showToastr('error', 'Lỗi');
+    });
 });
 
 $(document).on('keypress', 'input[name="password"]',function(e) {
@@ -99,19 +107,24 @@ $(document).on('click', '.btn-change-password', function (e) {
 });
 
 function upload_file(mode,control){
-    let open_url = 'https://forextradingvn.top/admin/libraries/elfinder/file-elfinder.php?mode='+mode+'&control='+control;
+    let open_url = 'https://truyen.forextradingvn.top/admin/libraries/elfinder/file-elfinder.php?mode='+mode+'&control='+control;
     window.open(open_url,'_blank',"location=0,left=200,width=800,height=500");
     return false;
 }
 
 if (document.getElementById('select-multi-category')) {
+    let data = {};
     let post_id = $('#select-multi-category').data('post-id');
+    let story_id = $('#select-multi-category').data('story-id');
+    if(typeof post_id !== 'undefined'){
+        data.post_id = post_id;
+    }else if(typeof story_id !== 'undefined'){
+        data.story_id = story_id;
+    }
     $.ajax({
         url: '/admin/ajax/loadCategory',
         type: 'POST',
-        data: {
-            post_id: post_id
-        },
+        data: data,
         dataType: "json",
         success: function(data) {
             if (data.list_category) {
@@ -219,13 +232,18 @@ if (document.getElementById('select-multi-tag-video')) {
 }
 
 if (document.getElementById('select-multi-tag')) {
-    let post_id = $('#select-multi-tag').data('post-id');
+    let data = {};
+    let post_id = $('#select-multi-category').data('post-id');
+    let story_id = $('#select-multi-category').data('story-id');
+    if(typeof post_id !== 'undefined'){
+        data.post_id = post_id;
+    }else if(typeof story_id !== 'undefined'){
+        data.story_id = story_id;
+    }
     $.ajax({
         url: '/admin/ajax/loadTag',
         type: 'POST',
-        data: {
-            post_id: post_id
-        },
+        data: data,
         dataType: "json",
         success: function(data) {
             if (data.list_tag) {
@@ -434,7 +452,7 @@ $('.save-draft').on('click', function() {
 
 // convert title to slug
 
-$('input[name=title]').stringToSlug({
+$('input[name=meta_title]').stringToSlug({
     getPut: 'input[name=slug]',
     space: '-',
 });
