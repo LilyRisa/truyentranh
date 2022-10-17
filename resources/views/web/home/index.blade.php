@@ -206,7 +206,7 @@
                 <div class="text-center">
                 <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
                 </div>
-                <div class="bg-info p-2 mt-5 rounded">
+                <div class="bg_primary p-2 mt-5 rounded">
                     <p class="p-0 text-uppercase fs-22">Từ khóa hot!</p>
                     <div class="d-flex">
                         <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
