@@ -26,21 +26,29 @@ $(document).on('click', '.ajax-login', function (e) {
     let form = $(this).closest('form');
     let url = form.attr('action');
     let data = form.serialize();
+    if(data.indexOf('=&') > -1 || data.substr(data.length - 1) == '='){
+        showToastr('error','Form không được để trống!');
+        return 0;
+     }
+    $('#loading_login').attr('style', '');
     $.ajax({
         url: url,
         data: data,
         type: 'POST',
         dataType: 'json',
-        success: function (res) {
-            if (res.status === 'success'){
-                window.location.href = '/admin/home';
-            } else {
-                alert('Tài khoản hoặc mật khẩu không đúng!');
-                form[0].reset();
-                return false;
-            }
+    }).done( function (res) {
+        $('#loading_login').attr('style', 'display:none');
+        if (res.status === 'success'){
+            window.location.href = '/admin/home';
+        } else {
+            showToastr('error','Tài khoản hoặc mật khẩu không đúng!');
+            form[0].reset();
+            return false;
         }
-    })
+    }).fail(e => {
+        $('#loading_login').attr('style', 'display:none');
+        showToastr('error', 'Lỗi');
+    });
 });
 
 $(document).on('keypress', 'input[name="password"]',function(e) {
@@ -444,7 +452,7 @@ $('.save-draft').on('click', function() {
 
 // convert title to slug
 
-$('input[name=title]').stringToSlug({
+$('input[name=meta_title]').stringToSlug({
     getPut: 'input[name=slug]',
     space: '-',
 });

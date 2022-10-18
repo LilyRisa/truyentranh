@@ -1,15 +1,20 @@
 @extends('web.layout')
 @section('main')
-
 <div class="bg-detail d-flex justify-content-center bg_secondary w-100 max-100 h-20">
     <div class="d-flex bg-white mt-auto container h-75">
-        <img src="img/book1.jpeg" alt="" class="img-fluid ms-4 rounded-top" style="max-height: 22rem; margin-top:-2rem;">
+        {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid ms-4 rounded-top') !!}
         <div class="ms-4 mt-4 d-flex"> 
            <ul class="w-75">
-                <li class="list-unstyled d-flex"><span class="fs-25">Title <span class="fs-13 ms-4 text_secondary">Đang tiến hành</span></span></li>
-                <li class="list-unstyled"><p class="fs-13 text-secondary">Author: histod</p></li>
-                <li class="list-unstyled d-flex mt-1"><div class="rounded-pill border px-1">tag1</div> <div class="rounded-pill ms-2 border px-1">tag213</div> <div class="rounded-pill ms-2 border px-1">tag1212</div></li>
-                <li class="list-unstyled mt-3"><span>An old MMORPG called Live Dungeon. Before the service was terminated, Kyotani Tsutomu made full use of 5 notebook PCs to clear the game and was invited to a different world. And then, Tsutomu was speechless when he saw a live rel</span></li>
+                <li class="list-unstyled d-flex"><span class="fs-25">{{$oneItem->title}} <span class="fs-13 ms-4 text_secondary">{{$oneItem->is_update}}</span></span></li>
+                <li class="list-unstyled"><p class="fs-13 text-secondary">Author: {{$oneItem->author}}</p></li>
+                <li class="list-unstyled d-flex mt-1">
+                    @if(!empty($oneItem->tags))
+                        @foreach ($oneItem->tags as $t)
+                            <div class="rounded-pill mx-2 border px-1"><a href="{{getUrlTag($t)}}">{{$t->title}}</a></div>
+                        @endforeach
+                    @endif
+                </li>
+                <li class="list-unstyled mt-3"><span>{{$oneItem->description}}</span></li>
                 <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary bg_secondary text-white border-0">Đọc truyện</a> <a class="btn btn-secondary ms-2 border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
            </ul>
            <ul>
@@ -47,9 +52,20 @@
         
     <div class="col-12 container">
         <ul class="list-unstyled row">
-            @for($i=0;$i<16;$i++)
-            <li class="col-6"><div class="list-group-item bg-light my-1 mx-0"><p>Ch.132</p><p class="small text-secondary">12/05/2022</p></div></li>
-            @endfor
+            @if(!empty($oneItem->chapter))
+                @foreach($oneItem->chapter as $chapter)
+                <li class="col-6">
+                    <a href="{{getUrlChapter($chapter)}}" class="d-block list-group-item bg-light my-1 mx-0">
+                        @php
+                            $title = explode("- ", $chapter->title);
+                            $title = end($title);
+                        @endphp
+                        <p>{{$title}}</p>
+                        <p class="small text-secondary">{{$chapter->update_origin}}</p>
+                    </a>
+                </li>
+                @endforeach
+            @endif
         </ul>
         </div>
         

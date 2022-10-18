@@ -70,7 +70,7 @@
                             @if(!empty($listItem)) @foreach($listItem as $item)
                             <tr>
                                 <td class="text-center align-middle">{{$item->id}}</td>
-                                <td class="align-middle"><a target="_blank" rel="nofollow" href="{{ getUrlPost($item, 0) }}">{!! $item->title !!}</a></td>
+                                <td class="align-middle"><a target="_blank" rel="nofollow" href="{{ getUrlStory($item, 0) }}">{!! $item->title !!}</a></td>
                                 <td class="text-center align-middle">{{$item->categories[0]->title ?? ''}}</td>
                                 <td class="text-center align-middle">{{count($item->chapter)}}</td>
                                 <td class="text-center align-middle">{{date('d-m-Y H:i', strtotime($item->created_at))}}</td>

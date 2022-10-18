@@ -2,55 +2,129 @@
 
 use App\Models\Category;
 use Illuminate\Support\Str;
-function getUrlPost($item, $is_amp = IS_AMP){
+
+function getUrlStory($item, $is_amp = IS_AMP){
     $item = (object) $item;
-    $url = url($item->slug);
+    $url = 'truyen/'.$item->slug.'-c0';
+    $url = url($url);
     if ($is_amp)
         $url .= "/amp";
     return $url;
 }
-function getUrlStaticPage($item, $is_amp = 0){
-    $url = url($item->slug);
+
+function getUrlChapter($item, $is_amp = IS_AMP){
+    $item = (object) $item;
+    $url = 'truyen/'.$item->slug.'-c'.$item->id;
+    $url = url($url);
     if ($is_amp)
         $url .= "/amp";
     return $url;
 }
-function getUrlCate($item, $is_amp = IS_AMP){
-    if (empty($item->slug)) return '/';
-    $url = url($item->slug);
-    if ($is_amp)
-        $url .= "/amp";
-    return $url;
-}
-function getUrlTag($item, $is_amp = 0){
-    $slug = "$item->slug-t$item->id";
-    $url = url($slug);
-    if ($is_amp)
-        $url .= "/amp";
-    return $url;
-}
-function getUrlPage($page) {
-    $parts = parse_url($_SERVER['REQUEST_URI']);
-    if (isset($parts['query'])) {
-        parse_str($parts['query'], $query);
+function getUrlPost($item, $is_amp = false, $exp = false){
+    $item = (object) $item;
+    $amp = false;
+    if (!$is_amp && !$exp){
+        $amp = defined('IS_AMP') ? IS_AMP : 0;
+    }else if($is_amp){
+        $amp = true;
+    }else{
+        $amp = false;
     }
-    $query['page'] = $page;
-    return $parts['path'].'?'.http_build_query($query);
+        
+    $slug = '';
+    if ($amp)
+        $slug = "/amp/";
+    $slug .= "$item->slug-p$item->id.html";
+    return url($slug);
 }
+function getUrlCate($item, $is_amp = false, $exp = false){
+    $slug = '';
+    $amp = false;
+    $amp = false;
+    if (!$is_amp && !$exp){
+        $amp = defined('IS_AMP') ? IS_AMP : 0;
+    }else if($is_amp){
+        $amp = true;
+    }else{
+        $amp = false;
+    }
+    if ($amp)
+        $slug = "/amp/";
+    $slug .= "$item->slug-c$item->id";
+
+    return url($slug);
+}
+function getUrlTag($item, $is_amp = false, $exp = false){
+    $amp = false;
+    if (!$is_amp && !$exp){
+        $amp = defined('IS_AMP') ? IS_AMP : 0;
+    }else if($is_amp){
+        $amp = true;
+    }else{
+        $amp = false;
+    }
+    $slug = '';
+    if ($amp)
+        $slug = "/amp/";
+    $slug .= "$item->slug-t$item->id";
+
+    return url($slug);
+}
+function getUrlStaticPage($item, $is_amp = false, $exp = false) {
+    $slug = '';
+    $amp = false;
+    if (!$is_amp && !$exp){
+        $amp = defined('IS_AMP') ? IS_AMP : 0;
+    }else if($is_amp){
+        $amp = true;
+    }else{
+        $amp = false;
+    }
+        
+    if ($amp)
+        $slug = "/amp/";
+    $slug .= "$item->slug.html";
+
+    return url($slug);
+}
+
 function getUrlLink($slug, $is_amp = ''){
+    $url = '';
     if (!$is_amp)
         $is_amp = defined('IS_AMP') ? IS_AMP : 0;
-    $url = url($slug);
     if ($is_amp)
         $url .= "/amp";
+    $check = explode('.',$slug);
+    if(count($check) > 1 && end($check) == 'html'){
+        $url = url($url.$slug);
+    }else{
+        $url = url($url.$slug).'/';
+    }
+    // if (substr($slug, -1) != '/') $slug .= '/';
+
+
+
     return $url;
 
 }
-function getUrlAuthor($item, $is_amp = IS_AMP){
-    $slug = "author/$item->slug_author";
+function getUrlPage($page) {
+    $parts = parse_url($_SERVER['REQUEST_URI']);
+    parse_str($parts['query'], $query);
+    $query['page'] = $page;
+    return $parts['path'].'?'.http_build_query($query);
+}
+
+function getUrlAuthor($item, $is_amp = ''){
+    // if (!$is_amp)
+    //     $is_amp = defined('IS_AMP') ? IS_AMP : 0;
+    // if (empty($item->slug)) return '';
+    // $url = '';
+    // if ($is_amp)
+    //     $url = "/amp/";
+    // $slug = $url."author/$item->slug";
+    $slug = '/author/'.$item->slug;
     $url = url($slug);
-    if ($is_amp)
-        $url .= "/amp";
+
     return $url;
 }
 
@@ -60,29 +134,32 @@ function tableOfContent($content) {
     $patt2 = $patt[0];
     $index_h2 = 0;
     $index_h3 = 1;
-    $danhmuc = "<div class='w-100 border rounded bg-grey6 py-2 px-3 mb-3'>
-                    <p class='mb-2 d-flex justify-content-between'>
-                        <span class='font-weight-500 font-18'>Mục Lục</span>
-                        <a class='icon-toc font-24 border rounded bg-white' data-toggle='collapse' data-target='#collapseExample'></a>
+    $danhmuc = "<div class='w-100 border py-2 px-3 mb-3'>
+                    <p class='mb-2 d-flex align-items-center summary-title'>
+                        <span class=\"square-blue mr-2\"></span>
+                        <span class='font-weight-bold font-20 text-blue1 w-100 collapsible'>NỘI DUNG CHÍNH</span>
                     </p>";
-    $danhmuc .= "<ul class='list-unstyled mb-2 collapse show' id='collapseExample'>";
+    $danhmuc .= "<ul class='list-unstyled mb-2'>";
+
     foreach ($patt2 as $key=>$item){
+        $contentItem = strip_tags($item);
+        $slug = toSlug($contentItem,'-');
         if (strpos($item, '</h2>') !== false) {
             $index_h2++;
-            $danhmuc .= "<li class='mb-1'><a class='text-black7 font-14' href='#trick$key' rel='nofollow'>$index_h2. ".strip_tags($item)."</a></li>";
+            $danhmuc .= "<li rel='dofollow' class='mb-1'><a class='text-black1 font-15' href='#$slug' >$index_h2. ".$contentItem."</a></li>";
             $index_h3 = 1;
         } else {
-            $danhmuc .= "<li class='mb-1 pl-3'><a class='text-black7 font-14' href='#trick$key' rel='nofollow'>$index_h2.$index_h3. ".strip_tags($item)."</a></li>";
+            $danhmuc .= "<li rel='dofollow' class='mb-1 pl-3'><a class='text-black1 font-15' href='#$slug' >$index_h2.$index_h3. ".$contentItem."</a></li>";
             $index_h3++;
         }
         $head = substr($item,0,3);
         $tail = substr($item,3);
 
-        $id = ' id="trick' . $key . '"';
+        $id = " id='$slug'";
         $content = str_replace($item,$head.$id.$tail,$content);
     }
     $danhmuc .= "</ul></div>";
-    $content = "$danhmuc<div class='post-content text-justify font-15'>$content</div>";
+    $content = "$danhmuc<div class='post-content text-justify'>$content</div>";
     return $content;
 }
 

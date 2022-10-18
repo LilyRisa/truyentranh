@@ -60,7 +60,7 @@ const get_link_page = async () => {
     for(let item of data){
         let { data_truyen, chapter } = await get_link_truyen(item);
         let id_story = await insert_truyen(data_truyen);
-        await insert_chapter(chapter, id_story);
+        await insert_chapter(chapter, id_story, data_truyen.slug);
     }
     // let { data_truyen, chapter } = await get_link_truyen(data[0]);
     // let id_story = await insert_truyen(data_truyen);
@@ -68,7 +68,7 @@ const get_link_page = async () => {
     
 }
 
-const insert_chapter = async (chapter, id) => {
+const insert_chapter = async (chapter, id, slug) => {
     for(let chap of chapter){
         await page.goto(chap);
         
@@ -108,7 +108,7 @@ const insert_chapter = async (chapter, id) => {
             
         }else{
             try{
-                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id) values (?,?,?,?,?,?,?,?,?,?)', [
+                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id, slug) values (?,?,?,?,?,?,?,?,?,?,?)', [
                     title_other+title,
                     title_other+title,
                     `✔️ Đọc truyện tranh ${title_other+title} Tiếng Việt bản đẹp chất lượng cao, cập nhật nhanh và sớm nhất ${process.env.APP_NAME}`,
@@ -118,7 +118,8 @@ const insert_chapter = async (chapter, id) => {
                     moment().format('YYYY-MM-DD HH:mm:ss'),
                     Math.floor(Math.random() * 1000) + 100,
                     moment().format('YYYY-MM-DD HH:mm:ss'),
-                    id
+                    id,
+                    slug
                 ]);
                 console.log('Tao thanh cong chapter:'+title_other+title);
             }catch(e){
