@@ -12,6 +12,7 @@ class HomeController extends Controller
         $data['new'] = Story::with(['categories', 'chapter'])->whereHas('chapter', function($q){
             return $q->orderBy('id','DESC');
         })->orderBy('created_at', 'DESC')->limit(12)->get();
+        $data['breadCrumb'][0] = url('/');
         return view('web.home.index', $data);
     }
 }
