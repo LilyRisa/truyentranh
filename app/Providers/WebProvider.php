@@ -32,7 +32,7 @@ class WebProvider extends ServiceProvider
             'App\Http\ViewComposers\Web\LayoutComposer'
         );
         view()->composer(
-            ['web.block._header', 'web.block._footer', 'web.block._menu', 'web.block._canvas_menu', 'web.block.amp-header'],
+            ['web._header', 'web.block._footer', 'web.block._menu', 'web.block._canvas_menu', 'web.block.amp-header'],
             'App\Http\ViewComposers\Web\MenuComposer'
         );
       
