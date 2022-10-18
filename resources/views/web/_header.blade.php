@@ -33,7 +33,7 @@
                     </li>
                     @else
                         <li class="nav-item ms-3">
-                            <a class="nav-link {{ !empty($breadCrumb[0]) && ($breadCrumb[0]['item'] == url($item['url'])) ? 'active' : '' }}" text-nowrap" aria-current="page" href="{{$item_menu->url}}">{{$item_menu->name}}</a>
+                            <a class="nav-link {{ !empty($breadCrumb[0]) && ($breadCrumb[0]['item'] == url($item_menu->url)) ? 'active' : '' }} text-nowrap" aria-current="page" href="{{$item_menu->url}}">{{$item_menu->name}}</a>
                         </li>
                     @endif
                     
