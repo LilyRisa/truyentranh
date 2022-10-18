@@ -32,6 +32,10 @@ class Category extends Model
         return $this->belongsToMany(Post::class, 'category_post', 'category_id', 'post_id');
     }
 
+    public function story(){
+        return $this->belongsToMany(Story::class, 'story_category', 'category_id', 'story_id');
+    }
+
     private static function _getTree($parent_id = null, $prefix_title = ''){
         $listChild = parent::where('parent_id', $parent_id)->get();
         if (!empty($listChild)) foreach ($listChild as $item) {
