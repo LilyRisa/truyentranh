@@ -7,57 +7,37 @@
             </button>
             <div class="overlay d-flex d-lg-none"> </div>
             <a href="/" class="text-center mx-auto mx-lg-0"> <img class="top-bar-logo" src="img/logo.png"> </a>
+            @if(!empty($menu_pc))
+            
             <div class="navbar-collapse collapse order-lg-2 bg_primary pb-3 pb-lg-0 d-lg-flex w-100 d-lg-block">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item ms-3">
-                        <a class="nav-link active text-nowrap" aria-current="page" href="#">TRANG CHỦ</a>
-                    </li>
-                    <li class="nav-item ms-3">
-                        <a class="nav-link text-uppercase text-nowrap" href="#">TRUYỆN MỚI</a>
-                    </li>
-                    <li class="nav-item ms-3 text-uppercase">
-                        <a class="nav-link" href="#">BXH</a>
-                    </li>
-                    <li class="nav-item ms-3">
-                        <a class="nav-link text-uppercase text-nowrap" href="#">LỌC TRUYỆN</a>
-                    </li>
+                    @foreach($menu_pc as $item_menu)
+                    @if(!empty($item_menu->children))
                     <li class="nav-item ms-3 dropdown">
-                        <a class="bg_primary border-0 dropdown-toggle nav-link text-uppercase text-nowrap" href="#"
+                        <a class="bg_primary border-0 dropdown-toggle nav-link text-uppercase text-nowrap" href="{{$item_menu->url}}"
                             role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            Thể loại
+                            {{$item_menu->name}}
                         </a>
                         <ul class="dropdown-menu bg_secondary text-white mt-3" aria-labelledby="dropdownMenuLink">
                             <div class="d-flex w-100 h-50 text-white">
-                                <div class="col-4">
+                                <div class="col-12">
+                                    @foreach($item_menu->children as $item_menu_child)
                                     <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Drama</a></li>
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Ecchi</a></li>
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Ecchi</a></li>
-                                </div>
-
-                                <div class="col-4">
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Teacher</a></li>
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Gangbang</a></li>
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Shounen</a></li>
-                                </div>
-
-                                <div class="col-4">
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Hentai</a></li>
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Horror</a></li>
-                                    <li><a class="dropdown-item text-white hover-dr"
-                                            href="#">Drama</a></li>
+                                            href="{{$item_menu_child->url}}">{{$item_menu_child->name}}</a></li>
+                                    @endforeach
+                                    
                                 </div>
 
                             </div>
                         </ul>
                     </li>
+                    @else
+                        <li class="nav-item ms-3">
+                            <a class="nav-link {{ !empty($breadCrumb[0]) && ($breadCrumb[0]['item'] == url($item_menu->url)) ? 'active' : '' }} text-nowrap" aria-current="page" href="{{$item_menu->url}}">{{$item_menu->name}}</a>
+                        </li>
+                    @endif
+                    
+                    @endforeach
                 </ul>
                 <div class="h-100 align-items-center">
                     <form class="d-flex my-2">
@@ -87,6 +67,8 @@
                 </div>
             </div>
         </div>
+       
+        @endif
         {{-- mobile --}}
         <div class="sidebar order-lg-2 bg-dark d-lg-none d-block w-100 sidebar pb-3 pb-lg-0">
             <div class="align-items-center ms-3">

@@ -204,7 +204,7 @@ return $img;
 function turnOnAjaxAmp(){
 header("Content-type: application/json");
 header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Origin: https://gamebaidoithuong68-com.cdn.ampproject.org");
+header("Access-Control-Allow-Origin: https://thichdammy-com.cdn.ampproject.org");
 header("AMP-Access-Control-Allow-Source-Origin: ". URL::to('/'));
 header("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
 }

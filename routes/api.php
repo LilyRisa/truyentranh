@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/story','StoryController@index');
+Route::get('/story/{id}','StoryController@getone')->where(['id' => '[0-9]+']);
+
+Route::get('/chapter/{story_id}','StoryController@chapter')->where(['id' => '[0-9]+']);
+
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/{id}', 'CategoryController@getone')->where(['id' => '[0-9]+']);
+Route::get('/category/{id}/{type}', 'CategoryController@gettype')->where(['type' => '[a-zA-Z]+', 'id' => '[0-9]+']);
+
+Route::get('/settings', 'SettingController@index');
+Route::get('/menu', 'SettingController@menu');
