@@ -191,8 +191,8 @@
                               
                             @endphp
                         <div class="col-lg-3 col-6 mt-2">
-                                <a href="{{getUrlStory($n)}}" class="card p-0 ml-2 he-100">
-                                    {!! genImage($n->thumbnail, 374, 500, 'card-img-top w-100 img-fluid he-100') !!}
+                                <a href="{{getUrlStory($n)}}" class="card p-0 ml-2 he-100 max-h">
+                                    {!! genImage($n->thumbnail, 374, 500, 'card-img-top w-100 max-h img-fluid he-100') !!}
                                     <div class="card-body dark-linear position-absolute fixed-bottom">
                                         <p class="p-0 m-0 text-white border-bottom">{{$n->title}}</p>
                                         <p class="p-0 m-0 text-info">{{$n->categories[0]->title}}</p>
