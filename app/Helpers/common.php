@@ -209,9 +209,15 @@ header("AMP-Access-Control-Allow-Source-Origin: ". URL::to('/'));
 header("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
 }
 
-function getThumbnail($image_url, $width = '', $height = '', $local = false){
+function getThumbnail($image_url, $width = '', $height = ''){
 
 $source_file = public_path().$image_url;
+
+
+if(Config::get('app.env') == 'local'){
+    return Config::get('app.url').$image_url;
+}
+
 if (!file_exists($source_file)){
     return $image_url;
 }

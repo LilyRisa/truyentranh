@@ -16,10 +16,10 @@ class Story extends Model
         $this->table = 'story';
     }
 
-    public function getThumbnailAttribute()
-    {
-        return \Config::get('app.url').$this->attributes['thumbnail'];
-    }
+    // public function getThumbnailAttribute()
+    // {
+    //     return \Config::get('app.url').$this->attributes['thumbnail'];
+    // }
 
     public function chapter(){
         return $this->hasMany(Chapter::class, 'story_id','id');

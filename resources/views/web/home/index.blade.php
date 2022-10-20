@@ -26,26 +26,19 @@
         </div>
         <div
             class="position-absolute absolute-center justify-content-center cate-bar bg_secondary w-75 d-none d-lg-block d-flex rounded">
-            <ul class="content-center text-center mt-3">
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">DRAMA</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">ECCHI</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">comedy</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">fantasy</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">school life</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">shoujo</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">shounen</a></li>
-                <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-dark"
-                        href="#">sport</a></li>
-                <li class="list-inline-item ms-3"><button class="btn bg-white all-button text-uppercase text_secondary">all
-                        manga</button></li>
+            
+            <ul class="text-center mt-3 d-flex justify-content-center align-items-center">
+                @if(!empty($menu_home))
+                    @foreach($menu_home as $item)
+                    <li class="list-inline-item text-uppercase ms-3"><a class="text-decoration-none text-white fw-bold"
+                            href="{{$item->url}}">{{$item->name}}</a></li>
+                    @endforeach  
+                @endif
+                <li class="list-inline-item ms-3 ms-auto me-3">
+                    <button class="btn bg-white all-button text-uppercase text_secondary fw-bold">all manga</button>
+                </li>
             </ul>
+           
 
         </div>
     </div>
