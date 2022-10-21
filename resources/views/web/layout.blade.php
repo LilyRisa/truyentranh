@@ -80,7 +80,7 @@
   <i class="icon-arrow-up2 fs-25 d-inline"></i>
 </button>
 
-  
+@include('web._footer')
 
 <script>
   //Get the button
@@ -110,7 +110,7 @@ function backToTop() {
 }
 </script>
 
-  @include('web._footer')
+  
   <script src="/js/app.js?1"></script>
 </body>
 
