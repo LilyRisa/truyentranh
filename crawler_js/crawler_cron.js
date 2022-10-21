@@ -29,15 +29,11 @@ const CONFIG = {
 
 
 
-const args = process.argv;
-
-let link_category = typeof args[2] == 'undefined' ? null : args[2];
-let category_id = typeof args[3] == 'undefined' ? null : args[3];
-let update_chapter = typeof args[4] == 'undefined' ? null : args[3];
 
 
 
-const index_main =  async () => {
+
+const index_main =  async (link_category, category_id, update_chapter=false) => {
 
 const CONNECT = await mysql.createConnection(CONFIG);
 if(CONNECT){
@@ -318,7 +314,7 @@ function request (element) {
   cron.schedule('0 8,20 * * *', () => {
     (async () => {
         try{
-            await index_main();
+            await index_main('https://www.nettruyenme.com/tim-truyen/dam-my', 1);
         }catch(e){
             await writeFile('./log.txt', e.toString());
         }
