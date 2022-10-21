@@ -1,2 +1,7 @@
 @import 'bootstrap/bootstrap.scss';
 @import 'common/_index.scss';
+
+.story-img{
+    height: 330px !important;
+    object-fit: cover;
+}
