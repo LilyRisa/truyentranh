@@ -40,6 +40,8 @@ class Story extends Model
         }
         extract($params);
 
+        $orderby = 'created_at';
+
         if (isset($category_id)) {
             $data_id = Category::listItemChild($category_id,'id');
             $data = new self;
@@ -57,10 +59,24 @@ class Story extends Model
                 $data = $data->where('story_category.is_primary', 1);
             }
         }
+        if(isset($order_by)){
+            $orderby = $order_by;
+        }
 
+        if(isset($title)){
+            $data = $data->where('story.title','like', "%$title%");
+        }
+
+        if(isset($status)){
+            $data = $data->where('story.is_update', $status);
+        }
+        
         if (isset($tag_id)) {
             $data = $data->select('story.*', 'story_tags.story_id', 'story_tags.tag_id')->Join('story_tags', 'story_tags.story_id', '=', 'story.id');
             $data = $data->where('story_tags.tag_id', $tag_id);
+        }
+        if(isset($chapter) && $chapter){
+            $data = $data->with('chapter');
         }
 
         if (isset($info_category)) {
@@ -78,7 +94,7 @@ class Story extends Model
         $offset = $offset ?? 0;
         $limit = $limit ?? 10;
 
-        $data = $data->orderBy('story.created_at', 'desc')
+        $data = $data->orderBy('story.'.$orderby, 'desc')
             ->offset($offset)
             ->limit($limit)
             ->groupBy('story.id')

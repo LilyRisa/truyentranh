@@ -7,17 +7,21 @@
     <div class="bg-grey1">
        
         <div class="container d-flex flex-wrap bg-grey1">
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-3 col-12">
                 <div class="fs-18 fw-bold mt-2 text-nowrap">Từ khóa tìm kiếm</div> 
-                <input type="text" class="rounded-pill form-control mt-1" name="" placeholder="  Tìm kiếm.." id="">
+                <form class="w-100 d-flex mt-1" action="" method="get">
+                    <input type="text" class="rounded-pill-left form-control" name="title" placeholder="  Tìm kiếm.." id="">
+                    <button class="btn btn-default rounded-pill-right p-0 bg_secondary text-white fw-bold fs-12 p-1" type="submit">Tìm kiếm</button>
+                </form>
+               
             </div>
             <div class="ms-lg-auto">
                 <div class="fs-18 fw-bold mt-2">Sắp xếp theo</div> 
                 <div class="mt-2"> 
-                    <p class="d-inline text-secondary"> Chữ cái đầu tiên </p>
-                    <p class="d-inline ms-2 text-secondary"> Lượt đọc </p>
-                    <p class="d-inline ms-2 text-secondary"> Đánh giá </p>
-                    <p class="d-inline ms-2 text-secondary"> Số tập </p>
+                    <button class="d-inline text-secondary"> Chữ cái đầu tiên </button>
+                    <button class="d-inline ms-2 text-secondary"> Lượt đọc </button>
+                    <button class="d-inline ms-2 text-secondary"> Đánh giá </button>
+                    <button class="d-inline ms-2 text-secondary"> Số tập </button>
                 </div>
             </div>
             <div class="ms-auto">
@@ -43,21 +47,28 @@
         </div>
     </div>
     <div class="container mt-2">
-    <h1 class="text-center text-uppercase text_secondary">Đam mỹ ngược </h1>
-    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quidem voluptatum ipsum cumque vero magnam assumenda pariatur. Dolorum similique non necessitatibus ducimus autem, modi numquam cupiditate odit debitis ratione aliquam quos nihil rerum, amet at molestias aperiam velit officia architecto aspernatur. Facilis et tempora quas sequi atque molestias earum dignissimos.</p>
-    <div class="row justify-content-between mt-am-2">
-        @for($i=0;$i<24;$i++)
+    <h1 class="text-center text-uppercase text_secondary">{{$oneItem->title}}</h1>
+    <p class="text-center">{!! $oneItem->description !!}</p>
+    <div class="row mt-am-2">
+        @if(!empty($story))
+        @foreach($story as $item)
+        @php
+            $chap = explode('- ', $item->chapter[0]->title);
+            $chap = end($chap);
+            
+        @endphp
         <div class="col-lg-2 col-6 mt-2">
                 <div class="card p-0 ml-2">
-                    <img src="img/book1.jpeg" class="card-img-top w-100 img-fluid" alt="book1">
+                    {!! genImage($item->thumbnail, 194, 259, 'img-fluid', $item->title) !!}
                     <div class="card-body dark-linear position-absolute fixed-bottom">
-                        <p class="p-0 m-0 text-white border-bottom">Senju harasama</p>
-                        <p class="p-0 m-0 text-info">Manhwa</p>
-                        <p class="p-0 m-0 text_secondary">Chap 12</p>
+                        <p class="p-0 m-0 text-white border-bottom">{{$item->title}}</p>
+                        <p class="p-0 m-0 text-info">{{$item->categories[0]->title}}</p>
+                        <p class="p-0 m-0 text_secondary">{{$chap}}</p>
                     </div>
                 </div>
             </div>
-        @endfor
+            @endforeach
+        @endif
     </div>
     </div>
 @endsection

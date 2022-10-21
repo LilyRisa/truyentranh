@@ -2,8 +2,8 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/main.css?ver=3.9">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  {{-- <link rel="stylesheet" href="/css/main.css?ver=3.9"> --}}
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     
     <meta property="og:url" content="{{url()->current()}}">
     <meta property="og:type" content="{{getCurrentController() == 'post' ? 'article' : 'website'}}">
-    <meta property="og:site_name" content="forextradingvn.top">
+    <meta property="og:site_name" content="thichdammy.com">
     <meta property="og:description" content="{{$seo_data['meta_description'] ?? ''}}">
     @if(!empty($seo_data['published_time']))
         <meta property="article:published_time" content="{{$seo_data['published_time']}}" />
@@ -37,7 +37,7 @@
     <meta name="twitter:title" content="{{$seo_data['meta_title'] ?? ''}}" />
     <meta name="twitter:description" content="{{$seo_data['meta_description'] ?? getSiteSetting('site_description')}}" />
     <meta name="twitter:site" content="@fxtradingvn" />
-    <meta name="twitter:url" content="{{$seo_data['twitter_url'] ?? 'https://forextradingvn.top/'}}" />
+    <meta name="twitter:url" content="{{$seo_data['twitter_url'] ?? 'https://thichdammy.com/'}}" />
     @if(!empty($seo_data['site_image']))
         <meta name="twitter:image" content="{{url($seo_data['site_image'])}}" />
     @endif
@@ -56,6 +56,12 @@
 	@if(!empty($schema))
 		{!!$schema!!}
 	@endif
+
+  @php
+			$css = file_get_contents('css/'.(!empty($css_file) ? $css_file : 'main.css') );  
+		@endphp
+        {!! '<style>'.$css.'</style>' !!}
+
 </head>
 
 <body>
