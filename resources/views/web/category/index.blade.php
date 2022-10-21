@@ -68,8 +68,8 @@
                 <div class="card p-0 ml-2">
                     {!! genImage($item->thumbnail, 194, 259, 'img-fluid', $item->title) !!}
                     <div class="card-body dark-linear position-absolute fixed-bottom">
-                        <a href="{{getUrlStory($item)}}" class="p-0 m-0 text-white border-bottom" title="{{$item->title}}">{{$item->title}}</a>
-                        <a href="{{getUrlCate($item->categories[0])}}" class="p-0 m-0 text-info" title="{{$item->title}}">{{$item->categories[0]->title}}</a>
+                        <a href="{{getUrlStory($item)}}" class="d-block p-0 m-0 text-white border-bottom" title="{{$item->title}}">{{$item->title}}</a>
+                        <a href="{{getUrlCate($item->categories[0])}}" class="p-0 m-0 text-info" title="{{$item->categories[0]->title}}">{{$item->categories[0]->title}}</a>
                         <p class="p-0 m-0 text_secondary">{{$chap}}</p>
                         <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pt-1 pe-1"></i> Lượt xem: {{$item->view_count}}</p>
                     </div>
