@@ -1,7 +1,9 @@
 import $ from 'jquery';
-import bootstrap from 'bootstrap'
-
 window.$ = window.jQuery = $;
+
+import bootstrap from 'bootstrap'
+import './rateit';
+import './toastr';
 
 
 const mainNavigation = document.querySelector(".main-navigation");
@@ -174,3 +176,68 @@ overlay.addEventListener("click", closeSideNav);
     }
 
 }(window, document));
+
+// rate
+let voteStar = () => {
+    let selector = $(".rateit");
+    const url_route = $(".rateit").attr('data-url');
+    console.log(selector,url_route);
+    if (selector.length > 0) {
+        selector.bind('rated', function(e) {
+            e.preventDefault();
+            let ri = $(this);
+            let value = ri.rateit('value');
+            let slug = ri.data('slug');
+            let voteStart = 0;
+            let url = url_route;
+            let request = {
+                slug: slug,
+                star: value,
+                voteStart: voteStart
+            };
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: request,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.type === 'success') {
+                        let container = ri.closest('.allRate');
+                        container.find('.avg-rate').text(parseFloat(data.vote.avg).toFixed(1));
+                        container.find('.count-rate').text(data.vote.count_vote);
+                        selector.addClass('voted');
+                        $.Toast('Đánh giá', data.message, data.type,{
+                            has_icon:true,
+                            has_close_btn:true,
+                            stack: true,
+                            fullscreen:false,
+                            timeout:8000,
+                            sticky:false,
+                            has_progress:true,
+                            rtl:false,
+                        });
+                    } else {
+                        $.Toast('Đánh giá', data.message, data.type,{
+                            has_icon:true,
+                            has_close_btn:true,
+                            stack: true,
+                            fullscreen:false,
+                            timeout:8000,
+                            sticky:false,
+                            has_progress:true,
+                            rtl:false,
+                        });
+                    }
+                }
+            });
+        });
+    }
+  };
+
+$(document).ready(function(){
+    // setTimeout(()=>{
+    //     $('.rate-fake').attr('class','rate-fake d-none');
+    //     $('.rateit').attr('class', 'rateit opa-0');
+    // },1);
+    voteStar();
+});

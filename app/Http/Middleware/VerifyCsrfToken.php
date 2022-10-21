@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/post/ajax_rate',
+        '/story/ajax_rate',
         '/contact-form',
         '/admin/ajax/add_feature_home',
     ];
