@@ -8,7 +8,7 @@ function getSchemaBreadCrumb($breadCrumb){
             '@type' => 'ListItem',
             'position' => 1,
             'name' => 'Trang chủ',
-            'item' => 'https://truyen.forextradingvn.top/'
+            'item' => 'https://thichdammy.com/'
         ]
     ];
     $i=2;
@@ -70,7 +70,7 @@ function getSchemaArticle($post, $user){
             "name" => 'forextradingvn',
             "logo" => [
                 "@type" => "ImageObject",
-                "url" => 'https://truyen.forextradingvn.top/images/logo.svg',
+                "url" => 'https://thichdammy.com/images/logo.svg',
                 "width" => 600,
                 "height" => 60
             ]

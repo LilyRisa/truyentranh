@@ -3,12 +3,43 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Story;
+use App\Models\Story_category;
+use App\Models\Category;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {   
-    public function index()
+    public function index($slug, $id, $page = 1)
     {
-        return view('web.category.index');
+        $oneItem = Category::find($id);
+        if (empty($oneItem) || $oneItem->status == 0)
+            return Redirect::to(url('/'));
+        $data['oneItem'] = $oneItem;
+        if ($oneItem->slug != $slug) return Redirect::to(getUrlCate($oneItem), 301);
+        $data['seo_data'] = initSeoData($oneItem,'category');
+
+        $data['loadmore'] = true;
+
+        $limit = 10;
+
+        $params = [
+            'info_category' =>true,
+            'category_id' => $id,
+            'limit' => $limit,
+            'offset' => ($page-1) * $limit,
+        ];
+        $count = Story::getCount($params);
+        if($count <= $limit) $data['loadmore'] = false;
+        $count = Story::getCount($params);
+        $pagination = (int) ceil($count/$limit);
+        $data['pagination'] = $pagination;
+        $data['page'] = $page;
+
+        $data['story'] = Story::getStorys($params);
+
+
+        return view('web.category.index', $data);
     }
 
     public function blog()

@@ -93,7 +93,7 @@
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link"
                    href="#"
-                   onclick="MyWindow=window.open('https://truyen.forextradingvn.top/admin/libraries/elfinder/file-elfinder.php?mode=chosefile&control=img#elf_l1_Lw','MyWindow','width=800,height=600'); return false;">
+                   onclick="MyWindow=window.open('https://thichdammy.com/admin/libraries/elfinder/file-elfinder.php?mode=chosefile&control=img#elf_l1_Lw','MyWindow','width=800,height=600'); return false;">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="/admin/images/icon-svg/free.svg#cil-image-plus"></use>
                     </svg>

@@ -107,7 +107,7 @@ $(document).on('click', '.btn-change-password', function (e) {
 });
 
 function upload_file(mode,control){
-    let open_url = 'https://truyen.forextradingvn.top/admin/libraries/elfinder/file-elfinder.php?mode='+mode+'&control='+control;
+    let open_url = 'https://thichdammy.com/admin/libraries/elfinder/file-elfinder.php?mode='+mode+'&control='+control;
     window.open(open_url,'_blank',"location=0,left=200,width=800,height=500");
     return false;
 }
@@ -564,7 +564,7 @@ $(function() {
         type:'post',
         data: data,
     }).done(res => {
-        $('#short_url_return').val('https://forextradingvn.top/short.fx?url='+res.url_new);
+        $('#short_url_return').val('https://fthichdammy.com/short.fx?url='+res.url_new);
         $('#short_url_return').show();
     }).fail(e=>{
         alert('Lỗi hệ thống');
