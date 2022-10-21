@@ -43,6 +43,7 @@
         </div>
     </div>
     <div class="container mt-2">
+    <h1>Đam mỹ ngược </h1>
     <div class="row justify-content-between mt-am-2">
         @for($i=0;$i<24;$i++)
         <div class="col-lg-2 col-6 mt-2">
