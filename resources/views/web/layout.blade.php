@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/main.css?ver=3.5">
+  <link rel="stylesheet" href="/css/main.css?ver=3.9">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <meta charset="utf-8">
@@ -64,7 +64,7 @@
   <div class="main">
     @yield('main')
   </div>
-  <img src="img/to-top.png" class="img-back-to-top d-sm-none d-md-none d-lg-block d-none" width="200rem" class="img-fluid" alt="">
+  {{-- <img src="img/to-top.png" class="img-back-to-top d-sm-none d-md-none d-lg-block d-none" width="200rem" class="img-fluid" alt=""> --}}
   
     <button
         type="button"
