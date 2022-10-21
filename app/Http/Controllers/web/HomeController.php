@@ -16,9 +16,7 @@ class HomeController extends Controller
         if(Cache::has($key)){
             $data['new'] = Cache::get($key);
         }else{
-            $data['new'] = Story::with(['categories', 'chapter'])->whereHas('chapter', function($q){
-                return $q->orderBy('id','DESC');
-            })->orderBy('created_at', 'DESC')->limit(12)->get();
+            $data['new'] = Story::with(['categories', 'chapter'])->orderBy('created_at', 'DESC')->limit(12)->get();
             Cache::set($key, $data['new'], now()->addHours(12));
         }
 

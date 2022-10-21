@@ -311,7 +311,7 @@ function request (element) {
 };
 
 
-  cron.schedule('0 8,20 * * *', () => {
+//   cron.schedule('0 8,20 * * *', () => {
     (async () => {
         try{
             await index_main('https://www.nettruyenme.com/tim-truyen/dam-my', 1);
@@ -319,6 +319,6 @@ function request (element) {
         }catch(e){
             await writeFile('./log.txt', e.toString());
         }
-    // })();
+    })();
 
-})});
+// })});

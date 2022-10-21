@@ -21,9 +21,8 @@ class StoryController extends Controller
     }
     private function story($slug){
 
-        $data['oneItem'] = $oneItem = Story::with(['categories', 'chapter', 'tags'], function($q){
-            return $q->orderBy('id', 'DESC');
-        })->where('slug', $slug)->first();
+        $data['oneItem'] = $oneItem = Story::with(['categories', 'chapter', 'tags'])->where('slug', $slug)->first()->chapter_sort();
+        // dd($data['oneItem']);
 
         if(empty($oneItem)) return Redirect::to(url('/'), 301);
         return view('web.story.index', $data);
@@ -35,7 +34,6 @@ class StoryController extends Controller
         if(empty($data['oneItem'])) return Redirect::to(getUrlStory(['slug' => $slug]), 301);
 
         $data['list'] = $list = Chapter::where('story_id', $data['oneItem']->story->id)->orderBy('id', 'DESC')->get();
-
         $data['before'] = null;
         $data['after'] = null;
 

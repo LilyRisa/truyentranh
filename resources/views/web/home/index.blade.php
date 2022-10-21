@@ -64,7 +64,7 @@
                     @if(!empty($view_hight))
                     @foreach($view_hight as $vh)
                     @php
-                        $chap = explode('- ', $vh->chapter[0]->title);
+                        $chap = explode('- ', $vh->chapter[max(array_keys($vh->chapter->toArray()))]->title);
                         $chap = end($chap);
                         
                     @endphp
@@ -187,7 +187,7 @@
                     @if (!empty($new))
                         @foreach($new as $n)
                             @php
-                                $chap = explode('- ', $n->chapter[0]->title);
+                                $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
                                 $chap = end($chap);
                               
                             @endphp
