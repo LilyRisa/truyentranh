@@ -315,6 +315,7 @@ function request (element) {
     (async () => {
         try{
             await index_main('https://www.nettruyenme.com/tim-truyen/dam-my', 1);
+            process.exit(0);
         }catch(e){
             await writeFile('./log.txt', e.toString());
         }
