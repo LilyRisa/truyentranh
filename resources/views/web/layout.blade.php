@@ -64,7 +64,7 @@
   <div class="main">
     @yield('main')
   </div>
-  <img src="img/to-top.png" class="img-back-to-top d-sm-none d-md-none d-lg-block d-none" width="200rem" class="img-fluid" alt="">
+  {{-- <img src="img/to-top.png" class="img-back-to-top d-sm-none d-md-none d-lg-block d-none" width="200rem" class="img-fluid" alt=""> --}}
   
     <button
         type="button"
