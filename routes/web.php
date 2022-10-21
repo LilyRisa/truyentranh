@@ -27,6 +27,10 @@ Route::get('/truyen/{slug}-c{id}', 'StoryController@index')->where(['slug' => '[
 
 Route::get('/img-proxy={url?}', 'ProxyController@img')->where('url', '(.*)');
 
+// rate
+Route::post('/post/ajax_rate','PostController@ajax_rate')->name('rating');
+Route::post('/story/ajax_rate','StoryController@ajax_rate')->name('rating_story');
+
 /*Category story*/
 Route::get('/amp/{slug}-c{id}', 'CategoryController@ampIndex')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
 Route::get('/amp/{slug}-c{id}/{page}', 'CategoryController@ampIndex')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+','page' => '[0-9]+']);

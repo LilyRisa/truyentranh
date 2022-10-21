@@ -2,7 +2,7 @@
 @section('main')
 <div class="bg-detail d-flex justify-content-center bg_secondary w-100 max-100 h-20">
     <div class="d-flex flex-wrap bg-white mt-auto container h-75">
-        <div col-3>
+        <div >
         {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid ms-4 rounded-top') !!}
         </div>
         <div class="ms-4 mt-4 d-flex flex-inline col-9"> 
@@ -20,15 +20,8 @@
                 <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary bg_secondary text-white border-0">Đọc truyện</a> <a class="btn btn-secondary ms-2 border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
            </ul>
            <ul>
-            <li class="list-unstyled d-flex mt-5">
-                <div class="d-flex mt-2 pt-1">
-                <i class="icon-star-full text_secondary"></i>
-                <i class="icon-star-full text_secondary ps-1"></i>
-                <i class="icon-star-full text_secondary ps-1"></i>
-                <i class="icon-star-full text_secondary ps-1"></i>
-                <i class="icon-star-full text_secondary ps-1"></i>
-                </div>
-                <p class="fs-25 ps-2">5.0</p>
+            <li class="list-unstyled d-flex mb-5">
+                @include('web.block._vote', ['data' => $oneItem, 'url' => '/story/ajax_rate'])
             </li>
             <li class="list-unstyled d-flex">
                 <i class="icon-facebook1 text-primary"></i>

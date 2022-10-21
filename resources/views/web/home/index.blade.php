@@ -61,18 +61,26 @@
                 </a>
                 </div>
                 <div class="row justify-content-between mt-am-2">
-                    @for ($i = 0; $i < 8; $i++)
+                    @if(!empty($view_hight))
+                    @foreach($view_hight as $vh)
+                    @php
+                        $chap = explode('- ', $vh->chapter[0]->title);
+                        $chap = end($chap);
+                        
+                    @endphp
                         <div class="col-lg-3 mt-2 col-6">
                             <div class="card p-0 ml-2">
-                                <img src="img/book1.jpeg" class="card-img-top w-100 img-fluid" alt="book1">
+                                {!! genImage($vh->thumbnail, 225, 330, 'img-fluid story-img', $vh->title) !!}
                                 <div class="card-body dark-linear position-absolute fixed-bottom">
-                                    <p class="p-0 m-0 text-white border-bottom">Senju harasama</p>
-                                    <p class="p-0 m-0 text-info">Manhwa</p>
-                                    <p class="p-0 m-0 text_secondary">Chap 12</p>
+                                    <a href="{{getUrlStory($vh)}}" class="d-block p-0 m-0 text-white border-bottom fw-bold" title="{{$vh->title}}">{{$vh->title}}</a>
+                                    <a href="{{getUrlCate($vh->categories[0])}}" class="d-block p-0 m-0 text-info" title="{{$vh->categories[0]->title}}">{{$vh->categories[0]->title}}</a>
+                                    <p class="p-0 m-0 text_secondary">{{$chap}}</p>
+                                    <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pt-1 pe-1"></i> Lượt xem: {{$vh->view_count}}</p>
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                        @endforeach
+                    @endif
                 </div>
             </div>
             
@@ -184,12 +192,13 @@
                               
                             @endphp
                         <div class="col-lg-3 col-6 mt-2">
-                                <a href="{{getUrlStory($n)}}" class="card p-0 ml-2 he-100 max-h">
-                                    {!! genImage($n->thumbnail, 374, 500, 'card-img-top w-100 max-h img-fluid he-100') !!}
+                                <a href="{{getUrlStory($n)}}" class="card p-0 ml-2">
+                                    {!! genImage($n->thumbnail, 225, 330, 'story-img img-fluid') !!}
                                     <div class="card-body dark-linear position-absolute fixed-bottom">
-                                        <p class="p-0 m-0 text-white border-bottom">{{$n->title}}</p>
+                                        <p class="p-0 m-0 text-white border-bottom fw-bold">{{$n->title}}</p>
                                         <p class="p-0 m-0 text-info">{{$n->categories[0]->title}}</p>
                                         <p class="p-0 m-0 text_secondary">{{ $chap }}</p>
+                                        <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pt-1 pe-1"></i> Lượt xem: {{$vh->view_count}}</p>
                                     </div>
                                 </a>
                             </div>
