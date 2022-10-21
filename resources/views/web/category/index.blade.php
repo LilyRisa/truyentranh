@@ -43,7 +43,8 @@
         </div>
     </div>
     <div class="container mt-2">
-    <h1>Đam mỹ ngược </h1>
+    <h1 class="text-center text-uppercase text_secondary">Đam mỹ ngược </h1>
+    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quidem voluptatum ipsum cumque vero magnam assumenda pariatur. Dolorum similique non necessitatibus ducimus autem, modi numquam cupiditate odit debitis ratione aliquam quos nihil rerum, amet at molestias aperiam velit officia architecto aspernatur. Facilis et tempora quas sequi atque molestias earum dignissimos.</p>
     <div class="row justify-content-between mt-am-2">
         @for($i=0;$i<24;$i++)
         <div class="col-lg-2 col-6 mt-2">

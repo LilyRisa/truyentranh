@@ -1,9 +1,11 @@
 @extends('web.layout')
 @section('main')
 <div class="bg-detail d-flex justify-content-center bg_secondary w-100 max-100 h-20">
-    <div class="d-flex bg-white mt-auto container h-75">
+    <div class="d-flex flex-wrap bg-white mt-auto container h-75">
+        <div col-3>
         {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid ms-4 rounded-top') !!}
-        <div class="ms-4 mt-4 d-flex"> 
+        </div>
+        <div class="ms-4 mt-4 d-flex flex-inline col-9"> 
            <ul class="w-75">
                 <li class="list-unstyled d-flex"><span class="fs-25">{{$oneItem->title}} <span class="fs-13 ms-4 text_secondary">{{$oneItem->is_update}}</span></span></li>
                 <li class="list-unstyled"><p class="fs-13 text-secondary">Author: {{$oneItem->author}}</p></li>
