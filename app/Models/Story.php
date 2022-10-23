@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\BuilderModel\ChapterSort;
+use Illuminate\Support\Facades\DB;
 use Cache;
 
 class Story extends Model
@@ -87,7 +88,7 @@ class Story extends Model
         }
 
         if(isset($title)){
-            $data = $data->where('story.title','like', "%$title%");
+            $data = $data->whereRaw(DB::raw('MATCH (title) AGAINST ("'.$title.'")'));
         }
 
         if(isset($status)){

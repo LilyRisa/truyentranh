@@ -10,7 +10,7 @@
             <div class="col-lg-3 col-12">
                 <div class="fs-18 fw-bold mt-2 text-nowrap">Từ khóa tìm kiếm</div> 
                 <form class="w-100 d-flex mt-1" action="" method="get">
-                    <input type="text" class="rounded-pill-left form-control" name="title" placeholder="  Tìm kiếm.." id="">
+                    <input type="text" class="rounded-pill-left form-control" name="title" @if(!empty($search_title)) value="{{$search_title}}"  @else placeholder="  Tìm kiếm.." @endif id="">
                     <button class="btn btn-default rounded-pill-right p-0 bg_secondary text-white fw-bold fs-12 p-1" type="submit"><i class="icon-search fs-16"></i></button>
                 </form>
                
@@ -22,11 +22,14 @@
                 <div class="col-lg-2">
                         <div class="d-flex fs-18 fw-bold mt-2">Thể loại</div>
                         <div class="d-flex mt-2 flex-wrap">
+                            @if(!empty($listCategory))
                             <select class="form-select" name="" id="">
-                                @for($i=0;$i<16;$i++)
-                                <option value="">Đam mỹ</option>
-                                @endfor
+                                <option value="0">Chọn chuyên mục</option>
+                                @foreach($listCategory as $cate)
+                                <option value="{{$cate->id}}">{{$cate->title}}</option>
+                                @endforeach
                             </select>
+                            @endif
                         </div>
                 </div>
                 <div class="ms-lg-auto">
@@ -65,7 +68,7 @@
             
         @endphp
         <div class="col-lg-2 col-6 mt-2">
-                <div class="card p-0 ml-2">
+                <div class="card p-0 ml-2"> 
                     {!! genImage($item->thumbnail, 194, 259, 'img-fluid', $item->title) !!}
                     <div class="card-body dark-linear position-absolute fixed-bottom">
                         <a href="{{getUrlStory($item)}}" class="d-block p-0 m-0 text-white border-bottom" title="{{$item->title}}">{{$item->title}}</a>

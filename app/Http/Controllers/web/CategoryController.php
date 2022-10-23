@@ -33,6 +33,7 @@ class CategoryController extends Controller
 
         if(isset($_GET['title'])){
             $params['title'] = $_GET['title'];
+            $data['search_title'] = $_GET['title'];
         }
 
         if(isset($_GET['order_by'])){
@@ -53,6 +54,9 @@ class CategoryController extends Controller
         $data['story'] = Story::getStorys($params);
 
         // dd($data);
+        // category
+
+        $data['listCategory'] = Category::all();
         
         return view('web.category.index', $data);
     }
