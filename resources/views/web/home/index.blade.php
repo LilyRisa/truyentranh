@@ -297,7 +297,7 @@
                         <p class="text-center text-white fww-bold rounded {{ ($key + 1) == 1 ? 'bg-danger' : (($key + 1) == 2 ? 'bg-success' : (($key + 1) == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$key+1}}</p>
                     </div>
                     <div class="col-11">
-                        <a href="{{getUrlStory($_rate)}}" title="{{$_rate->title}}" class="m-0 p-0 col-12 ps-2 fw-bold">{{$_rate->title}}</div>
+                        <a href="{{getUrlStory($_rate)}}" title="{{$_rate->title}}" class="d-block m-0 p-0 col-12 ps-2 fw-bold">{{$_rate->title}}</div>
                         <div class="row ms-0">
                             <div class="col-9 fs-12 ps-2 d-flex">
                                 <div class="d-flex me-2 align-items-center">
