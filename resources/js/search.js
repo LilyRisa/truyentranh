@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.4.1 - Search
+ * # Semantic UI 2.5.0 - Search
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -525,6 +525,7 @@
               }
               else {
                 module.debug('Querying for', searchTerm);
+                console.log(module.can.useAPI());
                 if($.isPlainObject(settings.source) || $.isArray(settings.source)) {
                   module.search.local(searchTerm);
                   callback();
@@ -1502,4 +1503,4 @@
     }
   };
   
-  })( jQuery, window, document );
+  })( jQuery, window, document );  

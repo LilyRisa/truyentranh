@@ -261,7 +261,7 @@ const ajax_search = () => {
                     source: data,
                 });
             });
-        }.bind(this), 800);
+        }.bind(this), 300);
         
     })
 }
@@ -272,7 +272,7 @@ $(document).ready(function(){
 
     $('.check_search').on('click', function(e){
         e.preventDefault();
-        $('.seach-header').click();
+        $('.seach-header').focus();
     })
 });
 
