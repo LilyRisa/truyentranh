@@ -1,14 +1,17 @@
 @extends('web.layout')
 @section('main')
-<div class="bg-detail d-flex justify-content-center bg_secondary w-100 max-100 h-20">
+<div class="position-relative d-flex justify-content-center bg_secondary w-100 max-100">
     <div class="d-flex flex-wrap bg-white mt-auto container h-75">
-        <div >
-        {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid ms-4 rounded-top') !!}
+        <div class="col-lg-3 col-12 d-flex justify-content-center">
+        {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid rounded-top') !!}
         </div>
-        <div class="ms-4 mt-4 d-flex flex-inline col-9"> 
-           <ul class="w-75">
+        <div class="mt-4 d-flex flex-lg-inline flex-wrap col-lg-9 col-12"> 
+           <ul class="w-100">
                 <li class="list-unstyled d-flex"><span class="fs-25">{{$oneItem->title}} <span class="fs-13 ms-4 text_secondary">{{$oneItem->is_update}}</span></span></li>
                 <li class="list-unstyled"><p class="fs-13 text-secondary">Author: {{$oneItem->author}}</p></li>
+                <li class="list-unstyled d-flex">
+                    @include('web.block._vote', ['data' => $oneItem, 'url' => '/story/ajax_rate'])
+                </li>
                 <li class="list-unstyled d-flex mt-1">
                     @if(!empty($oneItem->tags))
                         @foreach ($oneItem->tags as $t)
@@ -20,9 +23,6 @@
                 <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary bg_secondary text-white border-0">Đọc truyện</a> <a class="btn btn-secondary ms-2 border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
            </ul>
            <ul>
-            <li class="list-unstyled d-flex mb-5">
-                @include('web.block._vote', ['data' => $oneItem, 'url' => '/story/ajax_rate'])
-            </li>
             <li class="list-unstyled d-flex">
                 <i class="icon-facebook1 text-primary"></i>
                 <i class="icon-twitter1 ms-2 text-primary"></i>
@@ -32,7 +32,8 @@
         </div>
     </div>
 </div>
-<div class="container bg-white">
+
+<div class="container position-relative bg-white">
     <div class="row mt-0 pt-3">
     <div class="col-lg-9">
         <div class="d-flex container mt-2">
@@ -45,7 +46,7 @@
     </div>
 
         
-    <div class="col-12 container">
+    <div class="col-12 container position-relative">
         <ul class="list-unstyled row">
             @if(!empty($oneItem->chapter))
                 @foreach($oneItem->chapter as $chapter)
@@ -90,9 +91,6 @@
                 </div>
             @endfor
         </div>
-    
-        
-    
     </div>
 </div>
 
