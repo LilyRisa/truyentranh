@@ -5,11 +5,13 @@
         <div class="col-lg-3 col-12 d-flex justify-content-center">
         {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid rounded-top') !!}
         </div>
-        <div class="mt-4 d-flex flex-lg-inline flex-wrap col-lg-9 col-12"> 
-           <ul class="w-100">
-                <li class="list-unstyled d-flex"><span class="fs-25">{{$oneItem->title}} <span class="fs-13 ms-4 text_secondary">{{$oneItem->is_update}}</span></span></li>
-                <li class="list-unstyled"><p class="fs-13 text-secondary">Author: {{$oneItem->author}}</p></li>
-                <li class="list-unstyled d-flex">
+        <div class="mt-4 px-4 d-flex flex-lg-inline flex-wrap col-lg-9 col-12"> 
+           <ul class="w-100 ps-0">
+                <li class="list-unstyled d-flex"><span class="fs-25">{{$oneItem->title}}</span></li>
+                <li class="list-unstyled mt-1"><span class="fs-16 text-secondary">Tác giả: {{$oneItem->author}}</span></li>
+                <li class="list-unstyled d-flex mt-1"><span class="fs-16">Tình trạng: </span><span class="ms-2 fs-16 text_secondary">{{$oneItem->is_update}}</span></li> 
+                <li class="list-unstyled d-flex mt-1"><span class="fs-16">Lượt xem: </span><span class="ms-2 fs-16 text_secondary">1221313</span></li> 
+                <li class="list-unstyled d-flex mt-2">
                     @include('web.block._vote', ['data' => $oneItem, 'url' => '/story/ajax_rate'])
                 </li>
                 <li class="list-unstyled d-flex mt-1">
