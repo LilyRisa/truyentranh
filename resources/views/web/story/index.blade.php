@@ -84,7 +84,7 @@
         <div class="">
             @for ($i = 1; $i < 8; $i++)
                 <div class="mt-2 pb-2 border-bottom row">
-                    <div class="col-3"><img src="img/book1.jpeg" class="img-fluid"></div>
+                    <div class="col-3"><img src="/img/book1.jpeg" class="img-fluid"></div>
                     <div class="col-9">
                         <div class="m-0 p-0">Tên truyện</div>
                         <div class="row mt-2">

@@ -107,7 +107,7 @@
                                     class="text-start {{ $i == 1 ? 'text-danger' : ($i == 2 ? 'text-success' : ($i == 3 ? 'text-primary' : 'text-secondary')) }} ">
                                     0{{ $i }}</p>
                             </div>
-                            <div class="col-3"><img src="img/book1.jpeg" class="img-fluid ps-2"></div>
+                            <div class="col-3"><img src="/img/book1.jpeg" class="img-fluid ps-2"></div>
                             <div class="col-8">
                                 <div class="m-0 p-0 ps-2">Tên truyện</div>
                                 <div class="col-9 fs-12 ps-2">Tác giả</div>
