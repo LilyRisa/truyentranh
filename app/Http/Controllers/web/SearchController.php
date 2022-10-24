@@ -23,7 +23,7 @@ class SearchController extends Controller
             $set->url = getUrlStory($item);
             $set->category = new \stdClass;
             $set->category->title = $item['categories'][0]['title'];
-            $set->image = $item['thumbnail'];
+            $set->image = getThumbnail($item['thumbnail']);
             $set->title = $item['title'];
             $set->descriptions = $item['description'];
             $data[] = $set;

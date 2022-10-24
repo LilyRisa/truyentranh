@@ -214,8 +214,16 @@ function getThumbnail($image_url, $width = '', $height = ''){
 $source_file = public_path().$image_url;
 
 
-if(Config::get('app.env') == 'local'){
-    return Config::get('app.url').$image_url;
+if(Config::get('app.env') == 'local'){ // nếu ở local sẽ lấy ảnh trên server và lấy ảnh webp nếu tồn tại
+    
+    $image_url_webp = str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp', 'xbm'], '-'.$width.'x'.$height.'.webp', $image_url);
+    $url = Config::get('app.url').'/thumb'.$image_url_webp;
+    $file_headers = @get_headers($url);
+    if (stripos($file_headers[0],"404 Not Found") >0  || (stripos($file_headers[0], "302 Found") > 0 && stripos($file_headers[7],"404 Not Found") > 0)) {
+        return Config::get('app.url').$image_url;
+    }
+    return $url;
+    
 }
 
 if (!file_exists($source_file)){
