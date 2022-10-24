@@ -247,14 +247,9 @@ if(file_exists($resize_image_file)){
     }
 }
 
-try{
-    // if(isset($_GET['congminh'])){
-        $img_src = webpConvert2($img_src)['file'];
-        dd($img_src);
-    // }
-    
-}catch(\Exception $e){
-}
+$img_src = webpConvert2($img_src)['file'];
+dd($img_src);
+ 
 
 return $img_src;
 }
