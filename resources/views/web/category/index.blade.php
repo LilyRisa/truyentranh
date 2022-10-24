@@ -69,7 +69,7 @@
         @endphp
         <div class="col-lg-2 col-6 mt-2">
                 <div class="card p-0 ml-2"> 
-                    {!! genImage($item->thumbnail, 194, 259, 'img-fluid story-img', $item->title) !!}
+                    {!! genImage($item->thumbnail, 194, 259, 'img-fluid', $item->title) !!}
                     <div class="card-body dark-linear position-absolute fixed-bottom">
                         <a href="{{getUrlStory($item)}}" class="d-block p-0 m-0 text-white border-bottom" title="{{$item->title}}">{{$item->title}}</a>
                         <a href="{{getUrlCate($item->categories[0])}}" class="p-0 m-0 text-info" title="{{$item->categories[0]->title}}">{{$item->categories[0]->title}}</a>
