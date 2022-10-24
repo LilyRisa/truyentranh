@@ -286,20 +286,37 @@
                 
 
                 <div class="row">
-                @for($i=1;$i<13;$i++)
+                @if(!empty($get_story_rate_highest))
+                @foreach($get_story_rate_highest as $key => $_rate)
+                @php
+                    // $chap = explode('- ', $_rate->chapter[max(array_keys($_rate->chapter->toArray()))]->title);
+                    // $chap = end($chap);
+                @endphp
                 <div class="ms-2 mt-2 pb-2 border-bottom d-flex d-nowrap">
                     <div class="col-1 p-0 mt-1 bg-danger rounded sq-2">
-                        <p class="text-center rounded {{ $i == 1 ? 'bg-danger' : ($i == 2 ? 'bg-success' : ($i == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$i}}</p>
+                        <p class="text-center text-white fww-bold rounded {{ ($key + 1) == 1 ? 'bg-danger' : (($key + 1) == 2 ? 'bg-success' : (($key + 1) == 3 ? 'bg-primary' : 'bg-secondary')) }}">{{$key+1}}</p>
                     </div>
                     <div class="col-11">
-                        <div class="m-0 p-0 col-12 ps-2">Truyện số {{$i}}</div>
+                        <div class="m-0 p-0 col-12 ps-2">{{$_rate->title}}</div>
                         <div class="row ms-0">
-                            <div class="col-9 fs-12 ps-2">Chương 21</div>
-                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
+                            <div class="col-9 fs-12 ps-2 d-flex">
+                                <div class="d-flex me-2 align-items-center">
+                                    <i class="icon-star-full me-1 text-yellow1"></i>
+                                    Lượt đánh giá: {{$_rate->count_vote}}
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="icon-heart me-1 text-red2"></i>
+                                    {{$_rate->count_vote_avg}}/5
+                                </div>
+                                
+
+                            </div>
+                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> {{$_rate->view_count}}</p></div>
                         </div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
+                @endif
                 </div>
                 
 
