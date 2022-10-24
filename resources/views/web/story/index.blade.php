@@ -3,7 +3,7 @@
 <div class="position-relative d-flex justify-content-center bg_secondary w-100 max-100">
     <div class="d-flex flex-wrap bg-white mt-auto container h-75">
         <div class="col-lg-3 col-12 d-flex justify-content-center">
-        {!! genImage($oneItem->thumbnail, 322, 322, 'img-fluid rounded-top pt-5 pt-lg-0') !!}
+        {!! genImage($oneItem->thumbnail, 225, 330, 'img-fluid rounded-top pt-5 pt-lg-0') !!}
         </div>
         <div class="mt-4 px-4 d-flex flex-lg-inline flex-wrap col-lg-9 col-12"> 
            <ul class="w-100 ps-0">
