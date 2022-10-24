@@ -247,8 +247,7 @@ if(file_exists($resize_image_file)){
     }
 }
 
-// $img_src = webpConvert2($resize_image_file);
-dd($resize_image_name);
+$img_src = webpConvert2($resize_image_name);
  
 
 return $img_src;
@@ -259,7 +258,6 @@ function webpConvert2($file, $compression_quality = 80)
     $file2 =  public_path(). '/thumb/' . $file;
     // check if file exists
     if (!file_exists($file2)) {
-        dd('file2 not'.$file);
         return false;
     }
     $file_type = exif_imagetype($file2);
@@ -297,7 +295,6 @@ function webpConvert2($file, $compression_quality = 80)
     $output_file =  public_path() . '/thumb/' . $file;
 
     if (file_exists($output_file)) {
-        unlink($file2);
         return ['output_path' => $output_file, 'file' => $file];
     }
     if (function_exists('imagewebp')) {
