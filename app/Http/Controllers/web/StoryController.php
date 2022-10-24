@@ -23,8 +23,11 @@ class StoryController extends Controller
 
         $data['oneItem'] = $oneItem = Story::with(['categories', 'chapter', 'tags'])->where('slug', $slug)->first()->chapter_sort();
         // dd($data['oneItem']);
-
         if(empty($oneItem)) return Redirect::to(url('/'), 301);
+
+
+        $data['schema'] = getSchemaLogo().getLocalBusiness();
+        $data['seo_data'] = initSeoData($oneItem,'story');
         return view('web.story.index', $data);
     }
     private function chapter($slug, $id){
@@ -49,6 +52,9 @@ class StoryController extends Controller
                 }
             }
         }
+
+        $data['schema'] = getSchemaLogo().getLocalBusiness();
+        $data['seo_data'] = initSeoData($oneItem,'chapter');
         return view('web.chapter.index', $data);
     }
 

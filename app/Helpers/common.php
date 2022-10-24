@@ -504,6 +504,34 @@ switch ($type) {
             'updated_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time)) :''
         ];
         break;
+    case 'story':
+        $data_seo = [
+            'meta_title' => strip_quotes($item->meta_title),
+            'meta_keyword' => $item->meta_keyword,
+            'meta_description' => strip_quotes($item->meta_description),
+            'site_image' => $item->thumbnail,
+            'canonical' => getUrlStory($item, false, true),
+            'amphtml' => getUrlStory($item, 1),
+            'index' => 'index,follow',
+            // 'published_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time) - 1800) : '',
+            // 'modified_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time)) : '',
+            // 'updated_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time)) :''
+        ];
+        break;
+        case 'chapter':
+            $data_seo = [
+                'meta_title' => strip_quotes($item->meta_title),
+                'meta_keyword' => $item->meta_keyword,
+                'meta_description' => strip_quotes($item->meta_description),
+                'site_image' => $item->thumbnail,
+                'canonical' => getUrlChapter($item, false, true),
+                'amphtml' => getUrlChapter($item, 1),
+                'index' => 'index,follow',
+                // 'published_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time) - 1800) : '',
+                // 'modified_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time)) : '',
+                // 'updated_time' => !empty($item->displayed_time) ? date('Y-m-d\TH:i:s',strtotime($item->displayed_time)) :''
+            ];
+            break;
     case 'home':
         $data_seo = [
             'meta_title' => strip_quotes(getSiteSetting('site_title')),
