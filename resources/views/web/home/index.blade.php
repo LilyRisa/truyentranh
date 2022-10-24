@@ -207,6 +207,32 @@
                 <div class="text-center">
                 <button class="btn btn-secondary bg-white text-dark mt-2">Xem thêm <span class="icon-arrow_forward_ios"></span></button>
                 </div>
+
+                @if(!empty($follow))
+                <div class="slide">
+                    <h3 class="fs-22 text-uppercase">Truyện bạn quan tâm</h3>
+                    <ul class="follow">
+                        @foreach ($follow as $fl)
+                            @php
+                                $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
+                                $chap = end($chap);
+                            @endphp
+                            <li class="item d-block">
+                                <a href="{{getUrlStory($fl)}}" class="card p-0 ml-2">
+                                    {!! genImage($fl->thumbnail, 300, 300) !!}
+                                    <div class="card-body dark-linear position-absolute fixed-bottom">
+                                        <p class="p-0 m-0 text-white border-bottom fw-bold">{{$fl->title}}</p>
+                                        <p class="p-0 m-0 text-info">{{$fl->categories[0]->title}}</p>
+                                        <p class="p-0 m-0 text_secondary">{{$chap}}</p>
+                                        <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pt-1 pe-1"></i> Lượt xem: {{$fl->view_count}}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
                 <div class="bg_secondary p-2 mt-5 rounded">
                     <p class="p-0 text-uppercase fs-22">Từ khóa hot!</p>
                     <div class="d-flex">

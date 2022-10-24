@@ -53,6 +53,14 @@ class HomeController extends Controller
             Cache::set($key, $data['story_feature'], now()->addHours(24));
         }
 
+        // lấy bài truyện đang theo dõi
+
+        $follow = $_COOKIE['story_follow'];
+        if($follow){
+            $follow = json_decode($follow);
+            $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(12)->get();
+        }
+
 
         $data['breadCrumb'][0]['item'] = url('/');
         $data['schema'] = getSchemaLogo().getLocalBusiness();
