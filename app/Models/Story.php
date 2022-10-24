@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\BuilderModel\ChapterSort;
+use Illuminate\Support\Facades\DB;
 use Cache;
 
 class Story extends Model
@@ -17,10 +19,32 @@ class Story extends Model
         $this->table = 'story';
     }
 
-    // public function getThumbnailAttribute()
-    // {
-    //     return \Config::get('app.url').$this->attributes['thumbnail'];
-    // }
+    public function newEloquentBuilder($query)
+    {
+        return new ChapterSort($query);
+    }
+
+    public function getChapterAttribute()
+    {
+        $getNumberFromString = function ($string){
+            $int = (int) filter_var($string, FILTER_SANITIZE_NUMBER_INT);
+            if($int < 0){
+                return $int*-1;
+            }
+            return $int;
+        };
+        
+        $data = $this->relations['chapter'];
+        $data = $data->mapWithKeys(function($item) use ($getNumberFromString){
+            return [$getNumberFromString($item->title) => $item];
+        });
+        $data = $data->sortKeysUsing(function($a,$b){
+            if ($a==$b) return 0;
+            return ($a<$b)?1:-1;
+        });
+        return $data;
+    }
+
 
     public function chapter(){
         return $this->hasMany(Chapter::class, 'story_id','id');
@@ -40,9 +64,10 @@ class Story extends Model
         }
         extract($params);
 
+        $orderby = 'created_at';
+        $data = new self;
         if (isset($category_id)) {
             $data_id = Category::listItemChild($category_id,'id');
-            $data = new self;
             $id = [$category_id];
             foreach($data_id as $T){
                 $id[] = $T->id;
@@ -57,10 +82,24 @@ class Story extends Model
                 $data = $data->where('story_category.is_primary', 1);
             }
         }
+        if(isset($order_by)){
+            $orderby = $order_by;
+        }
 
+        if(isset($title)){
+            $data = $data->whereRaw(DB::raw('MATCH (title) AGAINST ("'.$title.'")'));
+        }
+
+        if(isset($status)){
+            $data = $data->where('story.is_update', $status);
+        }
+        
         if (isset($tag_id)) {
             $data = $data->select('story.*', 'story_tags.story_id', 'story_tags.tag_id')->Join('story_tags', 'story_tags.story_id', '=', 'story.id');
             $data = $data->where('story_tags.tag_id', $tag_id);
+        }
+        if(isset($chapter) && $chapter){
+            $data = $data->with('chapter');
         }
 
         if (isset($info_category)) {
@@ -78,7 +117,7 @@ class Story extends Model
         $offset = $offset ?? 0;
         $limit = $limit ?? 10;
 
-        $data = $data->orderBy('story.created_at', 'desc')
+        $data = $data->orderBy('story.'.$orderby, 'desc')
             ->offset($offset)
             ->limit($limit)
             ->groupBy('story.id')

@@ -7,6 +7,9 @@
 body{
     background-color: #FFFBFB !important;
 }
+a{
+    text-decoration: none !important;
+}
 
 .bg_secondary{
     background-color: $secondary_color !important;
@@ -266,7 +269,7 @@ body{
 
 .max-h
 {
-    max-height: 15.625rem;
+    max-height: 18.4rem;
 }
 .max-line-3 {
     overflow: hidden;

@@ -1,7 +1,12 @@
 import $ from 'jquery';
-import bootstrap from 'bootstrap'
-
 window.$ = window.jQuery = $;
+
+import bootstrap from 'bootstrap'
+import './rateit';
+import './toastr';
+import './search';
+
+require('jquery.easing');
 
 
 const mainNavigation = document.querySelector(".main-navigation");
@@ -174,3 +179,101 @@ overlay.addEventListener("click", closeSideNav);
     }
 
 }(window, document));
+
+// rate
+let voteStar = () => {
+    let selector = $(".rateit");
+    const url_route = $(".rateit").attr('data-url');
+    console.log(selector,url_route);
+    if (selector.length > 0) {
+        selector.bind('rated', function(e) {
+            e.preventDefault();
+            let ri = $(this);
+            let value = ri.rateit('value');
+            let slug = ri.data('slug');
+            let voteStart = 0;
+            let url = url_route;
+            let request = {
+                slug: slug,
+                star: value,
+                voteStart: voteStart
+            };
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: request,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.type === 'success') {
+                        let container = ri.closest('.allRate');
+                        container.find('.avg-rate').text(parseFloat(data.vote.avg).toFixed(1));
+                        container.find('.count-rate').text(data.vote.count_vote);
+                        selector.addClass('voted');
+                        $.Toast('Đánh giá', data.message, data.type,{
+                            has_icon:true,
+                            has_close_btn:true,
+                            stack: true,
+                            fullscreen:false,
+                            timeout:8000,
+                            sticky:false,
+                            has_progress:true,
+                            rtl:false,
+                        });
+                    } else {
+                        $.Toast('Đánh giá', data.message, data.type,{
+                            has_icon:true,
+                            has_close_btn:true,
+                            stack: true,
+                            fullscreen:false,
+                            timeout:8000,
+                            sticky:false,
+                            has_progress:true,
+                            rtl:false,
+                        });
+                    }
+                }
+            });
+        });
+    }
+  };
+
+const ajax_search = () => {
+    $('.seach-header').on('input', function(e){
+        clearTimeout(this.delay);
+        this.delay = setTimeout(function(){
+            $.ajax({
+                url: `/tim-kiem-truyen/${$(this).val()}`,
+                type: 'get'
+            }).done(res => {
+                let data = [];
+                for(let item of res){
+                    let set = {};
+                    set.category = item.category.title;
+                    set.image = item.image
+                    set.title = '<h5 class="text_secondary fs-16 fw-bold">'+item.title+'</h5>'+'<p class="mt-3 fs-14">'+item.descriptions+'</p>';
+                    set.url = item.url
+                    data.push(set);
+                }
+                console.log(data);
+                $('.ui.search')
+                .search({
+                    type: 'category',
+                    source: data,
+                });
+            });
+        }.bind(this), 800);
+        
+    })
+}
+
+$(document).ready(function(){
+    voteStar();
+    ajax_search();
+
+    $('.check_search').on('click', function(e){
+        e.preventDefault();
+        $('.seach-header').click();
+    })
+});
+
+

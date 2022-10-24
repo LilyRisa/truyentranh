@@ -2,26 +2,32 @@ const puppeteer = require('puppeteer');
 const mysql = require("mysql2/promise");
 var jsdom = require("jsdom");
 
+var cron = require('node-cron');
+
 require('dotenv').config({path: __dirname+'/../.env'});
 const moment = require('moment');                                                                                
 var fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const axios = require('axios');
 
+
 const CONFIG = {
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
     password: process.env.DB_USERNAME,
-    database: process.env.DB_DATABASE
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT,
   };
-
-
+// console.log(CONFIG);
+// return 0;
 
 /**
  * argument
- * command: node crawler.js '{link category} {id category local} {update lại chapter}'
+ * command: node crawler_cron.js '{link category} {id category local} {update lại chapter}'
  */
- const checkslugorigin = (slug) => {
+
+
+const checkslugorigin = (slug) => {
     let data = slug.split('');
     if(data[data.length-1] == '0'){
         delete data[data.length-1];
@@ -31,20 +37,15 @@ const CONFIG = {
 
 
 
-const args = process.argv;
-
-let link_story = typeof args[2] == 'undefined' ? null : args[2];
-let category_id = typeof args[3] == 'undefined' ? null : args[3];
-let update_chapter = typeof args[4] == 'undefined' ? null : args[3];
 
 
-
-(async () => {
+const index_main =  async (link_category, category_id, update_chapter=false) => {
 
 const CONNECT = await mysql.createConnection(CONFIG);
 if(CONNECT){
     console.log('connected database !');
 }else{
+    console.log('not connected database !');
     return 0;
 }
 
@@ -56,6 +57,22 @@ const page = await browser.newPage();
 await page.setUserAgent('Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0');
 
 
+const get_link_page = async () => {
+
+    await page.goto(link_category);
+    const data = await page.evaluate(() => Array.from(document.querySelectorAll('.jtip[href]'), a => a.getAttribute('href')) );
+
+    // for(let item of data){
+        let item = data[0];
+        let { data_truyen, chapter } = await get_link_truyen(item);
+        let id_story = await insert_truyen(data_truyen);
+        await insert_chapter(chapter, id_story, data_truyen.slug);
+    // }
+    // let { data_truyen, chapter } = await get_link_truyen(data[0]);
+    // let id_story = await insert_truyen(data_truyen);
+    // await insert_chapter([chapter[0]], id_story);
+    
+}
 
 const insert_chapter = async (chapter, id, slug) => {
     for(let chap of chapter){
@@ -83,7 +100,7 @@ const insert_chapter = async (chapter, id, slug) => {
             console.log('Duplicate url chapter: '+ chap);
             if(update_chapter){
                 try{
-                    await CONNECT.execute('UPDATE chapters SET content=?, update_origin=? where id = ?', [
+                    await CONNECT.execute('UPDATE chapters SET content=?, update_origin=? where id= ?', [
                         content,
                         moment().format('YYYY-MM-DD HH:mm:ss'),
                         rows[0].id
@@ -196,7 +213,6 @@ const get_link_truyen = async (link) => {
     if(thumbnail.length >= 0){
         thumbnail = await movefile(thumbnail[0]);
     }
-        
     
     data.data_truyen.title = title;
     data.data_truyen.slug_origin = link_origin;
@@ -223,16 +239,16 @@ const get_link_truyen = async (link) => {
 
 }
 
+const get_chapter = async (link) => {
+    await page.goto(link);
+}
 
-let { data_truyen, chapter } = await get_link_truyen(link_story);
-let id_story = await insert_truyen(data_truyen);
-await insert_chapter(chapter, id_story, data_truyen.slug);
-
+await get_link_page();
 
 await browser.close();
 console.log('done!');
 return 0;
-})();
+};
 
 
 function slugify(string){
@@ -256,40 +272,61 @@ function slugify(string){
         .replace(/-+$/, '')
     }
 
+    
+async function movefile(url, dest){
+    url = 'http:'+url;
 
-    
-    async function movefile(url, dest){
-        url = 'http:'+url;
-    
-        var dateObj = new Date();
-        var month = dateObj.getUTCMonth() + 1; //months from 1-12
-        var year = dateObj.getUTCFullYear();
-        let dir_filename = '../public/upload/admin/story/'+year+'/'+month+'/';
-    
-        let filename = url.split('/');
-        filename = filename[filename.length - 1];
-        const saveFile = await request(url);
-    
-        if (!fs.existsSync(dir_filename)){
-            fs.mkdirSync(dir_filename, { recursive: true });
-        }
-        const download = fs.createWriteStream(dir_filename+'/'+filename);
-        await new Promise((resolve, reject)=> {
-            saveFile.data.pipe(download);
-            download.on("close", resolve);
-            download.on("error", console.error);
-        });
-        return '/upload/admin/story/'+year+'/'+month+'/'+filename;
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var year = dateObj.getUTCFullYear();
+    let dir_filename = '../public/upload/admin/story/'+year+'/'+month+'/';
+
+    let filename = url.split('/');
+    filename = filename[filename.length - 1];
+    const saveFile = await request(url);
+
+    if (!fs.existsSync(dir_filename)){
+        fs.mkdirSync(dir_filename, { recursive: true });
     }
-    
-    function request (element) {
+    const download = fs.createWriteStream(dir_filename+'/'+filename);
+    await new Promise((resolve, reject)=> {
+        saveFile.data.pipe(download);
+        download.on("close", resolve);
+        download.on("error", console.error);
+    });
+    return '/upload/admin/story/'+year+'/'+month+'/'+filename;
+}
+
+function request (element) {
+    try{
+      return axios({
+        url: element,
+        method: "GET",
+        responseType: "stream"
+      });
+    } catch(e) {
+      console.log( 'errore: ' + e)
+    }
+  }
+
+  const writeFile = (path, data, opts = 'utf8') =>{
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path, data, opts, (err) => {
+      if (err) reject(err)
+      else resolve()
+    })
+  })
+};
+
+
+  cron.schedule('0 8 * * *', () => {
+    (async () => {
         try{
-          return axios({
-            url: element,
-            method: "GET",
-            responseType: "stream"
-          });
-        } catch(e) {
-          console.log( 'errore: ' + e)
+            await index_main('https://www.nettruyenme.com/tim-truyen/dam-my', 1, true);
+            process.exit(0);
+        }catch(e){
+            await writeFile('./log.txt', e.toString());
         }
-      }
+    })();
+
+});

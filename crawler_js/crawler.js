@@ -24,6 +24,13 @@ const CONFIG = {
  * command: node crawler.js '{link category} {id category local} {update lại chapter}'
  */
 
+ const checkslugorigin = (slug) => {
+    let data = slug.split('');
+    if(data[data.length-1] == '0'){
+        delete data[data.length-1];
+    }
+    return data.join('');
+}
 
 
 
@@ -94,10 +101,12 @@ const insert_chapter = async (chapter, id, slug) => {
             console.log('Duplicate url chapter: '+ chap);
             if(update_chapter){
                 try{
-                    await CONNECT.execute('UPDATE chapters SET content=?, update_origin=?', [
+                    await CONNECT.execute('UPDATE chapters SET content=?, update_origin=? where id=?', [
                         content,
-                        moment().format('YYYY-MM-DD HH:mm:ss')
+                        moment().format('YYYY-MM-DD HH:mm:ss'),
+                        rows[0].id
                     ]);
+                    console.log('update thanh cong id: '+rows[0].id);
                 }catch(e){
                     return 0;
                 }
@@ -132,7 +141,7 @@ const insert_chapter = async (chapter, id, slug) => {
 }
 
 const insert_truyen = async (data) => {
-    let [rows, fields] = await CONNECT.execute('select id from story where slug_origin = ?', [data.slug_origin]);
+    let [rows, fields] = await CONNECT.execute('select id from story where slug_origin = ?', [checkslugorigin(data.slug_origin)]);
     if(rows.length > 0) {
         console.log('Duplicate url: '+ data.title);
         return rows[0].id;
@@ -156,14 +165,14 @@ const insert_truyen = async (data) => {
             data.is_feature,
             data.author,
             data.views,
-            data.source_origin,
+            checkslugorigin(data.source_origin),
             data.slug_origin,
             data.is_update,
             moment().format('YYYY-MM-DD HH:mm:ss'),
             data.main_keyword,
         ]);
         console.log('Tao thanh cong truyen :'+ data.title);
-       let [rows] = await CONNECT.execute('SELECT id from story where source_origin = ?', [data.source_origin]);
+       let [rows] = await CONNECT.execute('SELECT id from story where source_origin = ?', [checkslugorigin(data.source_origin)]);
        // insert category
        try{
             await CONNECT.execute('INSERT INTO story_category (story_id, category_id, is_primary) VALUES (?,?,?)', [

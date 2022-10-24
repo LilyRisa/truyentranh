@@ -28,7 +28,22 @@ class CategoryController extends Controller
             'category_id' => $id,
             'limit' => $limit,
             'offset' => ($page-1) * $limit,
+            'chapter' => true,
         ];
+
+        if(isset($_GET['title'])){
+            $params['title'] = $_GET['title'];
+            $data['search_title'] = $_GET['title'];
+        }
+
+        if(isset($_GET['order_by'])){
+            $params['order_by'] = $_GET['order_by'];
+        }
+
+        if(isset($_GET['status'])){
+            $params['status'] = $_GET['status'];
+        }
+
         $count = Story::getCount($params);
         if($count <= $limit) $data['loadmore'] = false;
         $count = Story::getCount($params);
@@ -38,7 +53,11 @@ class CategoryController extends Controller
 
         $data['story'] = Story::getStorys($params);
 
+        // dd($data);
+        // category
 
+        $data['listCategory'] = Category::all();
+        
         return view('web.category.index', $data);
     }
 

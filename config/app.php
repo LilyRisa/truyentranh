@@ -177,6 +177,7 @@ return [
         // Barryvdh\Elfinder\ElfinderServiceProvider::class
         App\Providers\WebProvider::class,
         App\Providers\AdminProvider::class,
+        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
 
     ],
 

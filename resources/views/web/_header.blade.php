@@ -6,7 +6,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="overlay d-flex d-lg-none"> </div>
-            <a href="/" class="text-center mx-auto mx-lg-0"> <img class="top-bar-logo" src="img/logo.png"> </a>
+            <a href="/" class="text-center mx-auto mx-lg-0"> <img class="top-bar-logo" src="/img/logo.png"> </a>
             @if(!empty($menu_pc))
             
             <div class="navbar-collapse collapse order-lg-2 bg_primary pb-3 pb-lg-0 d-lg-flex w-100 d-lg-block">
@@ -39,18 +39,19 @@
                     
                     @endforeach
                 </ul>
-                <div class="h-100 align-items-center">
+                <div class="h-100 align-items-center ui search">
                     <form class="d-flex my-2">
                         <div class="d-flex">
-                            <input type="text" class="form-control w-50 rounded-pill-left ms-3 border-0 border-right-none bg-grey1"
+                            <input type="text" class="form-control w-50 rounded-pill-left ms-3 border-0 border-right-none bg-grey1 seach-header prompt"
                                 placeholder="search" aria-label="search" aria-describedby="basic-addon2">
                             <div class="input-group-append h-100">
                                 <button
-                                    class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 bg-grey1"
+                                    class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 bg-grey1 check_search"
                                     id="basic-addon2"><i class="icon-search fs-16"></i></button>
                             </div>
                         </div>
                     </form>
+                    <div class="results"></div>
 
                 </div>
                 <div class="navbar-nav">
@@ -63,7 +64,7 @@
                         <a href="#" class="h-100 text-decoration-none ms-3"><span
                                 class="icon-mobile2 text-white"></span><span class="ms-2 text-light mt-1 fs-18">Get
                                 App</span></a>
-                    </div </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -72,13 +73,13 @@
         {{-- mobile --}}
         <div class="sidebar order-lg-2 bg-dark d-lg-none d-block w-100 sidebar pb-3 pb-lg-0">
             <div class="align-items-center ms-3">
-                <form class="d-flex mt-3" style="heigth:1rem">
+                <form class="d-flex mt-3 ui search" style="heigth:1rem">
                     <div class="d-flex">
-                        <input type="text" class="form-control fs-22 w-75 rounded-pill-left border-0 border-right-none"
+                        <input type="text" class="form-control fs-22 w-75 rounded-pill-left border-0 border-right-none seach-header prompt"
                             placeholder="search" aria-label="search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button
-                                class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100"
+                            <button 
+                                class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 check_search"
                                 id="basic-addon2"><i class="icon-search fs-20"></i></button>
                         </div>
                     </div>
