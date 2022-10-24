@@ -267,13 +267,101 @@ const ajax_search = () => {
     })
 }
 
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+    }
+    return null;
+    }
+
+const change_status_dom_story = (status) => {
+    if(status){
+        $('.follow-story').attr('data-status', 1);
+        $('.follow-story').attr('class', 'btn bg-red1 border-0 text-white follow-story');
+        // $('.follow-story').find('i').attr('class', 'icon-history text-white');
+        $('.follow-story').html('<i class="icon-history text-white"></i> Bỏ theo dõi');
+    }else{
+        $('.follow-story').attr('data-status', 0);
+        $('.follow-story').attr('class', 'btn bg-green1 border-0 text-white follow-story');
+        // $('.follow-story').find('i').attr('class', 'icon-heart text-white');
+        $('.follow-story').html('<i class="icon-heart text-white"></i> Thêm vào tủ');
+    }
+}
+
+const follow_story = () => {
+    let data_new = getCookie('story_follow');
+    let id_new = $('.follow-story').attr('data-story');
+    if(typeof id_new === 'undefined' || id_new == null || id_new == ''){
+        return 0;
+    }
+    id_new = parseInt(id_new);
+    if(data_new){
+        data_new = JSON.parse(data_new);
+        if(data_new.includes(id_new)){
+            change_status_dom_story(true);
+        }
+    }
+}
+
 $(document).ready(function(){
     voteStar();
     ajax_search();
-
+    follow_story();
     $('.check_search').on('click', function(e){
         e.preventDefault();
         $('.seach-header').focus();
+    })
+
+    $('.follow-story').on('click', function(e){
+        e.preventDefault();
+
+        let data = getCookie('story_follow');
+        let id = $(this).attr('data-story');
+        id = parseInt(id);
+        console.log(data);
+        console.log(id);
+        
+        if(!data){
+            data = [];
+            change_status_dom_story(true);
+            data.push(id);
+            data = JSON.stringify(data);
+            setCookie('story_follow',data,5);
+        }else{
+            data = JSON.parse(data);
+            if(data.includes(id)){
+                change_status_dom_story(false);
+                let index = data.indexOf(id);
+                delete data[index];
+                data = data.filter(function (el) {
+                    return el != null;
+                  });
+                data = JSON.stringify(data);
+                setCookie('story_follow',data,5);
+            }else{
+                change_status_dom_story(true);
+                data.push(id);
+                data = JSON.stringify(data);
+                setCookie('story_follow',data,5);
+            }
+        }
+        
     })
 });
 

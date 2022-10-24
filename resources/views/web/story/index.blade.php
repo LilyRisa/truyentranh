@@ -22,7 +22,7 @@
                     @endif
                 </li>
                 <li class="list-unstyled mt-3"><span>{{$oneItem->description}}</span></li>
-                <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
+                <li class="list-unstyled d-flex mt-5"><a class="btn bg-green1 border-0 text-white follow-story" data-status="0" data-story="{{$oneItem->id}}"><i class="icon-heart text-white"></i> Thêm vào tủ</a></li>
               
                 <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter->last())}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter->first())}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
            </ul>
