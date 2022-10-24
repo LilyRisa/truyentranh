@@ -248,7 +248,7 @@ if(file_exists($resize_image_file)){
 }
 
 // $img_src = webpConvert2($resize_image_file);
-dd($resize_image_file);
+dd($source_file);
  
 
 return $img_src;
