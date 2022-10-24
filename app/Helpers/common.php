@@ -298,7 +298,7 @@ function webpConvert2($file, $compression_quality = 80)
     $output_file =  public_path() . '/thumb/' . $file;
 
     if (file_exists($output_file)) {
-        return ['output_path' => url('/thumb/'.$file), 'file' => $file];
+        return ['output_path' => url('/thumb'.$file), 'file' => $file];
     }
     if (function_exists('imagewebp')) {
         switch ($file_type) {
@@ -334,7 +334,7 @@ function webpConvert2($file, $compression_quality = 80)
         // Free up memory
         imagedestroy($image);
         unlink($file2);
-        return ['output_path' => url('/thumb/'.$file), 'file' => $file];
+        return ['output_path' => url('/thumb'.$file), 'file' => $file];
     } elseif (class_exists('Imagick')) {
         $image = new \Imagick();
         $image->readImage($file2);
@@ -345,7 +345,7 @@ function webpConvert2($file, $compression_quality = 80)
         }
         $image->writeImage($output_file);
         unlink($file2);
-        return ['output_path' => url('/thumb/'.$file), 'file' => $file];
+        return ['output_path' => url('/thumb'.$file), 'file' => $file];
     }
     return false;
 }
