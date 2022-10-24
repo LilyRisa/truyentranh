@@ -70,7 +70,7 @@
                     @endphp
                         <div class="col-lg-3 mt-2 col-6">
                             <div class="card p-0 ml-2">
-                                {!! genImage($vh->thumbnail, 225, 330, 'img-fluid story-img', $vh->title) !!}
+                                {!! genImage($vh->thumbnail, 225, 330, 'img-fluid', $vh->title) !!}
                                 <div class="card-body dark-linear position-absolute fixed-bottom">
                                     <a href="{{getUrlStory($vh)}}" class="d-block p-0 m-0 text-white border-bottom fw-bold" title="{{$vh->title}}">{{$vh->title}}</a>
                                     <a href="{{getUrlCate($vh->categories[0])}}" class="d-block p-0 m-0 text-info" title="{{$vh->categories[0]->title}}">{{$vh->categories[0]->title}}</a>
