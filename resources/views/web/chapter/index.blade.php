@@ -55,7 +55,7 @@
 
     </div>
 
-    <div class="bg-secondary mt-3 w-100 max-100 content-reading">
+    <div class="bg-white px-lg-5 mt-3 w-100 max-100 content-reading">
         {!! str_replace('src="//','src="/img-proxy=//',$oneItem->content) !!}
     </div>
 

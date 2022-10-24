@@ -3,7 +3,7 @@
 <div class="position-relative d-flex justify-content-center bg_secondary w-100 max-100">
     <div class="d-flex flex-wrap bg-white mt-auto container h-75">
         <div class="col-lg-3 col-12 d-flex justify-content-center">
-        {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid rounded-top') !!}
+        {!! genImage($oneItem->thumbnail, 249, 322, 'img-fluid rounded-top pt-5 pt-lg-0') !!}
         </div>
         <div class="mt-4 px-4 d-flex flex-lg-inline flex-wrap col-lg-9 col-12"> 
            <ul class="w-100 ps-0">
@@ -23,9 +23,10 @@
                 </li>
                 <li class="list-unstyled mt-3"><span>{{$oneItem->description}}</span></li>
                 <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
-                <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter[0])}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter[0])}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
+              
+                <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter->last())}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter->first())}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
            </ul>
-           <ul>
+           <ul class="ps-0">
             <li class="list-unstyled d-flex">
                 <i class="icon-facebook1 text-primary"></i>
                 <i class="icon-twitter1 ms-2 text-primary"></i>
