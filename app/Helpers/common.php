@@ -259,6 +259,7 @@ function webpConvert2($file, $compression_quality = 80)
     $file2 =  public_path(). '/thumb/' . $file;
     // check if file exists
     if (!file_exists($file2)) {
+        dd('file2 not');
         return false;
     }
     $file_type = exif_imagetype($file2);
