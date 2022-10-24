@@ -20,7 +20,8 @@
                     @endif
                 </li>
                 <li class="list-unstyled mt-3"><span>{{$oneItem->description}}</span></li>
-                <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary bg_secondary text-white border-0">Đọc truyện</a> <a class="btn btn-secondary ms-2 border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
+                <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
+                <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter[0])}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter[0])}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
            </ul>
            <ul>
             <li class="list-unstyled d-flex">
@@ -37,10 +38,10 @@
     <div class="row mt-0 pt-3">
     <div class="col-lg-9">
         <div class="d-flex container mt-2">
-        <p class="">
+        <p class="text-nowrap">
             Chương (321)
         </p>
-        <p class="ms-auto">
+        <p class="text-end">
             Cập nhật lần cuối 25/12/2021
         </p>
     </div>
@@ -51,13 +52,13 @@
             @if(!empty($oneItem->chapter))
                 @foreach($oneItem->chapter as $chapter)
                 <li class="col-12">
-                    <a href="{{getUrlChapter($chapter)}}" class="d-block list-group-item bg-light my-1 mx-0">
+                    <a href="{{getUrlChapter($chapter)}}" class="d-block list-group-item bg-light my-1 mx-0 d-flex">
                         @php
                             $title = explode("- ", $chapter->title);
                             $title = end($title);
                         @endphp
-                        <p>{{$title}}</p>
-                        <p class="small text-secondary">{{$chapter->update_origin}}</p>
+                        <p class="pb-0 mb-0">{{$title}}</p>
+                        <p class="small text-secondary ms-auto mb-0">{{$chapter->update_origin}}</p>
                     </a>
                 </li>
                 @endforeach
