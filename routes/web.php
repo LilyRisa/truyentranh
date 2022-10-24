@@ -37,3 +37,6 @@ Route::get('/amp/{slug}-c{id}/{page}', 'CategoryController@ampIndex')->where(['s
 
 Route::get('/{slug}-c{id}', 'CategoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
 Route::get('/{slug}-c{id}/{page}', 'CategoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+','page' => '[0-9]+']);
+
+// search 
+Route::get('/tim-kiem-truyen/{search}', 'SearchController@story')->where(['search' => '[\s\S]+']);

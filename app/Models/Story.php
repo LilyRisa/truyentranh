@@ -65,10 +65,9 @@ class Story extends Model
         extract($params);
 
         $orderby = 'created_at';
-
+        $data = new self;
         if (isset($category_id)) {
             $data_id = Category::listItemChild($category_id,'id');
-            $data = new self;
             $id = [$category_id];
             foreach($data_id as $T){
                 $id[] = $T->id;

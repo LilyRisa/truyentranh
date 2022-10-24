@@ -23,10 +23,10 @@
                         <div class="d-flex fs-18 fw-bold mt-2">Thể loại</div>
                         <div class="d-flex mt-2 flex-wrap">
                             @if(!empty($listCategory))
-                            <select class="form-select" name="" id="">
+                            <select class="form-select" name="" id="" onchange="this.options[this.selectedIndex].dataset.url && (window.location = this.options[this.selectedIndex].dataset.url);">
                                 <option value="0">Chọn chuyên mục</option>
                                 @foreach($listCategory as $cate)
-                                <option value="{{$cate->id}}">{{$cate->title}}</option>
+                                    <option data-url="{{getUrlCate($cate)}}" {{$oneItem->id == $cate->id ? 'selected' : ''}} value="{{$cate->id}}">{{$cate->title}}</option>
                                 @endforeach
                             </select>
                             @endif

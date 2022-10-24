@@ -4,6 +4,9 @@ window.$ = window.jQuery = $;
 import bootstrap from 'bootstrap'
 import './rateit';
 import './toastr';
+import './search';
+
+require('jquery.easing');
 
 
 const mainNavigation = document.querySelector(".main-navigation");
@@ -234,10 +237,38 @@ let voteStar = () => {
     }
   };
 
+const ajax_search = () => {
+    $('.seach-header').on('input', function(e){
+        clearTimeout(this.delay);
+        this.delay = setTimeout(function(){
+            $.ajax({
+                url: `/tim-kiem-truyen/${$(this).val()}`,
+                type: 'get'
+            }).done(res => {
+                let data = [];
+                for(let item of res){
+                    let set = {};
+                    set.category = item.category.title;
+                    set.image = item.image
+                    set.title = '<h5>'+item.title+'</h5>'+'<br/>'+'<p style="font-size: 13px;margin-top: -20px;">'+item.descriptions+'</p>';
+                    set.url = item.url
+                    data.push(set);
+                }
+                console.log(data);
+                $('.ui.search')
+                .search({
+                    type: 'category',
+                    source: data,
+                });
+            });
+        }.bind(this), 800);
+        
+    })
+}
+
 $(document).ready(function(){
-    // setTimeout(()=>{
-    //     $('.rate-fake').attr('class','rate-fake d-none');
-    //     $('.rateit').attr('class', 'rateit opa-0');
-    // },1);
     voteStar();
+    ajax_search();
 });
+
+

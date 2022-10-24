@@ -39,18 +39,19 @@
                     
                     @endforeach
                 </ul>
-                <div class="h-100 align-items-center">
+                <div class="h-100 align-items-center ui search">
                     <form class="d-flex my-2">
                         <div class="d-flex">
-                            <input type="text" class="form-control w-50 rounded-pill-left ms-3 border-0 border-right-none bg-grey1"
+                            <input type="text" class="form-control w-50 rounded-pill-left ms-3 border-0 border-right-none bg-grey1 seach-header prompt"
                                 placeholder="search" aria-label="search" aria-describedby="basic-addon2">
                             <div class="input-group-append h-100">
-                                <button
+                                <button disabled
                                     class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 bg-grey1"
                                     id="basic-addon2"><i class="icon-search fs-16"></i></button>
                             </div>
                         </div>
                     </form>
+                    <div class="results"></div>
 
                 </div>
                 <div class="navbar-nav">
@@ -72,12 +73,12 @@
         {{-- mobile --}}
         <div class="sidebar order-lg-2 bg-dark d-lg-none d-block w-100 sidebar pb-3 pb-lg-0">
             <div class="align-items-center ms-3">
-                <form class="d-flex mt-3" style="heigth:1rem">
+                <form class="d-flex mt-3 ui search" style="heigth:1rem">
                     <div class="d-flex">
-                        <input type="text" class="form-control fs-22 w-75 rounded-pill-left border-0 border-right-none"
+                        <input type="text" class="form-control fs-22 w-75 rounded-pill-left border-0 border-right-none seach-header prompt"
                             placeholder="search" aria-label="search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button
+                            <button disabled
                                 class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100"
                                 id="basic-addon2"><i class="icon-search fs-20"></i></button>
                         </div>
