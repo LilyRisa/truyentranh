@@ -259,6 +259,7 @@ const ajax_search = () => {
                 .search({
                     type: 'category',
                     source: data,
+                    fullTextSearch: true
                 });
             });
         }.bind(this), 300);
