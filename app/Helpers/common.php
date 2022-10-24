@@ -300,6 +300,7 @@ function webpConvert2($file, $compression_quality = 80)
         return ['output_path' => $output_file, 'file' => $file];
     }
     if (function_exists('imagewebp')) {
+        dd('imagewebp');
         switch ($file_type) {
             case '1': //IMAGETYPE_GIF
                 $image = imagecreatefromgif($file2);
@@ -335,6 +336,7 @@ function webpConvert2($file, $compression_quality = 80)
         unlink($file2);
         return ['output_path' => $output_file, 'file' => $file];
     } elseif (class_exists('Imagick')) {
+        dd('Imagick');
         $image = new \Imagick();
         $image->readImage($file2);
         if ($file_type === "3") {
@@ -346,6 +348,7 @@ function webpConvert2($file, $compression_quality = 80)
         unlink($file2);
         return ['output_path' => $output_file, 'file' => $file];
     }
+    dd('nothing');
     return false;
 }
 
