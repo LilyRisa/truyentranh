@@ -10,7 +10,7 @@
                 <li class="list-unstyled d-flex"><span class="fs-25">{{$oneItem->title}}</span></li>
                 <li class="list-unstyled mt-1"><span class="fs-16 text-secondary">Tác giả: {{$oneItem->author}}</span></li>
                 <li class="list-unstyled d-flex mt-1"><span class="fs-16">Tình trạng: </span><span class="ms-2 fs-16 text_secondary">{{$oneItem->is_update}}</span></li> 
-                <li class="list-unstyled d-flex mt-1"><span class="fs-16">Lượt xem: </span><span class="ms-2 fs-16 text_secondary">1221313</span></li> 
+                <li class="list-unstyled d-flex mt-1"><span class="fs-16">Lượt xem: </span><span class="ms-2 fs-16 d-flex align-items-center"><i class="icon-eye pt-1 me-2"></i>{{$oneItem->view_count}}</span></li> 
                 <li class="list-unstyled d-flex mt-2">
                     @include('web.block._vote', ['data' => $oneItem, 'url' => '/story/ajax_rate'])
                 </li>
