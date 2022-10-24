@@ -70,7 +70,7 @@
   -webkit-box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
           box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
   border: 1px solid #D4D4D5;
-  z-index: 998;
+  z-index: 999999;
 }
 .ui.search > .results > :first-child {
   border-radius: 0.28571429rem 0.28571429rem 0em 0em;
@@ -110,7 +110,6 @@
   display: block;
   width: auto;
   height: 100%;
-  z-index: 999999;
 }
 
 /*--------------
