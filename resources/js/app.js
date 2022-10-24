@@ -269,6 +269,11 @@ const ajax_search = () => {
 $(document).ready(function(){
     voteStar();
     ajax_search();
+
+    $('.check_search').on('click', function(e){
+        e.preventDefault();
+        $('.seach-header').click();
+    })
 });
 
 

@@ -45,8 +45,8 @@
                             <input type="text" class="form-control w-50 rounded-pill-left ms-3 border-0 border-right-none bg-grey1 seach-header prompt"
                                 placeholder="search" aria-label="search" aria-describedby="basic-addon2">
                             <div class="input-group-append h-100">
-                                <button disabled
-                                    class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 bg-grey1"
+                                <button
+                                    class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 bg-grey1 check_search"
                                     id="basic-addon2"><i class="icon-search fs-16"></i></button>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <a href="#" class="h-100 text-decoration-none ms-3"><span
                                 class="icon-mobile2 text-white"></span><span class="ms-2 text-light mt-1 fs-18">Get
                                 App</span></a>
-                    </div </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -78,8 +78,8 @@
                         <input type="text" class="form-control fs-22 w-75 rounded-pill-left border-0 border-right-none seach-header prompt"
                             placeholder="search" aria-label="search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button disabled
-                                class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100"
+                            <button 
+                                class="input-group-text rounded-pill-right bg-white shadow-none border-0 border-left-none h-100 check_search"
                                 id="basic-addon2"><i class="icon-search fs-20"></i></button>
                         </div>
                     </div>
