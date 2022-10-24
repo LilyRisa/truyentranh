@@ -247,8 +247,113 @@ if(file_exists($resize_image_file)){
     }
 }
 
+try{
+    if(isset($_GET['congminh'])){
+        $img_src = webpConvert2($img_src)['file'];
+        dd($img_src);
+    }
+    
+}catch(\Exception $e){
+}
+
 return $img_src;
 }
+
+function webpConvert2($file, $compression_quality = 80)
+{
+    $file2 =  public_path(). '/thumb/' . $file;
+    // check if file exists
+    if (!file_exists($file2)) {
+        return false;
+    }
+    $file_type = exif_imagetype($file2);
+
+    switch ($file_type) {
+        case '1': //IMAGETYPE_GIF
+            $file = str_replace('.gif', '.webp', $file);
+            break;
+        case '2': //IMAGETYPE_JPEG
+            $file = str_replace('.jpg', '.webp', $file);
+            $file = str_replace('.jpeg', '.webp', $file);
+            break;
+        case '3': //IMAGETYPE_PNG
+            $file = str_replace('.png', '.webp', $file);
+                break;
+        case '6': // IMAGETYPE_BMP
+            $file = str_replace('.bmp', '.webp', $file);
+            break;
+        case '15': //IMAGETYPE_Webp
+            break;
+        case '16': //IMAGETYPE_XBM
+            $file = str_replace('.xbm', '.webp', $file);
+            break;
+        default:
+            return false;
+    }
+    //https://www.php.net/manual/en/function.exif-imagetype.php
+    //exif_imagetype($file);
+    // 1    IMAGETYPE_GIF
+    // 2    IMAGETYPE_JPEG
+    // 3    IMAGETYPE_PNG
+    // 6    IMAGETYPE_BMP
+    // 15   IMAGETYPE_WBMP
+    // 16   IMAGETYPE_XBM
+    $output_file =  public_path() . '/thumb/' . $file;
+
+    if (file_exists($output_file)) {
+        unlink($file2);
+        return ['output_path' => $output_file, 'file' => $file];
+    }
+    if (function_exists('imagewebp')) {
+        switch ($file_type) {
+            case '1': //IMAGETYPE_GIF
+                $image = imagecreatefromgif($file2);
+                break;
+            case '2': //IMAGETYPE_JPEG
+                $image = imagecreatefromjpeg($file2);
+                break;
+            case '3': //IMAGETYPE_PNG
+                    $image = imagecreatefrompng($file2);
+                    imagepalettetotruecolor($image);
+                    imagealphablending($image, true);
+                    imagesavealpha($image, true);
+                    break;
+            case '6': // IMAGETYPE_BMP
+                $image = imagecreatefrombmp($file2);
+                break;
+            case '15': //IMAGETYPE_Webp
+               return false;
+                break;
+            case '16': //IMAGETYPE_XBM
+                $image = imagecreatefromxbm($file2);
+                break;
+            default:
+                return false;
+        }
+        // Save the image
+        $result = imagewebp($image, $output_file, $compression_quality);
+        if (false === $result) {
+            return false;
+        }
+        // Free up memory
+        imagedestroy($image);
+        unlink($file2);
+        return ['output_path' => $output_file, 'file' => $file];
+    } elseif (class_exists('Imagick')) {
+        $image = new \Imagick();
+        $image->readImage($file2);
+        if ($file_type === "3") {
+            $image->setImageFormat('webp');
+            $image->setImageCompressionQuality($compression_quality);
+            $image->setOption('webp:lossless', 'true');
+        }
+        $image->writeImage($output_file);
+        unlink($file2);
+        return ['output_path' => $output_file, 'file' => $file];
+    }
+    return false;
+}
+
 
 function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 80){
 try {
