@@ -23,7 +23,8 @@
                 </li>
                 <li class="list-unstyled mt-3"><span>{{$oneItem->description}}</span></li>
                 <li class="list-unstyled d-flex mt-5"><a class="btn btn-secondary border-0"><i class="icon-star-full text_secondary"></i> Thêm vào tủ</a></li>
-                <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter[0])}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter[0])}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
+              
+                <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter->last())}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter->first())}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
            </ul>
            <ul>
             <li class="list-unstyled d-flex">
