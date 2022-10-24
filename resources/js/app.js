@@ -250,7 +250,7 @@ const ajax_search = () => {
                     let set = {};
                     set.category = item.category.title;
                     set.image = item.image
-                    set.title = '<h5>'+item.title+'</h5>'+'<br/>'+'<p style="font-size: 13px;margin-top: -20px;">'+item.descriptions+'</p>';
+                    set.title = '<h5 class="text_secondary fs-16 fw-bold">'+item.title+'</h5>'+'<p class="mt-3 fs-14">'+item.descriptions+'</p>';
                     set.url = item.url
                     data.push(set);
                 }
