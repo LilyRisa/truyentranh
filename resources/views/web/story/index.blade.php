@@ -26,7 +26,7 @@
               
                 <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter->last())}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter->first())}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
            </ul>
-           <ul>
+           <ul class="ps-0">
             <li class="list-unstyled d-flex">
                 <i class="icon-facebook1 text-primary"></i>
                 <i class="icon-twitter1 ms-2 text-primary"></i>
