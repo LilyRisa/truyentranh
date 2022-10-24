@@ -141,9 +141,7 @@
                 </div>
                 </a>
                 </div>
-
-
-            <div class="row justify-content-between">
+            <div class="row">
                 @if(!empty($story_feature))
                 @foreach ($story_feature as $ft)
                     <div class="col-lg-2 col-6">
@@ -194,7 +192,7 @@
                             @endphp
                         <div class="col-lg-3 col-6 mt-2">
                                 <a href="{{getUrlStory($n)}}" class="card p-0 ml-2">
-                                    {!! genImage($n->thumbnail, 225, 330, 'story-img img-fluid') !!}
+                                    {!! genImage($n->thumbnail, 225, 330, 'img-fluid') !!}
                                     <div class="card-body dark-linear position-absolute fixed-bottom">
                                         <p class="p-0 m-0 text-white border-bottom fw-bold">{{$n->title}}</p>
                                         <p class="p-0 m-0 text-info">{{$n->categories[0]->title}}</p>
