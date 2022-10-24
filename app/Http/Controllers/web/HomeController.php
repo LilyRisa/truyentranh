@@ -55,7 +55,7 @@ class HomeController extends Controller
 
         // lấy bài truyện đang theo dõi
 
-        $follow = $_COOKIE['story_follow'];
+        $follow = $_COOKIE['story_follow'] ?? null ;
         if($follow){
             $follow = json_decode($follow);
             $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(12)->get();
