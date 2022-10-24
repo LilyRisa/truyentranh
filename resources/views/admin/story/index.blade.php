@@ -42,6 +42,13 @@
                                 
                             </div>
                             <div class="form-group row">
+                                <div class="col-4">
+                                    <select class="form-control" name="is_home" id="">
+                                        <option value="">Nổi bật trang chủ</option>
+                                        <option value="0">Không hiển thị nổi bật</option>
+                                        <option value="1">Hiển thị nổi bật</option>
+                                    </select>
+                                </div> 
                                 <div class="d-flex col-2 ml-auto">
                                     <input type="submit" class="btn btn-success" value="Tìm kiếm">
                                     <input id="reset_form" class="btn btn-primary col-6 ml-3" value="Reset bộ lọc">
@@ -77,7 +84,7 @@
                                 <td class="text-center align-middle"><span class="@if(empty($item->seo_score)) @elseif($item->seo_score <= 60) bg-danger @elseif($item->seo_score >= 61 && $item->seo_score <= 89) bg-warning @else bg-success @endif text-white p-2">{{$item->seo_score ?? ''}}</span></td>
                                 <td class="text-center align-middle"><img src="{{getThumbnail($item->thumbnail)}}" width="100px" height="100px" style="object-fit: cover"></td>
                                 <td class="text-center">
-                                   <a href="#" class="home_feature star_home" data-id="{{$item->id}}" style="{{$item->is_feature_home ? 'color: yellow;' : ''}}">
+                                   <a href="#" class="home_feature_story {{$item->is_home ? 'star_home' : ''}}" data-id="{{$item->id}}" style="{{$item->is_home ? 'color: yellow;' : ''}}">
                                     <svg class="c-icon">
                                         <use xlink:href="/admin/images/icon-svg/free.svg#cil-star"></use>
                                     </svg>

@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'checkPermission']], function () {
 
     Route::post('/ajax/google_index','AjaxController@google_index');
     Route::post('/ajax/add_feature_home','AjaxController@home_feature');
+    Route::post('/ajax/add_feature_home_story','AjaxController@home_feature_story');
     /*Category*/
     Route::get('/category','CategoryController@index');
     Route::any('/category/update','CategoryController@update');

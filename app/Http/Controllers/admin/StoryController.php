@@ -27,12 +27,19 @@ class StoryController extends Controller
         $page = !empty($_GET['page']) ? $_GET['page'] : 1;
         #
         $condition = [];
+        $condition_raw = null;
         if (isset($_GET['status'])) {
             $condition[] = ['status', $_GET['status']];
         }
         
         if (!empty($_GET['title'])) {
-            $condition[] = ['title','LIKE', '%'.$_GET['title'].'%'];
+            $condition_raw = DB::raw('MATCH (title) AGAINST ("'.$_GET['title'].'")');
+        }
+        if(isset($_GET['is_home'])){
+            if(!empty($_GET['is_home'])){
+                $condition[] = ['is_home', $_GET['is_home']];
+            }
+            
         }
         if (!empty($_GET['time_range'])) {
             
@@ -51,13 +58,20 @@ class StoryController extends Controller
             $cate_id = (int)$_GET['category_id'];
             $listItem = Story::with(['categories', 'chapter'])->whereHas('categories', function($q) use ($cate_id){
                 return $q->where('story_category.category_id', $cate_id)->where('story_category.is_primary', 1);
-            })->where($condition)->orderBy('created_at', 'DESC')->offset(($page-1)*$limit)->limit($limit)->get();
+            })->where($condition)->orderBy('created_at', 'DESC')->offset(($page-1)*$limit)->limit($limit);
         }else{
             $listItem = Story::with(['categories', 'chapter'])->whereHas('categories', function($q){
                 return $q->where('story_category.is_primary', 1);
-            })->where($condition)->orderBy('created_at', 'DESC')->offset(($page-1)*$limit)->limit($limit)->get();
+            })->where($condition)->orderBy('created_at', 'DESC')->offset(($page-1)*$limit)->limit($limit);
         }
-        $data['total'] = Story::where($condition)->count();
+
+        if($condition_raw){
+            $listItem = $listItem->whereRaw($condition_raw)->get();
+            $data['total'] = Story::where($condition)->whereRaw($condition_raw)->count();
+        }else{
+            $listItem = $listItem->get();
+            $data['total'] = Story::where($condition)->count();
+        }
         // foreach ($listItem as $key => $item) {
         //     $listItem[$key]->count_link_ve = InternalLink::where('post_id_out', $item->id)->count();
         // }

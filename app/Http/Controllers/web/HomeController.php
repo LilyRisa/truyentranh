@@ -42,7 +42,17 @@ class HomeController extends Controller
             $data['menu_home'] = !empty($data['menu_home']) ? json_decode($data['menu_home']->data) : null;
             Cache::set($key, $data['menu_home'], now()->addHours(24));
         }
-        
+
+
+        // nổi bật 
+        $key = md5('story_feature-with-category-user-displayed_time-desc');
+        if(Cache::has($key)){
+            $data['story_feature'] = Cache::get($key);
+        }else{
+            $data['story_feature'] = Story::where('is_home', 1)->orderBy('created_at', 'DESC')->get();
+            Cache::set($key, $data['story_feature'], now()->addHours(24));
+        }
+
 
         $data['breadCrumb'][0]['item'] = url('/');
         $data['schema'] = getSchemaLogo().getLocalBusiness();

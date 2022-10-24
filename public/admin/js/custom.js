@@ -631,6 +631,32 @@ $(function() {
  });
 
 
+ $('.home_feature_story').on('click', function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+
+    var thas = $(this);
+
+    $.ajax({
+        url: '/admin/ajax/add_feature_home_story',
+        type: 'post',
+        data: {
+            id : id
+        }
+    }).done(resp => {
+        if(resp.status){
+            showToastr('success', resp.mess);
+            $(thas).attr('class', 'home_feature_story star_home');
+        }else{
+            showToastr('error', resp.mess);
+        }
+        
+    }).fail(e => {
+        showToastr('error', 'Lỗi hệ thống');
+    });
+ });
+
+
  function user_traffic_realtime(){
     $.ajax({
         url: '/admin/get_user_now',

@@ -144,20 +144,21 @@
 
 
             <div class="row justify-content-between">
-                @for ($i = 0; $i < 6; $i++)
+                @if(!empty($story_feature))
+                @foreach ($story_feature as $ft)
                     <div class="col-lg-2 col-6">
                         <div class="card">
-                            <img src="img/book3.jpeg" width="200" height="200"
-                                class="card-img-top rounded-circle w-100 h-100 p-0 img-fluid px-2" alt="book1" />
+                            {!! genImage($ft->thumbnail, 200, 200,'card-img-top rounded-circle w-100 h-100 p-0 img-fluid px-2', $ft->title) !!}
                             <div class="card-body justify-content-center">
-                                <h5 class="card-title text-center">Truyện số {{ $i }}</h5>
+                                <h5 class="card-title text-center">{{ $ft->title }}</h5>
                                 <div class="w-100 d-flex justify-content-center">
-                                    <a href="#" class="btn btn-secondary">Đọc truyện</a>
+                                    <a href="{{getUrlStory($ft)}}" class="btn btn-secondary">Đọc truyện</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                    @endforeach
+                @endif
             </div>
         </div>
 

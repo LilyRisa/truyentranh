@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Story;
 use Illuminate\Support\Facades\DB;
 use Response;
 use Hash;
@@ -212,6 +213,22 @@ class AjaxController extends Controller
             return \Response::json(['status' => false, 'mess' => 'Lỗi hệ thống']);
         }
 
+    }
+
+    public function home_feature_story(Request $request){
+        $id = $request->input('id');
+        try{
+            $data = Story::find($id);
+            $data->is_home = 1;
+            $data->save();
+            $cache_post_feature = md5('story_feature-with-category-user-displayed_time-desc');
+            if(Cache::has($cache_post_feature)){
+                Cache::forget($cache_post_feature);
+            }
+            return \response()->json(['status' => true, 'mess' => 'Cập nhật thành công truyện có id:'.$id]);
+        }catch(\Exception $e){
+            return \response()->json(['status' => false, 'mess' => 'Lỗi hệ thống']);
+        }
     }
 
     public function getTrafficNow(){
