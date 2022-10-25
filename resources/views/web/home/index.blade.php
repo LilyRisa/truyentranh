@@ -204,7 +204,7 @@
 
                 @if(!empty($follow))
                 <div class="slide">
-                    <h3 class="fs-22 text-uppercase fw-bold">Truyện bạn quan tâm</h3>
+                    <h3 class="fs-22 text-uppercase fw-bold">Truyện {{$follow_status ? '' : 'có thể'}} bạn quan tâm</h3>
                     <ul class="follow">
                         @foreach ($follow as $fl)
                             @php

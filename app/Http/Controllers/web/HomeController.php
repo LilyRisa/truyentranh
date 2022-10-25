@@ -60,8 +60,10 @@ class HomeController extends Controller
         $follow = $_COOKIE['story_follow'] ?? null ;
         if($follow){
             $follow = json_decode($follow);
+            $data['follow_status'] = true;
             $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(12)->get();
         }else{
+            $data['follow_status'] = false;
             $data['follow'] = Story::with(['categories', 'chapter'])->inRandomOrder()->limit(10)->get();
         }
 
