@@ -9,6 +9,7 @@ use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Models\Rate;
 use Illuminate\Support\Facades\DB;
+use Cookie;
 
 class StoryController extends Controller
 {   
@@ -24,6 +25,32 @@ class StoryController extends Controller
         $data['oneItem'] = $oneItem = Story::with(['categories', 'chapter', 'tags'])->where('slug', $slug)->first()->chapter_sort();
         // dd($data['oneItem']);
         if(empty($oneItem)) return Redirect::to(url('/'), 301);
+
+        /**
+         * Theo dõi truyện người dùng đọc
+         * Lấy tối đa 10 truyện
+         * Cái nào mới sẽ được đưa lên đầu mảng
+         *  */ 
+
+        $user_view = Cookie::get('story_user_view');
+        if(!$user_view){
+            $user_view = [];
+            $key = null;
+        }else{
+            $user_view = json_decode($user_view);
+            $key = array_search($oneItem->id, $user_view);
+        }
+        
+
+        if (!$key) {
+            array_unshift($user_view,$oneItem->id);
+        }else{
+            $tmp = $user_view[$key];
+            unset($user_view[$key]);
+            array_unshift($user_view, $tmp);
+        }
+        $user_view = array_slice($user_view, 0, 10);
+        Cookie::queue('story_user_view', json_encode($user_view),4320);
 
 
         $data['schema'] = getSchemaLogo().getLocalBusiness().getSchemaStory($oneItem);
