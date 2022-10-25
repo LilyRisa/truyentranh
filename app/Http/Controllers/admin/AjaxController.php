@@ -219,7 +219,11 @@ class AjaxController extends Controller
         $id = $request->input('id');
         try{
             $data = Story::find($id);
-            $data->is_home = 1;
+            if($data->is_home == 1){
+                $data->is_home = 0;
+            }else{
+                $data->is_home = 1;
+            }
             $data->save();
             $cache_post_feature = md5('story_feature-with-category-user-displayed_time-desc');
             if(Cache::has($cache_post_feature)){

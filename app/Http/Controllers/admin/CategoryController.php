@@ -6,6 +6,7 @@ use Request;
 use Redirect;
 use App\Models\Category;
 use App\Models\Post_Category;
+use App\Models\Story_category;
 use Route;
 
 class CategoryController extends Controller
@@ -19,6 +20,7 @@ class CategoryController extends Controller
         $listItem = Category::all();
         foreach ($listItem as $key => $item) {
             $listItem[$key]->count_post = Post_Category::where('category_id', $item->id)->count();
+            $listItem[$key]->count_story = Story_category::where('category_id', $item->id)->count();
         }
         $data['listItem'] = $listItem;
         return view('admin.category.index', $data);

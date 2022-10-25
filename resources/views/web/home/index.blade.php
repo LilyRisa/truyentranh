@@ -51,30 +51,25 @@
 
             <div class="col-lg-9">
                 <div class="d-flex p-0 rounded">
-                <p class="fs-22 text-uppercase">
+                <p class="fs-22 text-uppercase fw-bold">
                     truyện hot!
                 </p>
                 <a class="ms-auto text-decoration-none" href="#">
-                <p class="text_secondary fs-16">
+                <p class="text_secondary fs-16 fw-bold">
                     xem thêm >>
                 </p>
                 </a>
                 </div>
                 <div class="row justify-content-between mt-am-2">
-                    @if(!empty($view_hight))
-                    @foreach($view_hight as $vh)
-                    @php
-                        $chap = explode('- ', $vh->chapter[max(array_keys($vh->chapter->toArray()))]->title);
-                        $chap = end($chap);
-                        
-                    @endphp
+                    @if(!empty($category_h))
+                    @foreach($category_h as $vh)
+            
                         <div class="col-lg-3 mt-2 col-6">
                             <div class="card p-0 ml-2">
                                 {!! genImage($vh->thumbnail, 225, 330, 'img-fluid', $vh->title) !!}
                                 <div class="card-body dark-linear position-absolute fixed-bottom">
                                     <a href="{{getUrlStory($vh)}}" class="d-block p-0 m-0 text-white border-bottom fw-bold" title="{{$vh->title}}">{{$vh->title}}</a>
                                     <a href="{{getUrlCate($vh->categories[0])}}" class="d-block p-0 m-0 text-info" title="{{$vh->categories[0]->title}}">{{$vh->categories[0]->title}}</a>
-                                    <p class="p-0 m-0 text_secondary">{{$chap}}</p>
                                     <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pt-1 pe-1"></i> Lượt xem: {{$vh->view_count}}</p>
                                 </div>
                             </div>
@@ -100,25 +95,28 @@
                     </div>
 
                 <div class="pt-1">
-                    @for ($i = 1; $i < 8; $i++)
+                    @if(!empty($view_hight))
+                    @foreach ($view_hight as $k => $v)
                         <div class="ms-2 mt-2 pb-2 border-bottom d-flex d-nowrap">
                             <div class="col-1 p-0">
                                 <p
-                                    class="text-start {{ $i == 1 ? 'text-danger' : ($i == 2 ? 'text-success' : ($i == 3 ? 'text-primary' : 'text-secondary')) }} ">
-                                    0{{ $i }}</p>
+                                    class="text-start {{ ($k+1) == 1 ? 'text-danger' : ( ($k+1) == 2 ? 'text-success' : ( ($k+1) == 3 ? 'text-primary' : 'text-secondary')) }} ">
+                                    {{ ($k+1) }}</p>
                             </div>
-                            <div class="col-3"><img src="/img/book1.jpeg" class="img-fluid ps-2"></div>
+                            
+                            <div class="col-3">{!! genImage($v->thumbnail, 100, 200, 'img-fluid ps-2', $v->title) !!}</div>
                             <div class="col-8">
-                                <div class="m-0 p-0 ps-2">Tên truyện</div>
-                                <div class="col-9 fs-12 ps-2">Tác giả</div>
+                                <a href="{{getUrlStory($v)}}" title="{{$v->title}}" class="d-block m-0 p-0 ps-2">{{$v->title}}</a>
+                                <div class="col-9 fs-12 ps-2 text-grey1">{{$v->author}}</div>
                                 <div class="row mt-1 ms-0">
 
-                                    <div class="col-9 fs-12 ps-2">Chương 123</div>
-                                    <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
+                                    <div class="col-9 fs-12 ps-2">{{$v->is_update}}</div>
+                                    <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> {{$v->view_count}}</p></div>
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
+                    @endif
                 </div>
             </div>
             
@@ -192,7 +190,7 @@
                             @endphp
                         <div class="col-lg-3 col-6 mt-2">
                                 <a href="{{getUrlStory($n)}}" class="card p-0 ml-2">
-                                    {!! genImage($n->thumbnail, 225, 330, 'img-fluid') !!}
+                                    {!! genImage($n->thumbnail, 225, 330, 'img-fluid', $n->title) !!}
                                     <div class="card-body dark-linear position-absolute fixed-bottom">
                                         <p class="p-0 m-0 text-white border-bottom fw-bold">{{$n->title}}</p>
                                         <p class="p-0 m-0 text-info">{{$n->categories[0]->title}}</p>
@@ -219,7 +217,7 @@
                             @endphp
                             <li class="item d-block">
                                 <a href="{{getUrlStory($fl)}}" class="card p-0 ml-2">
-                                    {!! genImage($fl->thumbnail, 300, 300) !!}
+                                    {!! genImage($fl->thumbnail, 300, 300, 'img-fluid', $fl->title) !!}
                                     <div class="card-body dark-linear position-absolute fixed-bottom">
                                         <p class="p-0 m-0 text-white border-bottom fw-bold">{{$fl->title}}</p>
                                         <p class="p-0 m-0 text-info">{{$fl->categories[0]->title}}</p>
