@@ -319,7 +319,7 @@ function webpConvert2($file, $compression_quality = 80)
                     $image = imagecreatefrompng($file2);
                     $w = imagesx($image);
                     $h = imagesy($image);
-                    imagepalettetotruecolor($image,$w, $h);
+                    $image = imagecreatetruecolor ($w, $h);
                     imagealphablending($image, true);
                     imagesavealpha($image, true);
                     $trans = imagecolorallocatealpha($image, 0, 0, 0, 127);
