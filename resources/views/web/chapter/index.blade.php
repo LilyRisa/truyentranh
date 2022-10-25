@@ -53,9 +53,25 @@
             <a class="btn btn-success ms-2"> <i class="icon-heart"></i> Theo dõi</a>
         </div>
 
+        <div class="my-2 d-flex flex-wrap justify-content-center align-items-center">
+            <div class="col-12 col-lg-3 d-flex">
+                <span role="button" class="col-4 col-lg-2 mx-2 rounded-pill border border-green2 fw-bold zoom_slow d-flex justify-content-center align-items-center">-</span>
+                <div class="col-5">
+                    <select id="chapter_zoom" class="form-control text-center">
+                        <option value="20">20%</option>
+                        <option value="40">40%</option>
+                        <option value="60">60%</option>
+                        <option value="80">80%</option>
+                        <option value="100" selected>100%</option>
+                    </select>
+                </div>
+                <span role="button" class="col-4 col-lg-2 mx-2 rounded-pill border border-green3 fw-bold zoom_up d-flex justify-content-center align-items-center">+</span>
+            </div>
+        </div>
+
     </div>
 
-    <div class="bg-white px-lg-5 mt-3 w-100 max-100 content-reading">
+    <div class="bg-white mt-3 content-reading d-flex justify-content-center content_chapter">
         {!! str_replace('src="//','src="/img-proxy=//',$oneItem->content) !!}
     </div>
 
