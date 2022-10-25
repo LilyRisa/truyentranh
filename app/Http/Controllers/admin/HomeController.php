@@ -15,24 +15,33 @@ class HomeController extends Controller
 {
     public function index() {
         $data = [];
-        // $data['count_post_dash'] = Cache::remember('count_post_dash', now()->addMonth(1), function () {
-        //     return Post::all()->count();
-        // });
-        // $char_count_post = $this->getCountPostMonth();
-        // $data['cout_post_new'] = $char_count_post[date('m')];
-        // $data['cout_post_old'] = $char_count_post[date('m', strtotime(date('Y-m-d H:i:s').'-1 months'))];
-        // if($data['cout_post_new'] >= $data['cout_post_old']){
-        //     $data['percent_post'] = $this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
-        // }else{
-        //     $data['percent_post'] = -$this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
-        // }
-        // $data['char_count_post'] = [];
-        // foreach($char_count_post as $key => $cc){
-        //     $data['char_count_post'][] = [
-        //         'month' => $key,
-        //         'count' => $cc,
-        //     ];
-        // }
+        $data['count_post_dash'] = Cache::remember('count_post_dash', now()->addMonth(1), function () {
+            return Post::all()->count();
+        });
+        $char_count_post = $this->getCountPostMonth();
+        $data['cout_post_new'] = $char_count_post[date('m')];
+        $data['cout_post_old'] = $char_count_post[date('m', strtotime(date('Y-m-d H:i:s').'-1 months'))];
+        if($data['cout_post_new'] >= $data['cout_post_old']){
+            try{
+                $data['percent_post'] = $this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
+            }catch(\Exception $e){
+                $data['percent_post'] = 100;
+            }
+            
+        }else{
+            try{
+                $data['percent_post'] = -$this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
+            }catch(\Exception $e){
+                $data['percent_post'] = 100;
+            }
+        }
+        $data['char_count_post'] = [];
+        foreach($char_count_post as $key => $cc){
+            $data['char_count_post'][] = [
+                'month' => $key,
+                'count' => $cc,
+            ];
+        }
         // $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults();
         // $user_traffic = !empty($user_traffic->rows) ? $user_traffic->rows[0][0] : 0;
 
