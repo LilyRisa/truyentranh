@@ -727,7 +727,11 @@ function replaceSrcImg($html){
     $tags = $dom->getElementsByTagName('img');
     foreach ($tags as $tag) {
         $old_src = $tag->getAttribute('src');
-        $new_src_url = 'https://forextradingvn.top'.$old_src;
+        if(strpos($old_src, 'thichdammy.com')){
+            $new_src_url = $old_src;
+        }else{
+            $new_src_url = 'https://thichdammy.com'.$old_src;
+        }
         $tag->setAttribute('src', $new_src_url);
         $tag->setAttribute('data-src', $old_src);
     }

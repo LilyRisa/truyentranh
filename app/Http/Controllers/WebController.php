@@ -24,6 +24,8 @@ class WebController extends BaseController
         $segment = Request::segments();
         $checkAmp = !empty($segment) ? end($segment) == 'amp' : false;
 
+        dd($checkAmp);
+
         define('IS_AMP', $checkAmp);
         if (IS_AMP)
             define('TEMPLATE', 'web.layout-amp');

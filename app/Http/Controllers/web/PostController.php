@@ -21,9 +21,9 @@ use App\Service\InterLink;
 
 class PostController extends Controller
 {
-    public function index($slug, $id) {
+    public function index($slug, $is_amp = false) {
         $data['page'] = $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $oneItem = Post::with(['categories','user', 'tags'])->where('id',$id)->first();
+        $oneItem = Post::with(['categories','user', 'tags'])->where('slug',$slug)->first();
         if (empty($oneItem) || $oneItem->status == 0 || strtotime($oneItem->displayed_time) > time())
         {
             $user = Auth::user();
@@ -42,17 +42,17 @@ class PostController extends Controller
             return Redirect::to(url('/'), 301);
         }
 
-        if ($oneItem->slug != $slug) return Redirect::to(getUrlPost($oneItem), 301);
+        // if ($oneItem->slug != $slug) return Redirect::to(getUrlPost($oneItem), 301);
         $oneItem->content = InterLink::init()->setContent($this->parse_content($oneItem->content))->get()->content;
 
         $data['category'] = $category = Category::find($oneItem->category_primary_id);
 
         //$data['tag'] = Post_tag::leftjoin('tag', 'tag_id', '=', 'id')->where('post_id', $id)->get();
         $data['limit'] = $limit  = 4;
-        $data['related_post'] = Post::with('Category')->where(['status' => 1, 'category_primary_id' => $oneItem->category_id, ['displayed_time', '<=', Post::raw('NOW()')], ['id', '<>', $id]])->orderBy('displayed_time', 'DESC')->offset(($page-1)*4)->limit($limit)->get();
+        $data['related_post'] = Post::with('Category')->where(['status' => 1, 'category_primary_id' => $oneItem->category_id, ['displayed_time', '<=', Post::raw('NOW()')], ['id', '<>', $oneItem->id]])->orderBy('displayed_time', 'DESC')->offset(($page-1)*4)->limit($limit)->get();
         // dd($data['related_post']);
 //        if (!empty($oneItem->id_bongdalu))
-        $data['related_post'] = Post::with('Category')->where(['status' => 1, 'category_primary_id' => $oneItem->category_id, ['displayed_time', '<=', Post::raw('NOW()')], ['id', '<>', $id]])->orderBy('displayed_time', 'DESC')->limit(4)->get();
+        $data['related_post'] = Post::with('Category')->where(['status' => 1, 'category_primary_id' => $oneItem->category_id, ['displayed_time', '<=', Post::raw('NOW()')], ['id', '<>', $oneItem->id]])->orderBy('displayed_time', 'DESC')->limit(4)->get();
         $data['seo_data'] = initSeoData($oneItem, 'post');
         // $data['seo_data']['amp_facebook_cmt'] = true;
         $data['seo_data']['rating_amp'] = true;
@@ -115,7 +115,7 @@ class PostController extends Controller
             $data['more_post'] = Cache::get($cache_post_more, now()->addHours(12));
         }else{
             $keyword = explode(',', $oneItem->meta_keyword);
-            $more_post = Post::whereNotIn('id',[$id])->where(function($q) use ($keyword){
+            $more_post = Post::whereNotIn('id',[$oneItem->id])->where(function($q) use ($keyword){
                 if(!empty($keyword)){
                     foreach($keyword as $key => $kw){
                         $kwv = str_replace('/\s+/','',$kw);
@@ -128,14 +128,14 @@ class PostController extends Controller
         }
         
 
-        if(IS_AMP) return view('web.post.amp-index', $data);
+        if($is_amp) return view('web.post.amp-index', $data);
 
         return view('web.post.index', $data);
     }
 
 
-    public function ampIndex($slug, $id){
-        return $this->index($slug, $id);
+    public function ampIndex($slug){
+        return $this->index($slug, true);
     }
 
     private function parse_content($content) {

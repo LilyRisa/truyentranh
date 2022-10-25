@@ -21,7 +21,8 @@ Route::any('/reading', 'ReadingController@index');
 Route::any('/cate', 'CategoryController@index');
 Route::any('/blog', 'CategoryController@blog');
 
-Route::any('/post', 'PostController@index');
+Route::any('/tin-tuc/{slug}.html', 'PostController@index')->where(['slug' => '[\s\S]+']);
+Route::any('/amp/tin-tuc/{slug}.html', 'PostController@ampIndex')->where(['slug' => '[\s\S]+']);
 
 Route::get('/truyen/{slug}-c{id}', 'StoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
 
