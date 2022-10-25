@@ -92,9 +92,7 @@
                     </p>
                     <div class="ms-auto pe-0">
                     <a class="text-end text_secondary text-decoration-none fs-18" href="#">
-                    
                         xem thêm >>
-                    
                     </div>
                     </a>
                     </div>
@@ -311,7 +309,7 @@
                                 
 
                             </div>
-                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> {{$_rate->view_count}}</p></div>
+                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1 mb-0"> {{$_rate->view_count}}</p></div>
                         </div>
                     </div>
                 </div>
