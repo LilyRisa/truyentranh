@@ -317,9 +317,13 @@ function webpConvert2($file, $compression_quality = 80)
                 break;
             case '3': //IMAGETYPE_PNG
                     $image = imagecreatefrompng($file2);
-                    imagepalettetotruecolor($image);
+                    $w = imagesx($image);
+                    $h = imagesy($image);
+                    imagepalettetotruecolor($image,$w, $h);
                     imagealphablending($image, true);
                     imagesavealpha($image, true);
+                    $trans = imagecolorallocatealpha($image, 0, 0, 0, 127);
+                    imagefilledrectangle($image, 0, 0, $w - 1, $h - 1, $trans);
                     break;
             case '6': // IMAGETYPE_BMP
                 $image = imagecreatefrombmp($file2);
