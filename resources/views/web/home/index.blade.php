@@ -102,7 +102,7 @@
                                     {{ ($k+1) }}</p>
                             </div>
                             
-                            <div class="col-3">{!! genImage($v->thumbnail, 100, 200, 'img-fluid ps-2', $v->title) !!}</div>
+                            <div class="col-3">{!! genImage($v->thumbnail, 225, 330, 'img-fluid ps-2 w-100', $v->title) !!}</div>
                             <div class="col-8">
                                 <a href="{{getUrlStory($v)}}" title="{{$v->title}}" class="d-block m-0 p-0 ps-2">{{$v->title}}</a>
                                 <div class="col-9 fs-12 ps-2 text-grey1">{{$v->author}}</div>
