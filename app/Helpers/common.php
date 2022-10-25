@@ -255,10 +255,10 @@ if(file_exists($resize_image_file)){
     }
 }
 
-$data = webpConvert2($resize_image_name);
-if($data){
-    $img_src = $data['output_path'];
-}
+// $data = webpConvert2($resize_image_name);
+// if($data){
+//     $img_src = $data['output_path'];
+// }
 
 return $img_src;
 }
