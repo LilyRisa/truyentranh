@@ -80,7 +80,7 @@ function getSchemaStory($story){
                 ]
             ],
             "mainEntityOfPage" => [
-                "@type" => "WebPage",
+                "@type" => "Book",
                 "@id" => getUrlStory($story)
             ]
         ]
