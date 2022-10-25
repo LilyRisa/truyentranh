@@ -42,21 +42,22 @@ class HomeController extends Controller
                 'count' => $cc,
             ];
         }
-        // $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults();
+        // $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults(); // cái này dùng universal GA cũ sẽ hết hạn vào tháng 7 2023
+        // dd($user_traffic);
         // $user_traffic = !empty($user_traffic->rows) ? $user_traffic->rows[0][0] : 0;
 
         // $data['user_traffic'] = $user_traffic;
 
-        // $realtime = GoogleApi::init()->addScope('analytics')->getRealtimeUser();
-        // $data['realtime'] = [];
-        // if(!empty($realtime->rows)){
-        //     foreach($realtime->rows as $d){
-        //         $data['realtime'][] = [
-        //             'country' => $d->dimensionValues[0]->value,
-        //              'count' => $d->metricValues[0]->value,
-        //         ];
-        //     }
-        // }
+        $realtime = GoogleApi::init()->addScope('analytics')->getRealtimeUser();
+        $data['realtime'] = [];
+        if(!empty($realtime->rows)){
+            foreach($realtime->rows as $d){
+                $data['realtime'][] = [
+                    'country' => $d->dimensionValues[0]->value,
+                     'count' => $d->metricValues[0]->value,
+                ];
+            }
+        }
         
 
         // $hehe = GoogleApi::init()->addScope('analytics')->getRealtimeUser();
