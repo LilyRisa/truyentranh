@@ -26,7 +26,7 @@ class StoryController extends Controller
         if(empty($oneItem)) return Redirect::to(url('/'), 301);
 
 
-        $data['schema'] = getSchemaLogo().getLocalBusiness();
+        $data['schema'] = getSchemaLogo().getLocalBusiness().getSchemaStory($oneItem);
         $data['seo_data'] = initSeoData($oneItem,'story');
         return view('web.story.index', $data);
     }
@@ -53,7 +53,7 @@ class StoryController extends Controller
             }
         }
 
-        $data['schema'] = getSchemaLogo().getLocalBusiness();
+        $data['schema'] = getSchemaLogo().getLocalBusiness().getSchemaStory($data['oneItem']->story);
         $data['seo_data'] = initSeoData($oneItem,'chapter');
         return view('web.chapter.index', $data);
     }

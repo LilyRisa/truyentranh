@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\Story;
 use App\Models\Menu;
+use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,7 @@ class HomeController extends Controller
         if(Cache::has($key)){
             $data['view_hight'] = Cache::get($key);
         }else{
-            $data['view_hight'] = Story::with(['categories', 'chapter'])->orderBy('view_count', 'DESC')->limit(8)->get()->map(function ($query) {
+            $data['view_hight'] = Story::with(['categories', 'chapter'])->orderBy('view_count', 'DESC')->limit(10)->get()->map(function ($query) {
                 $query->setRelation('chapter', $query->chapter->take(1));
                 return $query;
             });
@@ -62,6 +63,17 @@ class HomeController extends Controller
             $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(12)->get();
         }
 
+        // lấy truyện chuyên mục H
+        $key = 'chuyen-muc-home-h+';
+        if(Cache::has($key)){
+            $data['category_h'] = Cache::get($key);
+        }else{
+            $data['category_h'] = Category::with(['story' => function($query){
+                $query->orderBy('created_at', 'DESC')->limit(8);
+            }])->where('id', 19)->first();
+            $data['category_h'] = $data['category_h']->story;
+            Cache::set($key, $data['category_h'], now()->addHours(24));
+        }
         // get story rate highest
         // Cache::forget('get_story_rate_highest');
         if(Cache::has('get_story_rate_highest')){

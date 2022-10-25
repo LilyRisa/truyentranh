@@ -23,7 +23,7 @@
                                 @if(!empty($listItem)) @foreach($listItem as $item)
                                 <tr>
                                     <td class="text-center">{{$item->id}}</td>
-                                    <td><a target="_blank" href="{{getUrlCate($item, 0)}}">{{$item->title}}</a> - <span class="text-success">{{$item->count_post}} bài viết</span></td>
+                                    <td><a target="_blank" href="{{getUrlCate($item, 0)}}">{{$item->title}}</a> - <span class="text-success">{{$item->count_post}} bài viết</span> - <span class="text-primary">{{$item->count_story}} truyện</span></td>
                                     <td class="text-center">
                                         <a class="btn btn-info" href="/admin/category/update/{{$item->id}}"><svg class="c-icon"><use xlink:href="/admin/images/icon-svg/free.svg#cil-pencil"></use></svg></a>
                                         <a class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa?')" href="/admin/category/delete/{{$item->id}}"><svg class="c-icon"><use xlink:href="/admin/images/icon-svg/free.svg#cil-trash"></use></svg></a>
