@@ -250,15 +250,6 @@ class AjaxController extends Controller
         return \response()->json($data_result);
     }
 
-    public function getTrafficCount(){
-        $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults();
-        $user_traffic = !empty($user_traffic->rows) ? $user_traffic->rows[0][0] : 0;
-
-        return \response()->json([
-            'data' => $user_traffic
-        ]);
-    }
-
     public function RemoveCacheCloudflare(){
         $id_zone = \Config::get('cloudflare.id_zone');
         $api_key = \Config::get('cloudflare.api_key');
