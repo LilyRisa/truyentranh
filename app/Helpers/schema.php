@@ -79,7 +79,7 @@ function getSchemaStory($story){
                     "height" => 60
                 ]
             ],
-            "mainEntityOfPage" => [
+            "mainEntity" => [
                 "@type" => "Book",
                 "@id" => getUrlStory($story)
             ]
