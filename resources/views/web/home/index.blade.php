@@ -82,14 +82,12 @@
 
             <div class="col-lg-3 mt-5 mt-lg-0">
                 <div class="ms-2 d-flex">
-                    <p class="fs-22">
+                    <p class="fs-22 fw-bold">
                         BXH
                     </p>
                     <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
-                    
+                    <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="#">
                         xem thêm >>
-                    
                     </div>
                     </a>
                     </div>
@@ -104,7 +102,7 @@
                                     {{ ($k+1) }}</p>
                             </div>
                             
-                            <div class="col-3">{!! genImage($v->thumbnail, 100, 200, 'img-fluid ps-2', $v->title) !!}</div>
+                            <div class="col-3">{!! genImage($v->thumbnail, 225, 330, 'img-fluid ps-2 w-100', $v->title) !!}</div>
                             <div class="col-8">
                                 <a href="{{getUrlStory($v)}}" title="{{$v->title}}" class="d-block m-0 p-0 ps-2">{{$v->title}}</a>
                                 <div class="col-9 fs-12 ps-2 text-grey1">{{$v->author}}</div>
@@ -128,14 +126,12 @@
             
 
             <div class="ms-2 d-flex">
-                <p class="fs-22 text-uppercase">
+                <p class="fs-22 text-uppercase fw-bold">
                     truyện đề cử!
                 </p>
                 <div class="ms-auto pe-0">
-                <a class="text-end text_secondary text-decoration-none fs-18" href="#">
-                
+                <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="#">
                     xem thêm >>
-                
                 </div>
                 </a>
                 </div>
@@ -168,11 +164,11 @@
                     
                 
                 <div class="ms-2 d-flex">
-                    <p class="fs-22 text-uppercase">
+                    <p class="fs-22 text-uppercase fw-bold">
                         mới cập nhật!
                     </p>
                     <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
+                    <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="#">
                     
                         xem thêm >>
                     
@@ -208,7 +204,7 @@
 
                 @if(!empty($follow))
                 <div class="slide">
-                    <h3 class="fs-22 text-uppercase">Truyện bạn quan tâm</h3>
+                    <h3 class="fs-22 text-uppercase fw-bold">Truyện bạn quan tâm</h3>
                     <ul class="follow">
                         @foreach ($follow as $fl)
                             @php
@@ -232,7 +228,7 @@
                 @endif
 
                 <div class="bg_secondary p-2 mt-5 rounded">
-                    <p class="p-0 text-uppercase fs-22">Từ khóa hot!</p>
+                    <p class="p-0 text-uppercase fs-22 fw-bold">Từ khóa hot!</p>
                     <div class="d-flex">
                         <div class="bg-secondary ms-2 px-2 rounded-pill text-white text-center">
                             girl
@@ -274,7 +270,7 @@
                         xu hướng
                     </p>
                     <div class="ms-auto pt-lg-0 pt-4 pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-18" href="#">
+                    <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="#">
                     
                         xem thêm >>
                     
@@ -309,7 +305,7 @@
                                 
 
                             </div>
-                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> {{$_rate->view_count}}</p></div>
+                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1 mb-0"> {{$_rate->view_count}}</p></div>
                         </div>
                     </div>
                 </div>
