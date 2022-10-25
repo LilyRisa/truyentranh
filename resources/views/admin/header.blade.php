@@ -50,7 +50,7 @@
             <a class="c-header-nav-link d-flex" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="mr-3">{{Auth::user()->fullname}}</div>
                 <div class="c-avatar">
-                    {!! genImage(Auth::user()->thumbnail, 30, 30, 'c-avatar-img') !!}
+                    {!! genImage(Auth::user()->thumbnail, 200, 200, 'c-avatar-img') !!}
                 </div>
                 
                 
