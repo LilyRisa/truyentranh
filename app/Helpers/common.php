@@ -320,9 +320,9 @@ function webpConvert2($file, $compression_quality = 80)
                     $w = imagesx($image_im);
                     $h = imagesy($image_im);
                     $image = imagecreatetruecolor ($w, $h);
-                    imagealphablending($image, true);
-                    imagesavealpha($image, false);
-                    $trans = imagecolorallocatealpha($image, 0, 0, 0, 127);
+                    imagealphablending($image, false);
+                    imagesavealpha($image, true);
+                    $trans = imagecolorallocatealpha($image, 255, 255, 255, 127);
                     imagefilledrectangle($image, 0, 0, $w - 1, $h - 1, $trans);
                     imagecopy($image, $image_im, 0, 0, 0, 0, $w, $h);
                     break;
