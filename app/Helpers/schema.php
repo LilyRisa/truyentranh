@@ -39,11 +39,57 @@ function getSchemaLogo(){
         "@context" => "https://schema.org",
         "@type" => "Organization",
         "url" => Request::url()."/",
-        "logo" => asset('images/logo.svg')
+        "logo" => 'https://thichdammy.com/images/logo.svg'
     ]);
 
     $schema .= $listItem.'</script>';
     return $schema;
+}
+function getSchemaStory($story){
+    $schema = '<script type="application/ld+json">';
+    $schema .= json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "DataFeed",
+        'dataFeedElement' => [
+            "@context" => "https://schema.org",
+            "@type" => "Book",
+            "@id" => getUrlStory($story),
+            "url" => getUrlStory($story),
+            "name" => $story->title,
+            "description" => $story->meta_description,
+            "author" => [
+                "@type" => "Person",
+                "name" => "Thích Đam Mỹ"
+            ],
+            "image" => [
+                "@type" => "ImageObject",
+                "url" => url($story->thumbnail),
+                "width" => 1200,
+                "height" => 650
+            ],
+            "datePublished" => date('c', strtotime($story->created_at)),
+            "dateModified" => date('c', strtotime($story->created_at)),
+            "publisher" => [
+                "@type" => "Organization",
+                "name" => 'Thích Đam Mỹ',
+                "logo" => [
+                    "@type" => "ImageObject",
+                    "url" => 'https://thichdammy.com/images/logo.svg',
+                    "width" => 600,
+                    "height" => 60
+                ]
+            ],
+            "mainEntityOfPage" => [
+                "@type" => "WebPage",
+                "@id" => getUrlStory($story)
+            ]
+        ]
+        
+    ]);
+    $schema .= '</script>';
+
+    return $schema;
+
 }
 function getSchemaArticle($post, $user){
     $schema = '<script type="application/ld+json">';
@@ -62,12 +108,12 @@ function getSchemaArticle($post, $user){
         "dateModified" => date('c', strtotime($post->updated_time)),
         "author" => [
             "@type" => "Person",
-            "name" => $user->fullname ?? 'forextradingvn',
+            "name" => $user->fullname ?? 'Thích Đam Mỹ',
             "url" => getUrlAuthor($user) ?? ''
         ],
         "publisher" => [
             "@type" => "Organization",
-            "name" => 'forextradingvn',
+            "name" => 'Thích Đam Mỹ',
             "logo" => [
                 "@type" => "ImageObject",
                 "url" => 'https://thichdammy.com/images/logo.svg',
@@ -91,22 +137,22 @@ function getLocalBusiness(){
     $schema .= json_encode([
         "@context" => "https://schema.org",
         "@type" => "LocalBusiness",
-        "name" => 'forextradingvn',
-        "image" => 'https://forextradingvn.top/images/logo.svg',
-        "@id" => "https://forextradingvn.top/",
-        "url" => "https://forextradingvn.top/",
-        "telephone" => "",
+        "name" => 'Thích Đam Mỹ',
+        "image" => 'https://thichdammy.com/images/logo.svg',
+        "@id" => "https://thichdammy.com/",
+        "url" => "https://thichdammy.com/",
+        "telephone" => "0334109351",
         "address" => [
             "@type" => "PostalAddress",
-            "streetAddress" => "Lai Xá",
-            "addressLocality" => "xã Kinh Chung, huyện Hoài Đức, Hà Nội",
+            "streetAddress" => "35 P. Lý Thường Kiệt",
+            "addressLocality" => "Hà Cầu, Hà Đông, Hà Nội, Việt Nam",
             "postalCode" => "100000",
             "addressCountry" => "VN"
         ],
         "openingHoursSpecification" => [
             "@type" => "OpeningHoursSpecification",
-            "opens" => "08:00",
-            "closes" => "17:00",
+            "opens" => "08:00:00",
+            "closes" => "17:00:00",
         ]
 
     ]);

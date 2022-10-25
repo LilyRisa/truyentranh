@@ -26,7 +26,7 @@ class StoryController extends Controller
         if(empty($oneItem)) return Redirect::to(url('/'), 301);
 
 
-        $data['schema'] = getSchemaLogo().getLocalBusiness();
+        $data['schema'] = getSchemaLogo().getLocalBusiness().getSchemaStory($oneItem);
         $data['seo_data'] = initSeoData($oneItem,'story');
         return view('web.story.index', $data);
     }
