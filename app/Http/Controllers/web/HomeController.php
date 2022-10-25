@@ -61,6 +61,8 @@ class HomeController extends Controller
         if($follow){
             $follow = json_decode($follow);
             $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(12)->get();
+        }else{
+            $data['follow'] = Story::with(['categories', 'chapter'])->inRandomOrder()->limit(10)->get();
         }
 
         // lấy truyện chuyên mục H
