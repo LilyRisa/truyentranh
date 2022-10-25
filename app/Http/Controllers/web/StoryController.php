@@ -53,7 +53,7 @@ class StoryController extends Controller
             }
         }
 
-        $data['schema'] = getSchemaLogo().getLocalBusiness();
+        $data['schema'] = getSchemaLogo().getLocalBusiness().getSchemaStory($data['oneItem']->story);
         $data['seo_data'] = initSeoData($oneItem,'chapter');
         return view('web.chapter.index', $data);
     }
