@@ -57,7 +57,7 @@
         </div>
     
     <div class="container mt-3 border-top">
-    <h1 class="text-center text-uppercase text_secondary">{{$oneItem->title}}</h1>
+    <h1 class="text-center mt-2 text-uppercase text_secondary">{{$oneItem->title}}</h1>
     <p class="text-center">{!! $oneItem->description !!}</p>
     <div class="row mt-am-2">
         @if(!empty($story))
