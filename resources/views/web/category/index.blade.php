@@ -36,20 +36,20 @@
                 
                     <div class="fs-18 fw-bold mt-2">Sắp xếp theo</div> 
                     <div class="mt-2"> 
-                        <button class="d-inline btn bg-white border text-secondary"> Chữ cái đầu tiên </button>
-                        <button class="d-inline btn bg-white border ms-2 text-secondary"> Lượt đọc </button>
-                        <button class="d-inline btn bg-white border ms-2 text-secondary"> Đánh giá </button>
-                        <button class="d-inline btn bg-white border ms-2 text-secondary"> Số tập </button>
+                        <button class="d-inline btn bg-white mt-2 border text-secondary"> Chữ cái đầu tiên </button>
+                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Lượt đọc </button>
+                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Đánh giá </button>
+                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Số tập </button>
                     </div>
                 </div>
                 <div class="ms-lg-auto">
                    
                     <div class="fs-18 fw-bold mt-2">Trạng thái</div> 
                     <div class="mt-2">
-                        <button class="d-inline btn bg-white border text-secondary"> Tất cả </button>
-                        <button class="d-inline btn bg-white border ms-2 text-secondary"> Mới cập nhật </button>
-                        <button class="d-inline btn bg-white border ms-2 text-secondary"> Hoàn thành </button>
-                        <button class="d-inline btn bg-white border ms-2 text-secondary"> Đang tiến hành </button>
+                        <button class="d-inline btn bg-white mt-2 border text-secondary"> Tất cả </button>
+                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Mới cập nhật </button>
+                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Hoàn thành </button>
+                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Đang tiến hành </button>
                     
                     </div>
                     </div>
