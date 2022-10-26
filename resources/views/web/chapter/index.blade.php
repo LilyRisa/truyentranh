@@ -56,7 +56,7 @@
         <div class="my-2 d-flex flex-wrap justify-content-center align-items-center">
             <div class="col-12 col-lg-3 d-flex">
                 <span role="button" class="col-4 col-lg-2 mx-2 rounded-pill border border-green2 fw-bold zoom_slow d-flex justify-content-center align-items-center">-</span>
-                <div class="col-5">
+                <div class="col-3">
                     <select id="chapter_zoom" class="form-control text-center">
                         <option value="20">20%</option>
                         <option value="40">40%</option>
