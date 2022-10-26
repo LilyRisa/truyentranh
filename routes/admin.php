@@ -125,7 +125,6 @@ Route::group(['middleware' => ['auth', 'checkPermission']], function () {
     Route::get('/clear-cache', 'HomeController@cache_clear');
     Route::post('/ajax-short-url', 'HomeController@shorturl');
     Route::get('/get_user_now', 'AjaxController@getTrafficNow');
-    Route::get('/get_user_count', 'AjaxController@getTrafficCount');
     // google index 
     Route::get('/google_index','GoogleIndexController@index');
 

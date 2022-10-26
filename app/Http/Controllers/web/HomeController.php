@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Cookie;
 
 class HomeController extends Controller
 {   
@@ -58,13 +59,28 @@ class HomeController extends Controller
         // lấy bài truyện đang theo dõi
 
         $follow = $_COOKIE['story_follow'] ?? null ;
+        $user_view = Cookie::get('story_user_view');
         if($follow){
             $follow = json_decode($follow);
-            $data['follow_status'] = true;
-            $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(12)->get();
+            $data['follow_status'] = 'Truyện bạn đang theo dõi';
+            $data['follow'] = Story::with(['categories', 'chapter'])->whereIn('id', $follow)->orderBy('created_at', 'DESC')->limit(10)->get();
+        }else if($user_view){
+            $user_view = json_decode($user_view);
+            $data['follow_status'] = 'Truyện đã xem';
+            $data['follow'] = [];
+            foreach($user_view as $uv){
+                $data['follow'][] = Story::with(['categories', 'chapter'])->where('id', $uv)->orderBy('created_at', 'DESC')->first();
+            }
         }else{
-            $data['follow_status'] = false;
-            $data['follow'] = Story::with(['categories', 'chapter'])->inRandomOrder()->limit(10)->get();
+            $key = md5('story_user_follow');
+            $data['follow_status'] = 'Truyện có thể bạn quan tâm';
+            if(Cache::has($key)){
+                $data['follow'] = Cache::get($key);
+            }else{
+                $data['follow'] = Story::with(['categories', 'chapter'])->inRandomOrder()->limit(10)->get();
+                Cache::set($key, $data['follow'], now()->addHours(24));
+            }
+            
         }
 
         // lấy truyện chuyên mục H

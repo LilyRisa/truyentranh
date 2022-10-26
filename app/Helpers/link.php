@@ -34,7 +34,7 @@ function getUrlPost($item, $is_amp = false, $exp = false){
     $slug = '';
     if ($amp)
         $slug = "/amp/";
-    $slug .= "$item->slug-p$item->id.html";
+    $slug .= "/tin-tuc/$item->slug.html";
     return url($slug);
 }
 function getUrlCate($item, $is_amp = false, $exp = false){
