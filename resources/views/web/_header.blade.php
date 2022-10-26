@@ -6,7 +6,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="overlay d-flex d-lg-none"> </div>
-            <a href="/" class="text-center mx-auto mx-lg-0"> <img class="top-bar-logo" src="/images/logo.webp" width="60px" height="auto"> </a>
+            <a href="/" class="text-center mx-auto mx-lg-0"> <img class="top-bar-logo" src="/images/logo-home.webp" width="150px" height="auto"> </a>
             @if(!empty($menu_pc))
             
             <div class="navbar-collapse collapse order-lg-2 bg_primary pb-3 pb-lg-0 d-lg-flex w-100 d-lg-block">
