@@ -6,6 +6,7 @@ import './rateit';
 import './toastr';
 import './search';
 import './slider';
+import FUNC from './FUNC';
 
 require('jquery.easing');
 
@@ -320,14 +321,62 @@ const follow_story = () => {
     }
 }
 
+const zoom_chapter = () => {
+
+    let user_px_root = getCookie('user_zoom');
+
+    if(user_px_root){
+        $("#chapter_zoom").val(user_px_root).change();
+        $('.content_chapter').children().attr('style', `max-width: ${user_px_root}%`);
+    }else{
+        user_px_root = 100;
+    }
+
+    $('.zoom_up').on('click', ()=>{
+        if(user_px_root == 100){
+            setCookie('user_zoom',user_px_root, 5);
+            alert('Zoom tối đa!');
+        }else{
+            user_px_root = parseInt(user_px_root) + 20;
+            $("#chapter_zoom").val(user_px_root).change();
+            setCookie('user_zoom',user_px_root, 5);
+            $('.content_chapter').children().attr('style', `max-width: ${user_px_root}%`);
+        }
+    });
+
+    $('.zoom_slow').on('click', ()=>{
+        if(user_px_root == 20){
+            setCookie('user_zoom',user_px_root, 5);
+            alert('Zoom tối thiểu!');
+        }else{
+            user_px_root = parseInt(user_px_root) - 20;
+            $("#chapter_zoom").val(user_px_root).change();
+            setCookie('user_zoom',user_px_root, 5);
+            $('.content_chapter').children().attr('style', `max-width: ${user_px_root}%`);
+        }
+    });
+    
+    $('#chapter_zoom').on('change', function(){
+        let px = $(this).val();
+        user_px_root = parseInt(px);
+        setCookie('user_zoom',px, 5);
+        $('.content_chapter').children().attr('style', `max-width: ${px}%`);
+    });
+}
+
 $(document).ready(function(){
     voteStar();
     ajax_search();
     follow_story();
+    FUNC.init()
     $('.check_search').on('click', function(e){
         e.preventDefault();
         $('.seach-header').focus();
     })
+
+    // zoom chapter 
+    $('.content_chapter').children().addClass('flex-grow-1');
+    zoom_chapter();
 
     // slide
     $('.follow').lightSlider({

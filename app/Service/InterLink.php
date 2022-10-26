@@ -63,7 +63,12 @@ class InterLink{
       
         $content = $this->content;
         $data_internal_link = $this->data_inter_link;
-        if(empty($data_internal_link)) throw new \Exception('empty data Internal link');
+        if(empty($data_internal_link)){
+            $obj = new \stdClass;
+            $obj->content = $content;
+            $obj->statictis = '';
+            return $obj;
+        }
         if(empty($content)) throw new \Exception('empty data content');
         //sort để ưu tiên link có độ dài lơn chèn trước
         usort($data_internal_link, function ($a, $b) {

@@ -39,7 +39,7 @@ function getSchemaLogo(){
         "@context" => "https://schema.org",
         "@type" => "Organization",
         "url" => Request::url()."/",
-        "logo" => 'https://thichdammy.com/images/logo.svg'
+        "logo" => 'https://thichdammy.com/images/logo.png'
     ]);
 
     $schema .= $listItem.'</script>';
@@ -74,7 +74,7 @@ function getSchemaStory($story){
                 "name" => 'Thích Đam Mỹ',
                 "logo" => [
                     "@type" => "ImageObject",
-                    "url" => 'https://thichdammy.com/images/logo.svg',
+                    "url" => 'https://thichdammy.com/images/logo.png',
                     "width" => 600,
                     "height" => 60
                 ]
@@ -116,7 +116,7 @@ function getSchemaArticle($post, $user){
             "name" => 'Thích Đam Mỹ',
             "logo" => [
                 "@type" => "ImageObject",
-                "url" => 'https://thichdammy.com/images/logo.svg',
+                "url" => 'https://thichdammy.com/images/logo.png',
                 "width" => 600,
                 "height" => 60
             ]
@@ -138,7 +138,7 @@ function getLocalBusiness(){
         "@context" => "https://schema.org",
         "@type" => "LocalBusiness",
         "name" => 'Thích Đam Mỹ',
-        "image" => 'https://thichdammy.com/images/logo.svg',
+        "image" => 'https://thichdammy.com/images/logo.png',
         "@id" => "https://thichdammy.com/",
         "url" => "https://thichdammy.com/",
         "telephone" => "0334109351",

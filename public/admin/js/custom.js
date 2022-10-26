@@ -674,18 +674,8 @@ $(function() {
     });
  }
 
- function user_traffic(){
-    $.ajax({
-        url: '/admin/get_user_count',
-        type : 'get'
-    }).done(resp => {
-        $('#user_traffic').text(resp.data);
-    });
- }
-
  setInterval(() => {
     user_traffic_realtime();
-    user_traffic();
  }, 30 * 1000);
 
  $('#delcache_cloudflare').on('click', function(){
