@@ -13,7 +13,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @foreach($menu_pc as $item_menu)
                     @if(!empty($item_menu->children))
-                    <li class="nav-item ms-3 dropdown">
+                    <li class="nav-item mt-2 ms-3 dropdown">
                         <a class="bg_primary border-0 dropdown-toggle nav-link text-uppercase text-nowrap" href="{{$item_menu->url}}"
                             role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             {{$item_menu->name}}
@@ -32,7 +32,7 @@
                         </ul>
                     </li>
                     @else
-                        <li class="nav-item ms-3">
+                        <li class="nav-item mt-2 ms-3">
                             <a class="nav-link {{ !empty($breadCrumb[0]) && ($breadCrumb[0]['item'] == url($item_menu->url)) ? 'active' : '' }} text-nowrap" aria-current="page" href="{{$item_menu->url}}">{{$item_menu->name}}</a>
                         </li>
                     @endif
@@ -56,12 +56,12 @@
                 </div>
                 <div class="navbar-nav">
                     <div class="input-group-text bg_primary border-0 p-0">
-                        <a href="#" class="h-100 text-decoration-none ms-3"><span
+                        <a href="#" class="h-100 text-decoration-none mt-2 ms-3"><span
                                 class="icon-history text-white"></span><span
                                 class="ms-2 text-light mt-1 fs-18">History</span></a>
                     </div>
                     <div class="input-group-text bg_primary border-0 p-0">
-                        <a href="#" class="h-100 text-decoration-none ms-3"><span
+                        <a href="#" class="h-100 text-decoration-none mt-2 ms-3"><span
                                 class="icon-mobile2 text-white"></span><span class="ms-2 text-light mt-1 fs-18">Get
                                 App</span></a>
                         </div>
