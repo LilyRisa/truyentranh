@@ -38,7 +38,7 @@
             <a class="text-decoration-none text-danger ms-2" href="#"><i class="icon-menu1 fs-25"></i></a>
             <a class="text-decoration-none text-danger ms-2" href="#"><i class="icon-spinner11 fs-25"></i></a>
 
-            <a class="btn text-white btn-change-chapter w-5 ms-2 {{!empty($before) ? 'btn-danger' : 'btn-secondary'}}" href="{{!empty($before) ? getUrlChapter($before) : '#' }}" {!! !empty($before) ? '' : 'style="pointer-events: none"' !!}><i class="icon-keyboard_arrow_left fs-25"></i></a>
+            <a class="btn text-white btn-change-chapter w-5 ms-2 {{!empty($before) ? 'btn-danger' : 'btn-secondary'}}"  {!! empty($before) ? 'onclick="alert(\'Đã hết chap\');"' : '' !!}  href="{{!empty($before) ? getUrlChapter($before) : '#' }}" ><i class="icon-keyboard_arrow_left fs-25"></i></a>
             <select class="form-select d-inline w-25 border_secondary pt-1 ms-2" name="" id="" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
                 @foreach ($list as $item)
                     @php
@@ -49,7 +49,7 @@
                     <option value="{{getUrlChapter($item)}}" {{$oneItem->id == $item->id ? 'selected' : ''}}>{{$title_chap}}</option>
                 @endforeach
             </select>
-            <a class="btn text-white btn-change-chapter w-5 ms-2 {{!empty($after) ? 'btn-danger' : 'btn-secondary'}}" href="{{!empty($after) ? getUrlChapter($after) : '#' }}" {!! !empty($after) ? '' : 'style="pointer-events: none"' !!}><i class="icon-keyboard_arrow_right fs-25"></i></a>
+            <a class="btn text-white btn-change-chapter w-5 ms-2 {{!empty($after) ? 'btn-danger' : 'btn-secondary'}}" {!! empty($after) ? 'onclick="alert(\'Đã hết chap\');"' : ''!!} href="{{!empty($after) ? getUrlChapter($after) : '#' }}" ><i class="icon-keyboard_arrow_right fs-25"></i></a>
             <a class="btn btn-success ms-2"> <i class="icon-heart"></i> Theo dõi</a>
         </div>
 

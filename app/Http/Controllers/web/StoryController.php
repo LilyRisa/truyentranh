@@ -43,7 +43,7 @@ class StoryController extends Controller
         foreach($list as $k => $v){
             if($v->id == $oneItem->id){
                 if($k == 0){
-                    $data['after'] = $list[1];
+                    $data['after'] = !empty($list[1]) ? $list[1] : null;
                 }else if($k == (count($list) -1)){
                     $data['before'] = $list[$k - 1];
                 }else{
