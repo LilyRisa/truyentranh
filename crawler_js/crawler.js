@@ -94,8 +94,16 @@ const insert_chapter = async (chapter, id, slug) => {
         let content = dom.window.document.querySelector(".reading-detail").outerHTML;
         // content = content.textContent;
 
+        let slug_origin = chap.split('/');
+        delete slug_origin[0];
+        delete slug_origin[1];
+        delete slug_origin[2];
+        slug_origin = slug_origin.filter(n => n)
+        slug_origin = slug_origin.join('/');
+        // slug_origin = slug_origin[slug_origin.length - 1];
+
         //check chapter dulicate 
-        let [rows, fields] = await CONNECT.execute('select * from chapters where source_origin = ?', [chap]);
+        let [rows, fields] = await CONNECT.execute('select * from chapters where slug_origin = ? or slug_origin = ? or source_origin = ?', [slug_origin, checkslugorigin(slug_origin), chap]);
 
         if(rows.length > 0) {
             console.log('Duplicate url chapter: '+ chap);
@@ -117,7 +125,7 @@ const insert_chapter = async (chapter, id, slug) => {
             
         }else{
             try{
-                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id, slug) values (?,?,?,?,?,?,?,?,?,?,?)', [
+                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id, slug, slug_origin) values (?,?,?,?,?,?,?,?,?,?,?)', [
                     title_other+title,
                     title_other+title,
                     `✔️ Đọc truyện tranh ${title_other+title} Tiếng Việt bản đẹp chất lượng cao, cập nhật nhanh và sớm nhất ${process.env.APP_NAME}`,
@@ -128,7 +136,8 @@ const insert_chapter = async (chapter, id, slug) => {
                     Math.floor(Math.random() * 1000) + 100,
                     moment().format('YYYY-MM-DD HH:mm:ss'),
                     id,
-                    slug
+                    slug,
+                    slug_origin
                 ]);
                 console.log('Tao thanh cong chapter:'+title_other+title);
             }catch(e){
@@ -141,7 +150,7 @@ const insert_chapter = async (chapter, id, slug) => {
 }
 
 const insert_truyen = async (data) => {
-    let [rows, fields] = await CONNECT.execute('select id from story where slug_origin = ?', [checkslugorigin(data.slug_origin)]);
+    let [rows, fields] = await CONNECT.execute('select id from story where slug_origin = ? or slug_origin = ?', [checkslugorigin(data.slug_origin), data.slug_origin]);
     if(rows.length > 0) {
         console.log('Duplicate url: '+ data.title);
         return rows[0].id;
