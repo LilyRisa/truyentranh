@@ -116,6 +116,7 @@ const insert_chapter = async (chapter, id, slug) => {
                     ]);
                     console.log('update thanh cong id: '+rows[0].id);
                 }catch(e){
+                    await writeFile('./log.txt', "\nfunction insert_chapter() :"+e.toString());
                     return 0;
                 }
                 
@@ -142,6 +143,7 @@ const insert_chapter = async (chapter, id, slug) => {
                 console.log('Tao thanh cong chapter:'+title_other+title);
             }catch(e){
                 console.log(e);
+                await writeFile('./log.txt', "\nfunction insert_chapter() :"+e.toString());
                 return 0;
             }
             
@@ -192,6 +194,7 @@ const insert_truyen = async (data) => {
        }catch(e){
         console.log('khong the tạo category\n');
         console.log(e);
+        await writeFile('./log.txt', "\nfunction insert_truyen() :"+e.toString());
        }
        
        return rows[0].id;
@@ -315,7 +318,7 @@ function request (element) {
         responseType: "stream"
       });
     } catch(e) {
-      console.log( 'errore: ' + e)
+        writeFile('./log.txt', "\nfunction request() :"+e.toString());
     }
   }
 
