@@ -108,11 +108,11 @@ const insert_chapter = async (chapter, id, slug) => {
             console.log('Duplicate url chapter: '+ chap);
             if(update_chapter == 'true'){
                 try{
-                    await CONNECT.execute('UPDATE chapters SET content=?, update_origin=?, slug_origin=? where id=?', [
+                    let check = await CONNECT.execute('UPDATE chapters SET content=?, update_origin=?, slug_origin=? where id=?', [
                         content,
                         moment().format('YYYY-MM-DD HH:mm:ss'),
+                        slug_origin,
                         rows[0].id,
-                        slug_origin
                     ]);
                     console.log('update thanh cong id: '+rows[0].id);
                 }catch(e){
