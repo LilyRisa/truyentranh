@@ -118,11 +118,11 @@ const insert_chapter = async (chapter, id, slug) => {
                     ]);
                     console.log('update thanh cong id: '+rows[0].id);
                 }catch(e){
-                    return 0;
+
                 }
                 
             }else{
-                return 0;
+                return 0; // nếu trùng lặp chapter mới nhất thì chapter sau chắc chắc sẽ trùng
             }
             
         }else{
@@ -144,7 +144,6 @@ const insert_chapter = async (chapter, id, slug) => {
                 console.log('Tao thanh cong chapter:'+title_other+title);
             }catch(e){
                 console.log(e);
-                return 0;
             }
             
         }
