@@ -225,9 +225,9 @@ class AjaxController extends Controller
                 $data->is_home = 1;
             }
             $data->save();
-            $cache_post_feature = md5('story_feature-with-category-user-displayed_time-desc');
-            if(Cache::has($cache_post_feature)){
-                Cache::forget($cache_post_feature);
+            $cache_story_feature = md5('story_feature-with-category-user-displayed_time-desc');
+            if(Cache::has($cache_story_feature)){
+                Cache::forget($cache_story_feature);
             }
             return \response()->json(['status' => true, 'mess' => 'Cập nhật thành công truyện có id:'.$id]);
         }catch(\Exception $e){

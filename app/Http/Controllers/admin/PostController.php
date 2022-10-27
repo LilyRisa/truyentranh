@@ -94,7 +94,7 @@ class PostController extends Controller
             if (!empty($post_data['category'])) {
                 $post_category = $post_data['category'];
                 unset($post_data['category']);
-                $post_data['category_primary_id'] = $post_category[0];
+                // $post_data['category_primary_id'] = $post_category[0];
             }
             if (!empty($post_data['optional']))
                 $post_data['optional'] = json_encode($post_data['optional']);

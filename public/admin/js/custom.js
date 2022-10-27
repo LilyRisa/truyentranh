@@ -646,7 +646,14 @@ $(function() {
     }).done(resp => {
         if(resp.status){
             showToastr('success', resp.mess);
-            $(thas).attr('class', 'home_feature_story star_home');
+            let class_name = $(thas).attr('class');
+            if(class_name.includes('star_home')){
+                $(thas).attr('class', 'home_feature_story');
+            }else{
+                $(thas).attr('class', 'home_feature_story star_home');
+            }
+
+            
         }else{
             showToastr('error', resp.mess);
         }
