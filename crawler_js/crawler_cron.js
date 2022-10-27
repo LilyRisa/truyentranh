@@ -125,7 +125,7 @@ const insert_chapter = async (chapter, id, slug) => {
             
         }else{
             try{
-                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id, slug, slug_origin) values (?,?,?,?,?,?,?,?,?,?,?)', [
+                await CONNECT.execute('insert into chapters (title, meta_title, description, meta_description, content, source_origin, created_at, views, update_origin, story_id, slug, slug_origin) values (?,?,?,?,?,?,?,?,?,?,?,?)', [
                     title_other+title,
                     title_other+title,
                     `✔️ Đọc truyện tranh ${title_other+title} Tiếng Việt bản đẹp chất lượng cao, cập nhật nhanh và sớm nhất ${process.env.APP_NAME}`,
