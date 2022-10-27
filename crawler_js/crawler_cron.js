@@ -62,12 +62,11 @@ const get_link_page = async () => {
     await page.goto(link_category);
     const data = await page.evaluate(() => Array.from(document.querySelectorAll('.jtip[href]'), a => a.getAttribute('href')) );
 
-    // for(let item of data){
-        let item = data[0];
+    for(let item of data){
         let { data_truyen, chapter } = await get_link_truyen(item);
         let id_story = await insert_truyen(data_truyen);
         await insert_chapter(chapter, id_story, data_truyen.slug);
-    // }
+    }
     // let { data_truyen, chapter } = await get_link_truyen(data[0]);
     // let id_story = await insert_truyen(data_truyen);
     // await insert_chapter([chapter[0]], id_story);
