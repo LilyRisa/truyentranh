@@ -38,7 +38,7 @@ const args = process.argv;
 
 let link_category = typeof args[2] == 'undefined' ? null : args[2];
 let category_id = typeof args[3] == 'undefined' ? null : args[3];
-let update_chapter = typeof args[4] == 'undefined' ? null : args[3];
+let update_chapter = typeof args[4] == 'undefined' ? null : args[4];
 
 
 
