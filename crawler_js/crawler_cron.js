@@ -332,7 +332,7 @@ function request (element) {
   cron.schedule('0 8 * * *', () => {
     (async () => {
         try{
-            await index_main('https://www.nettruyenin.com/tim-truyen/dam-my', 1, true);
+            await index_main('https://www.nettruyenin.com/tim-truyen/dam-my', 1, false);
             process.exit(0);
         }catch(e){
             await writeFile('./log.txt', e.toString());
