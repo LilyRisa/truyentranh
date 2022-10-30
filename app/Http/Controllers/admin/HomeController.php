@@ -15,39 +15,49 @@ class HomeController extends Controller
 {
     public function index() {
         $data = [];
-        // $data['count_post_dash'] = Cache::remember('count_post_dash', now()->addMonth(1), function () {
-        //     return Post::all()->count();
-        // });
-        // $char_count_post = $this->getCountPostMonth();
-        // $data['cout_post_new'] = $char_count_post[date('m')];
-        // $data['cout_post_old'] = $char_count_post[date('m', strtotime(date('Y-m-d H:i:s').'-1 months'))];
-        // if($data['cout_post_new'] >= $data['cout_post_old']){
-        //     $data['percent_post'] = $this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
-        // }else{
-        //     $data['percent_post'] = -$this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
-        // }
-        // $data['char_count_post'] = [];
-        // foreach($char_count_post as $key => $cc){
-        //     $data['char_count_post'][] = [
-        //         'month' => $key,
-        //         'count' => $cc,
-        //     ];
-        // }
-        // $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults();
+        $data['count_post_dash'] = Cache::remember('count_post_dash', now()->addMonth(1), function () {
+            return Post::all()->count();
+        });
+        $char_count_post = $this->getCountPostMonth();
+        $data['cout_post_new'] = $char_count_post[date('m')];
+        $data['cout_post_old'] = $char_count_post[date('m', strtotime(date('Y-m-d H:i:s').'-1 months'))];
+        if($data['cout_post_new'] >= $data['cout_post_old']){
+            try{
+                $data['percent_post'] = $this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
+            }catch(\Exception $e){
+                $data['percent_post'] = 100;
+            }
+            
+        }else{
+            try{
+                $data['percent_post'] = -$this->round_up(($data['cout_post_new'] / $data['cout_post_old']) * 100, 2);
+            }catch(\Exception $e){
+                $data['percent_post'] = 100;
+            }
+        }
+        $data['char_count_post'] = [];
+        foreach($char_count_post as $key => $cc){
+            $data['char_count_post'][] = [
+                'month' => $key,
+                'count' => $cc,
+            ];
+        }
+        // $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults(); // cái này dùng universal GA cũ sẽ hết hạn vào tháng 7 2023
+        // dd($user_traffic);
         // $user_traffic = !empty($user_traffic->rows) ? $user_traffic->rows[0][0] : 0;
 
         // $data['user_traffic'] = $user_traffic;
 
-        // $realtime = GoogleApi::init()->addScope('analytics')->getRealtimeUser();
-        // $data['realtime'] = [];
-        // if(!empty($realtime->rows)){
-        //     foreach($realtime->rows as $d){
-        //         $data['realtime'][] = [
-        //             'country' => $d->dimensionValues[0]->value,
-        //              'count' => $d->metricValues[0]->value,
-        //         ];
-        //     }
-        // }
+        $realtime = GoogleApi::init()->addScope('analytics')->getRealtimeUser();
+        $data['realtime'] = [];
+        if(!empty($realtime->rows)){
+            foreach($realtime->rows as $d){
+                $data['realtime'][] = [
+                    'country' => $d->dimensionValues[0]->value,
+                     'count' => $d->metricValues[0]->value,
+                ];
+            }
+        }
         
 
         // $hehe = GoogleApi::init()->addScope('analytics')->getRealtimeUser();

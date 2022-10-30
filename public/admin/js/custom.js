@@ -646,7 +646,14 @@ $(function() {
     }).done(resp => {
         if(resp.status){
             showToastr('success', resp.mess);
-            $(thas).attr('class', 'home_feature_story star_home');
+            let class_name = $(thas).attr('class');
+            if(class_name.includes('star_home')){
+                $(thas).attr('class', 'home_feature_story');
+            }else{
+                $(thas).attr('class', 'home_feature_story star_home');
+            }
+
+            
         }else{
             showToastr('error', resp.mess);
         }
@@ -674,18 +681,8 @@ $(function() {
     });
  }
 
- function user_traffic(){
-    $.ajax({
-        url: '/admin/get_user_count',
-        type : 'get'
-    }).done(resp => {
-        $('#user_traffic').text(resp.data);
-    });
- }
-
  setInterval(() => {
     user_traffic_realtime();
-    user_traffic();
  }, 30 * 1000);
 
  $('#delcache_cloudflare').on('click', function(){

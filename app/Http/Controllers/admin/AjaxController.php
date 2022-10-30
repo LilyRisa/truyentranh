@@ -225,9 +225,9 @@ class AjaxController extends Controller
                 $data->is_home = 1;
             }
             $data->save();
-            $cache_post_feature = md5('story_feature-with-category-user-displayed_time-desc');
-            if(Cache::has($cache_post_feature)){
-                Cache::forget($cache_post_feature);
+            $cache_story_feature = md5('story_feature-with-category-user-displayed_time-desc');
+            if(Cache::has($cache_story_feature)){
+                Cache::forget($cache_story_feature);
             }
             return \response()->json(['status' => true, 'mess' => 'Cập nhật thành công truyện có id:'.$id]);
         }catch(\Exception $e){
@@ -248,15 +248,6 @@ class AjaxController extends Controller
         }
         
         return \response()->json($data_result);
-    }
-
-    public function getTrafficCount(){
-        $user_traffic = GoogleApi::init()->addScope('analytics')->initializeAnalytics()->getFirstProfileId()->getResults();
-        $user_traffic = !empty($user_traffic->rows) ? $user_traffic->rows[0][0] : 0;
-
-        return \response()->json([
-            'data' => $user_traffic
-        ]);
     }
 
     public function RemoveCacheCloudflare(){

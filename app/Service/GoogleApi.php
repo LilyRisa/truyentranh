@@ -31,8 +31,8 @@ class GoogleApi {
     private function __construct(){
         $this->client = new Client();
         $this->client2 = new Client();
-        $this->client->setAuthConfig(base_path().'/groovy-medium-325709-557003476d90.json');
-        $this->client2->setAuthConfig(base_path().'/groovy-medium-325709-557003476d90.json');
+        $this->client->setAuthConfig(base_path().'/psyched-garage-366617-9895d0da07f1.json');
+        $this->client2->setAuthConfig(base_path().'/psyched-garage-366617-9895d0da07f1.json');
         
     }
     public function addScope($scope = 'index'){
@@ -41,13 +41,9 @@ class GoogleApi {
         $this->client2->addScope($this->_scope[$scope]);
         return $this;
     }
-    private function add_site($site = 'https://forextradingvn.top/'){
-        $response = $this->client->put('https://www.googleapis.com/webmasters/v3/sites/'.urlencode($site));
-        return $response;
-    }
 
     public function initializeAnalytics(){
-        $this->client2->setApplicationName("forextradingvn.top");
+        $this->client2->setApplicationName("thichdammy");
         $this->analytics = new \Google_Service_Analytics($this->client2);
         return $this;
     }
@@ -58,7 +54,7 @@ class GoogleApi {
             'metrics' => [['name' => 'activeUsers']],
         ]);
         $this->client2 = $this->client2->authorize();
-        $data = $this->client2->post('https://analyticsdata.googleapis.com/v1beta/properties/333983151:runRealtimeReport', ['body' => $option]);
+        $data = $this->client2->post('https://analyticsdata.googleapis.com/v1beta/properties/338910691:runRealtimeReport', ['body' => $option]);
         $body = $data->getBody()->getContents();
         
         return json_decode($body);
@@ -88,7 +84,6 @@ class GoogleApi {
       
             if (count($profiles->getItems()) > 0) {
               $items = $profiles->getItems();
-      
               // Return the first view (profile) ID.
               $this->profileID = $items[0]->getId();
               return $this;
@@ -117,39 +112,6 @@ class GoogleApi {
              'ga:sessions');
       }
 
-    public function getSearch($StartDate, $EndDate, $site = 'https://forextradingvn.top/'){
-        $data = [
-            'startDate' => date('Y-m-d', strtotime($StartDate)),
-            'endDate' => date('Y-m-d', strtotime($EndDate)),
-            // 'dimensions' => ['DATE']
-        ];
-        try{
-            $response = $this->client->post('https://www.googleapis.com/webmasters/v3/sites/'.urlencode($site).'/searchAnalytics/query', ['form_params' => $data]);
-            $status = $response->getStatusCode();
-            $body = $response->getBody()->getContents();
-            if($status !== 200) return false;
-            return $body;
-        }
-        catch(\Exception $e ) {
-            return ['status'=> false, 'notify' => $e->getMessage()];
-        } 
-    }
-
-    public function getSearch2($StartDate, $EndDate, $site = 'https://forextradingvn.top/do-kwon-bi-interpol-truy-na-do-tren-toan-cau-p91.html'){
-        $this->add_site($site);
-        $q = new \Google_Service_Webmasters_SearchAnalyticsQueryRequest();
-        $q->setStartDate(date('Y-m-d', strtotime($StartDate)));
-        $q->setEndDate(date('Y-m-d', strtotime($EndDate)));
-        $q->setDimensions(['SEARCH_APPEARANCE']);
-        try{
-            $service = new \Google_Service_Webmasters($this->client2);
-            $u = $service->searchanalytics->query($site, $q);
-            return $u;
-        }
-        catch(\Exception $e ) {
-            return ['status'=> false, 'notify' => $e->getMessage()];
-        } 
-    }
 
     public static function init(){
         if(empty(self::$_instance)){

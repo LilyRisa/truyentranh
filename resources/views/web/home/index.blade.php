@@ -68,12 +68,14 @@
                             <div class="card p-0 ml-2">
                                 {!! genImage($vh->thumbnail, 225, 330, 'img-fluid', $vh->title) !!}
                                 <div class="card-body dark-linear position-absolute fixed-bottom">
-                                    <a href="{{getUrlStory($vh)}}" class="d-block p-0 m-0 text-white border-bottom fw-bold" title="{{$vh->title}}">{{$vh->title}}</a>
+                                    <a href="{{getUrlStory($vh)}}" class="d-none d-lg-block p-0 m-0 text-white border-bottom fw-bold" title="{{$vh->title}}">{{$vh->title}}</a>
                                     <a href="{{getUrlCate($vh->categories[0])}}" class="d-block p-0 m-0 text-info" title="{{$vh->categories[0]->title}}">{{$vh->categories[0]->title}}</a>
-                                    <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pt-1 pe-1"></i> Lượt xem: {{$vh->view_count}}</p>
+                                    <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i class="icon-eye pe-1"></i> Lượt xem: {{$vh->view_count}}</p>
                                 </div>
                             </div>
                         </div>
+
+
                         @endforeach
                     @endif
                 </div>
@@ -104,7 +106,7 @@
                             
                             <div class="col-3">{!! genImage($v->thumbnail, 225, 330, 'img-fluid ps-2 w-100', $v->title) !!}</div>
                             <div class="col-8">
-                                <a href="{{getUrlStory($v)}}" title="{{$v->title}}" class="d-block m-0 p-0 ps-2">{{$v->title}}</a>
+                                <a href="{{getUrlStory($v)}}" title="{{$v->title}}" class="d-block m-0 p-0 ps-2 max-line-2">{{$v->title}}</a>
                                 <div class="col-9 fs-12 ps-2 text-grey1">{{$v->author}}</div>
                                 <div class="row mt-1 ms-0">
 
@@ -140,7 +142,7 @@
                 @foreach ($story_feature as $ft)
                     <div class="col-lg-2 col-6">
                         <div class="card">
-                            {!! genImage($ft->thumbnail, 200, 200,'card-img-top rounded-circle w-100 h-100 p-0 img-fluid px-2', $ft->title) !!}
+                            {!! genImage($ft->thumbnail, 200, 200,'card-img-top mt-2 rounded-circle w-100 h-100 p-0 img-fluid px-2', $ft->title) !!}
                             <div class="card-body justify-content-center">
                                 <h5 class="card-title text-center">{{ $ft->title }}</h5>
                                 <div class="w-100 d-flex justify-content-center">
@@ -204,7 +206,7 @@
 
                 @if(!empty($follow))
                 <div class="slide">
-                    <h3 class="fs-22 text-uppercase fw-bold">Truyện {{$follow_status ? '' : 'có thể'}} bạn quan tâm</h3>
+                    <h3 class="fs-22 text-uppercase fw-bold">{{$follow_status}}</h3>
                     <ul class="follow">
                         @foreach ($follow as $fl)
                             @php

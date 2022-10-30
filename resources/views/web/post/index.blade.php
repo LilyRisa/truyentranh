@@ -49,6 +49,8 @@
 
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda optio animi, ipsum reprehenderit minima dolorum est at hic distinctio eaque ad id porro asperiores ut eveniet totam corrupti impedit sapiente?
 
+    <div class="content" id="table-of-content">
+        {!! replaceSrcImg($oneItem->content) !!}
     </div>
 
     <div class="col-lg-4 col-12">

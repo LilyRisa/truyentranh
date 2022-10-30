@@ -6,6 +6,7 @@ import './rateit';
 import './toastr';
 import './search';
 import './slider';
+import FUNC from './FUNC';
 
 require('jquery.easing');
 
@@ -367,6 +368,7 @@ $(document).ready(function(){
     voteStar();
     ajax_search();
     follow_story();
+    FUNC.init()
     $('.check_search').on('click', function(e){
         e.preventDefault();
         $('.seach-header').focus();

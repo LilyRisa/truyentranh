@@ -38772,6 +38772,131 @@ module.exports = function(module) {
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ "./resources/js/FUNC.js":
+/*!******************************!*\
+  !*** ./resources/js/FUNC.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
+var FUNC = {
+  ajax_load_more: function ajax_load_more() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '.load-more', function (e) {
+      e.preventDefault(); // let page = $(this).attr('data-page');
+
+      var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('url');
+      var category_id = typeof jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('category') === 'undefined' ? '' : jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('category') + '/';
+      var page = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('data-page');
+      console.log(page);
+      page = parseInt(page) + 1;
+      var that = this; // if (page == null) page = 2;
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+        type: 'get',
+        url: '/' + url + '/' + category_id + page,
+        dataType: 'html',
+        data: {
+          page: page
+        },
+        success: function success(res) {
+          var selector_show_content = '#ajax_content';
+
+          if (res != null && res != '') {
+            console.log('true'); // page = page+1;
+
+            console.log(page); // let resultFind = $(res).find('#ajax_content').html();
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(selector_show_content).append(res);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(that).attr('data-page', page);
+          } else {
+            console.log('false');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(selector_show_content).append("<p class=\"text-center\" id=\"empty_data\" style=\"display: none\">H\u1EBFt d\u1EEF li\u1EC7u</p>");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#empty_data').show().fadeOut();
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#empty_data').hide();
+            }, 3000);
+          }
+        }
+      });
+    });
+  },
+  init: function init() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+      FUNC.ajax_load_more();
+      FUNC.post_table();
+      FUNC.contact();
+    });
+  },
+  post_table: function post_table() {
+    var container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#table-of-content");
+
+    if (container.length > 0) {
+      var header = container.find(':header:not(h1,h4,h5,h6,h3.title-related)');
+
+      if (header.length > 0) {
+        var trick = '<div class="bg-grey32 p-3 my-2 muc-luc"> <h4 class="text-red1 text-uppercase fs-18 fw-normal">Nội dung chính </h4> <ul class="nav flex-column">';
+        jquery__WEBPACK_IMPORTED_MODULE_0___default.a.each(header, function (k, i) {
+          var id = 'trick' + k;
+          var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(i).text();
+
+          if (title !== '') {
+            var patt = new RegExp('\\d*\\.\\s', 'mi');
+            title.replace(patt, '');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(i).attr('id', id);
+            trick += '<li class="item-muc-luc"><a href="#' + id + '" rel="nofollow" class="text-news-link font-9375rem">' + title + '</a></li>';
+          }
+        });
+        trick += '</ul></div>';
+        container.prepend(trick);
+      }
+    }
+
+    container.on('click', 'a', function () {
+      var hash = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('href');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').animate({
+        scrollTop: jquery__WEBPACK_IMPORTED_MODULE_0___default()(hash).offset().top
+      }, 1500, 'swing');
+    });
+  },
+  contact: function contact() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#contact-form').on('submit', function (e) {
+      e.preventDefault();
+      var $input = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#contact-form :input');
+      var $textarea = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#contact-form textarea');
+      var values = {};
+      $input.each(function () {
+        values[this.name] = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      });
+      $textarea.each(function () {
+        values[this.name] = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      });
+      console.log(values);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+        url: "/contact-form",
+        type: 'post',
+        data: values
+      }).done(function (resp) {
+        // alert(resp);
+        console.log(resp);
+      }).fail(function (e) {
+        alert('Lỗi hệ thống!');
+      });
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (FUNC);
+
+/***/ }),
+
+>>>>>>> 9d85e53ba85fe2a6740243b1d54d93b9f9c3090c
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -38790,6 +38915,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_search__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./slider */ "./resources/js/slider.js");
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_slider__WEBPACK_IMPORTED_MODULE_5__);
+<<<<<<< HEAD
+=======
+/* harmony import */ var _FUNC__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FUNC */ "./resources/js/FUNC.js");
+>>>>>>> 9d85e53ba85fe2a6740243b1d54d93b9f9c3090c
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -38804,6 +38933,10 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d85e53ba85fe2a6740243b1d54d93b9f9c3090c
 __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'jquery.easing'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 var mainNavigation = document.querySelector(".main-navigation");
@@ -39178,6 +39311,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   voteStar();
   ajax_search();
   follow_story();
+<<<<<<< HEAD
+=======
+  _FUNC__WEBPACK_IMPORTED_MODULE_6__["default"].init();
+>>>>>>> 9d85e53ba85fe2a6740243b1d54d93b9f9c3090c
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.check_search').on('click', function (e) {
     e.preventDefault();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.seach-header').focus();
@@ -42580,14 +42717,15 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 /***/ }),
 
 /***/ 0:
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/rateit.js ./resources/js/search.js ./resources/js/slider.js ./resources/js/toastr.js ./resources/css/main.scss ***!
-  \*********************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/FUNC.js ./resources/js/rateit.js ./resources/js/search.js ./resources/js/slider.js ./resources/js/toastr.js ./resources/css/main.scss ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
+__webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\FUNC.js */"./resources/js/FUNC.js");
 __webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\rateit.js */"./resources/js/rateit.js");
 __webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\search.js */"./resources/js/search.js");
 __webpack_require__(/*! C:\xampp\htdocs\work\xemhentai\resources\js\slider.js */"./resources/js/slider.js");
