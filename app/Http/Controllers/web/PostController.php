@@ -36,7 +36,6 @@ class PostController extends Controller
             if(empty($permission['post']['index']))
                 return Redirect::to(url('/'), 301);
         }
-        // dd($oneItem);
 
         if(empty($oneItem)){
             return Redirect::to(url('/'), 301);

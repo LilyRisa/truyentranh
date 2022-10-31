@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Story;
 use App\Models\Story_category;
 use App\Models\Category;
+use App\Models\Post;
+use App\Models\Post_Category;
 use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
@@ -31,6 +33,10 @@ class CategoryController extends Controller
             'chapter' => true,
         ];
 
+        if($oneItem->category_post == 1){
+            unset($params['capter']);
+        }
+
         if(isset($_GET['title'])){
             $params['title'] = $_GET['title'];
             $data['search_title'] = $_GET['title'];
@@ -44,19 +50,45 @@ class CategoryController extends Controller
             $params['status'] = $_GET['status'];
         }
 
-        $count = Story::getCount($params);
-        if($count <= $limit) $data['loadmore'] = false;
-        $count = Story::getCount($params);
-        $pagination = (int) ceil($count/$limit);
-        $data['pagination'] = $pagination;
-        $data['page'] = $page;
+        if($oneItem->category_post == 1){
+            $count = Post::getCount($params);
+            if($count <= $limit) $data['loadmore'] = false;
+            $count = Post::getCount($params);
+            $pagination = (int) ceil($count/$limit);
+            $data['pagination'] = $pagination;
+            $data['page'] = $page;
 
-        $data['story'] = Story::getStorys($params);
+            $data['posts'] = Post::getPosts($params);
 
-        // dd($data);
-        // category
+            $data['listCategory'] = Category::where('category_post', 1)->get();
 
-        $data['listCategory'] = Category::all();
+        }else{
+            $count = Story::getCount($params);
+            if($count <= $limit) $data['loadmore'] = false;
+            $count = Story::getCount($params);
+            $pagination = (int) ceil($count/$limit);
+            $data['pagination'] = $pagination;
+            $data['page'] = $page;
+
+            $data['story'] = Story::getStorys($params);
+
+            $data['listCategory'] = Category::where('category_post', 0)->get();
+        }   
+
+        $breadCrumb = [];
+        $breadCrumb[] = [
+            'name' => $oneItem->title,
+            'item' => getUrlCate($oneItem),
+            'schema' => true,
+            'show' => true
+        ];
+
+        $data['breadCrumb'] = $breadCrumb;
+        
+
+        if($oneItem->category_post == 1){
+            return view('web.category.blog', $data);
+        }
         
         return view('web.category.index', $data);
     }

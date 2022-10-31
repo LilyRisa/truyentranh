@@ -39,7 +39,7 @@ class CategoryController extends Controller
             // dd($post_data['parent_id']);
             if($post_data['parent_id'] == 0) unset($post_data['parent_id']);
             Category::updateOrInsert(['id' => $id], $post_data);
-            return Redirect::to('/admin/category');
+            return Redirect::to('/admin/category?category_post='.$post_data['category_post']);
         }
         return view('admin.category.update', $data);
     }
