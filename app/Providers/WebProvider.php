@@ -28,7 +28,7 @@ class WebProvider extends ServiceProvider
             'App\Http\ViewComposers\Web\SidebarComposer'
         );
         view()->composer(
-            ['web.block._layout','web.block._menu', 'web.block._canvas_menu','web.block._sidebar'],
+            ['web.block._layout','web.block._footer','web.block._menu', 'web.block._canvas_menu','web.block._sidebar'],
             'App\Http\ViewComposers\Web\LayoutComposer'
         );
         view()->composer(
