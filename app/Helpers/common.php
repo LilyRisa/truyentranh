@@ -733,6 +733,7 @@ function replaceSrcImg($html){
             $new_src_url = 'https://thichdammy.com'.$old_src;
         }
         $tag->setAttribute('src', $new_src_url);
+        $tag->setAttribute('class', 'img-fluid');
         $tag->setAttribute('data-src', $old_src);
     }
     return $dom->saveHTML();

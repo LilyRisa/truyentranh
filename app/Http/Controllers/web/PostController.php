@@ -127,7 +127,6 @@ class PostController extends Controller
             Cache::set($cache_post_more, $data['more_post']);
         }
         
-
         if($is_amp) return view('web.post.amp-index', $data);
 
         return view('web.post.index', $data);

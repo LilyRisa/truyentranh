@@ -39,7 +39,7 @@ $count_vote = $vote->count_vote;
         <label class="checked" title="text"></label>
         <label title="text"></label>
       </div>
-    <span class="d-block danhgia font-13">
+    <span class="{{ isset($d_inline) && $d_inline == true ? 'd-inline' : 'd-block'}} danhgia font-13">
         <span class="avg-rate">{{round($avg, 1)}}</span> /<span>5</span> của
         <span class="count-rate">{{ $count_vote }}</span> đánh giá</span>
     </span>

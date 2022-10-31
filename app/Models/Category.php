@@ -18,13 +18,13 @@ class Category extends Model
         $this->table = 'category';
     }
 
-    static function getTree(){
+    static function getTree($post= 0){
         $key_cache = 'category__getTree';
 
         if(Cache::has($key_cache)){
             return Cache::get($key_cache);
         }
-        self::_getTree();
+        self::_getTree($post);
         Cache::set('category__getTree', self::$_tree , now()->addHours(12));
         return self::$_tree;
     }
@@ -36,8 +36,8 @@ class Category extends Model
         return $this->belongsToMany(Story::class, 'story_category', 'category_id', 'story_id');
     }
 
-    private static function _getTree($parent_id = null, $prefix_title = ''){
-        $listChild = parent::where('parent_id', $parent_id)->get();
+    private static function _getTree($post, $parent_id = null, $prefix_title = '' ){
+        $listChild = parent::where('parent_id', $parent_id)->where('category_post', $post)->get();
         if (!empty($listChild)) foreach ($listChild as $item) {
             self::$_tree[$item->id] = [
                 'id' => $item->id,

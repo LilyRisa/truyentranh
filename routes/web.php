@@ -36,6 +36,10 @@ Route::post('/story/ajax_rate','StoryController@ajax_rate')->name('rating_story'
 Route::get('/amp/{slug}-c{id}', 'CategoryController@ampIndex')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
 Route::get('/amp/{slug}-c{id}/{page}', 'CategoryController@ampIndex')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+','page' => '[0-9]+']);
 
+/*Category story*/
+Route::get('/amp/tin-tuc/{slug}-c{id}', 'PostController@ampIndex')->where(['slug' => '[\s\S]+']);
+Route::get('/tin-tuc/{slug}', 'PostController@index')->where(['slug' => '[\s\S]+']);
+
 Route::get('/{slug}-c{id}', 'CategoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+']);
 Route::get('/{slug}-c{id}/{page}', 'CategoryController@index')->where(['slug' => '[\s\S]+', 'id' => '[0-9]+','page' => '[0-9]+']);
 

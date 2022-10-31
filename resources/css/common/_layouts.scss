@@ -9,6 +9,10 @@ body{
 }
 a{
     text-decoration: none !important;
+    color: #cf8da2;
+    &:hover{
+        color: #fdb0c8;
+    }
 }
 
 .bg_secondary{
