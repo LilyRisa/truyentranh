@@ -25,7 +25,7 @@
                 Quản lý Chuyên mục
             </a>
             <ul class="c-sidebar-nav-dropdown-items">
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/category"><span class="c-sidebar-nav-icon"></span> Danh sách</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/category?category_post=0"><span class="c-sidebar-nav-icon"></span> Danh sách</a></li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/category/update"><span class="c-sidebar-nav-icon"></span> Thêm mới</a></li>
 {{--                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/category/author"><span class="c-sidebar-nav-icon"></span> Tác giả chuyên mục</a></li>--}}
             </ul>

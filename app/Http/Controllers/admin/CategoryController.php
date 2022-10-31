@@ -17,10 +17,15 @@ class CategoryController extends Controller
     }
 
     public function index() {
-        $listItem = Category::all();
+        $data['category_post'] = $category_post = $_GET['category_post'];
+        $listItem = Category::where('category_post', $category_post)->get();
         foreach ($listItem as $key => $item) {
-            $listItem[$key]->count_post = Post_Category::where('category_id', $item->id)->count();
-            $listItem[$key]->count_story = Story_category::where('category_id', $item->id)->count();
+            if($category_post == 1){
+                $listItem[$key]->count_post = Post_Category::where('category_id', $item->id)->count();
+            }else{
+                $listItem[$key]->count_story = Story_category::where('category_id', $item->id)->count();
+            }
+            
         }
         $data['listItem'] = $listItem;
         return view('admin.category.index', $data);

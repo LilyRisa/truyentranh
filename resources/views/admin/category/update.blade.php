@@ -87,7 +87,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-sm-12">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Chuyên mục cha</label>
                                                         <select class="form-control" name="parent_id">
@@ -105,6 +105,15 @@
                                                                 <option {{isset($oneItem->is_index) && $oneItem->is_index == 0 ? 'selected' : ''}} value="0">Noindex, nofollow</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Loại chuyên mục</label>
+                                                        <select class="form-control" name="category_post">
+                                                            <option value="0">Chuyên mục truyện</option>
+                                                            <option value="1">Chuyên mục bài viết</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
