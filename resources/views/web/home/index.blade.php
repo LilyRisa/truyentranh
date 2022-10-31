@@ -320,20 +320,22 @@
 
                 <div class="ms-2 mt-4 d-flex">
                     <p class="fs-22 text-uppercase">
-                        truyện theo chủ đề
+                        Danh sách chuyên mục
                     </p>
                     <div class="ms-auto pe-0">
                     
                     </div>
                 </div>
                 <div class="row">
-                @for($i=0;$i<4;$i++)
-                <div class=" col-lg-12 col-6 w-100 ms-2 mt-2 max-100">
-                    <a href="#" class="">
-                        <img src="img/category1.jpg" alt="" class="img-fluid w-100 max-100">
-                    </a>
-                </div>
-                @endfor
+                    <div class="widget">
+                        <div class="widget-content">
+                            <ul class="list px-0">
+                                @foreach($category as $value)
+                                <li {{ strpos($value['title'], '---') === false ? '' : 'class=ps-4' }}><a href="{{ getUrlCate((object) $value) }}">{!! str_replace('---', "<span class='mx-2'></span>", $value['title']) !!}</a><span>({{$value['count_post'] == 0 ? $value['count_story'] : $value['count_post']}})</span> <span class="ms-4">{{$value['category_post'] == 1 ? 'Tin tức' : 'Truyện'}}</span></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
             </div>
                 
             </div>

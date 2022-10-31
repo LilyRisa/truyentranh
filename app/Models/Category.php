@@ -18,14 +18,14 @@ class Category extends Model
         $this->table = 'category';
     }
 
-    static function getTree($post= 0){
-        $key_cache = 'category__getTree';
+    static function getTree($post = 0){
+        $key_cache = 'category__getTree'.$post;
 
         if(Cache::has($key_cache)){
             return Cache::get($key_cache);
         }
-        self::_getTree($post);
-        Cache::set('category__getTree', self::$_tree , now()->addHours(12));
+        self::_getTree($post, null, '');
+        Cache::set($key_cache, self::$_tree , now()->addHours(12));
         return self::$_tree;
     }
     public function post(){
@@ -44,9 +44,11 @@ class Category extends Model
                 'title' => $prefix_title.$item->title,
                 'parent_id' => $item->parent_id,
                 'slug' => $item->slug,
-                'count' => self::CountPostchildren($item->id),
+                'count_post' => self::CountPostchildren($item->id),
+                'count_story' => self::CountStorychildren($item->id),
+                'category_post' => $item->category_post,
             ];
-            self::_getTree($item->id, $prefix_title.'---');
+            self::_getTree($item->category_post, $item->id, $prefix_title.'---');
         }
     }
 
@@ -63,6 +65,21 @@ class Category extends Model
         })->get()->count();
 
         return $countPost;
+    }
+
+    public static function CountStorychildren($id){
+        $countStory = 0;
+        $listCateChild = self::ChildRecursive($id);
+        $list_id_category = [];
+
+        foreach($listCateChild as $item){
+            $list_id_category[] = $item->id;
+        }
+        $countStory = Story::whereHas('Categories', function($query) use ($list_id_category){
+            $query->whereIn('story_category.category_id', $list_id_category);
+        })->get()->count();
+
+        return $countStory;
     }
 
     public static function listItemChild($id,...$select){

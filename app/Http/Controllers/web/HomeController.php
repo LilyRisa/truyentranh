@@ -15,6 +15,18 @@ class HomeController extends Controller
     public function index()
     {
 
+        //list tất cả category
+        $key = md5('home_category_list');
+        if(Cache::has($key)){
+            $data['category'] = Cache::get($key);
+        }else{
+            $cate = Category::getTree(0);
+            $cate2 = Category::getTree(1);
+            
+            $data['category'] = array_merge($cate, $cate2);
+            Cache::set($key, $data['category'], now()->addHours(24));
+        }
+
         $key = md5('home_new');
         if(Cache::has($key)){
             $data['new'] = Cache::get($key);
