@@ -101,7 +101,7 @@ class HomeController extends Controller
             $data['category_h'] = Cache::get($key);
         }else{
             $data['category_h'] = Category::with(['story' => function($query){
-                $query->orderBy('created_at', 'DESC')->limit(8);
+                $query->orderBy('created_at', 'DESC')->limit(16);
             }])->where('id', 19)->first();
             $data['category_h'] = $data['category_h']->story;
             Cache::set($key, $data['category_h'], now()->addHours(24));

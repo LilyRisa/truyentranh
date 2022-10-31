@@ -51,6 +51,7 @@
 
         
     <div class="col-12 container position-relative">
+        <div class="show-more-height text">
         <ul class="list-unstyled row">
             @if(!empty($oneItem->chapter))
                 @foreach($oneItem->chapter as $chapter)
@@ -67,6 +68,12 @@
                 @endforeach
             @endif
         </ul>
+        </div>
+        <nav class="mt-2">
+            <ul class="pagination justify-content-center post"> 
+               <button class="category-badge active show-more-chapter cursor-pointer" aria-current="page" data-url="load-more-posts">Xem thêm</button> 
+            </ul>
+         </nav>
         </div>
         
     </div>

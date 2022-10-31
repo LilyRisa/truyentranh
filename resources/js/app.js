@@ -403,7 +403,16 @@ $(document).ready(function(){
             }
         ]
     });  
+    $('.show-more-chapter').on('click', function(e){
+        e.preventDefault();
+        if($(".text").hasClass("show-more-height")) {
+            $(this).text("(Show Less)");
+        } else {
+            $(this).text("(Show More)");
+        }
 
+        $(".text").toggleClass("show-more-height");
+    });
     $('.follow-story').on('click', function(e){
         e.preventDefault();
 
@@ -440,5 +449,7 @@ $(document).ready(function(){
         
     })
 });
+
+
 
 

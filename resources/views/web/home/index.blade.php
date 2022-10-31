@@ -144,7 +144,7 @@
                         <div class="card">
                             {!! genImage($ft->thumbnail, 200, 200,'card-img-top mt-2 rounded-circle w-100 h-100 p-0 img-fluid px-2', $ft->title) !!}
                             <div class="card-body justify-content-center">
-                                <h5 class="card-title text-center">{{ $ft->title }}</h5>
+                                <h5 class="card-title text-center max-line-2">{{ $ft->title }}</h5>
                                 <div class="w-100 d-flex justify-content-center">
                                     <a href="{{getUrlStory($ft)}}" class="btn btn-secondary">Đọc truyện</a>
                                 </div>
