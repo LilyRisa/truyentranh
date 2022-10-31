@@ -57,7 +57,7 @@ class PostController extends Controller
         }
         // dd($condition);
         #
-        $data['categoryTree'] = Category::getTree();
+        $data['categoryTree'] = Category::getTree(1);
         $data['listUser'] = User::where('status', 1)->get();
         #
         $listItem = Post::with('category')->where($condition)->orderBy('displayed_time', 'DESC')->offset(($page-1)*$limit)->limit($limit)->get();
@@ -73,9 +73,9 @@ class PostController extends Controller
 
     public function update($id = 0) {
         $data['url_referer'] = Request::server('HTTP_REFERER') ?? '/admin/post?status=1';
-        $data['categoryTree'] = Category::getTree();
+        $data['categoryTree'] = Category::getTree(1);
         $data['user_id'] = Auth::id();
-        $data['group_id'] = Auth::user()->group_id;
+        $data['level_id'] = Auth::user()->level_id;
 
         if ($id > 0) {
             $data['oneItem'] = $oneItem = Post::findOrFail($id);

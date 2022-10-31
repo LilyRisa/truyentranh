@@ -32,7 +32,9 @@ class CategoryController extends Controller
     }
 
     public function update($id = 0) {
-        $data['categoryTree'] = Category::getTree();
+        $cate_story = Category::getTree(0);
+        $cate_post = Category::getTree(0);
+        $data['categoryTree'] = array_merge($cate_story, $cate_post);
         if ($id > 0) $data['oneItem'] = $oneItem = Category::findOrFail($id);
         if (!empty(Request::post())) {
             $post_data = Request::post();
