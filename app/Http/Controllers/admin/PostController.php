@@ -75,7 +75,7 @@ class PostController extends Controller
         $data['url_referer'] = Request::server('HTTP_REFERER') ?? '/admin/post?status=1';
         $data['categoryTree'] = Category::getTree();
         $data['user_id'] = Auth::id();
-        $data['level_id'] = Auth::user()->level_id;
+        $data['group_id'] = Auth::user()->group_id;
 
         if ($id > 0) {
             $data['oneItem'] = $oneItem = Post::findOrFail($id);
@@ -94,7 +94,7 @@ class PostController extends Controller
             if (!empty($post_data['category'])) {
                 $post_category = $post_data['category'];
                 unset($post_data['category']);
-                // $post_data['category_primary_id'] = $post_category[0];
+                $post_data['category_primary_id'] = $post_category[0];
             }
             if (!empty($post_data['optional']))
                 $post_data['optional'] = json_encode($post_data['optional']);
