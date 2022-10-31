@@ -26,7 +26,8 @@ class Category extends Model
         }
         self::_getTree($post, null, '');
         Cache::set($key_cache, self::$_tree , now()->addHours(12));
-        return self::$_tree;
+        self::$_tree = [];
+        return Cache::get($key_cache);
     }
     public function post(){
         return $this->belongsToMany(Post::class, 'category_post', 'category_id', 'post_id');
