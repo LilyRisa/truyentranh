@@ -406,9 +406,9 @@ $(document).ready(function(){
     $('.show-more-chapter').on('click', function(e){
         e.preventDefault();
         if($(".text").hasClass("show-more-height")) {
-            $(this).text("(Show Less)");
+            $(this).text("Xêm thêm");
         } else {
-            $(this).text("(Show More)");
+            $(this).text("Ẩn đi");
         }
 
         $(".text").toggleClass("show-more-height");
