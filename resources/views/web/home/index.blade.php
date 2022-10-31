@@ -333,7 +333,7 @@
                                 @foreach($category as $value)
                                 <li class="d-flex {{ strpos($value['title'], '---') === false ? '' : 'ps-4' }}">
                                     <a href="{{ getUrlCate((object) $value) }}">{!! str_replace('---', "<span class='mx-2'></span>", $value['title']) !!}</a>
-                                    <span>({{$value['count_post'] == 0 ? $value['count_story'] : $value['count_post']}})</span>
+                                    <span class="ms-1">({{$value['count_post'] == 0 ? $value['count_story'] : $value['count_post']}})</span>
                                     <span class="ms-auto">{{$value['category_post'] == 1 ? 'Tin tức' : 'Truyện'}}</span>
                                 </li>
                                 @endforeach
