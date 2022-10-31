@@ -52,7 +52,7 @@
        <div class="widget-content">
             <ul class="list">
                 @foreach($categoryTree as $value)
-                <li {{ strpos($value['title'], '---') === false ? '' : 'class=ps-4' }}><a href="{{ getUrlCate((object) $value) }}">{!! str_replace('---', "<span class='mx-2'></span>", $value['title']) !!}</a><span>({{$value['count']}})</span></li>
+                <li {{ strpos($value['title'], '---') === false ? '' : 'class=ps-4' }}><a href="{{ getUrlCate((object) $value) }}">{!! str_replace('---', "<span class='mx-2'></span>", $value['title']) !!}</a><span>({{$value['count_story']}})</span></li>
                 @endforeach
             </ul>
        </div>
