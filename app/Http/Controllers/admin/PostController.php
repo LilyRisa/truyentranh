@@ -57,7 +57,7 @@ class PostController extends Controller
         }
         // dd($condition);
         #
-        $data['categoryTree'] = Category::getTree();
+        $data['categoryTree'] = Category::getTree(1);
         $data['listUser'] = User::where('status', 1)->get();
         #
         $listItem = Post::with('category')->where($condition)->orderBy('displayed_time', 'DESC')->offset(($page-1)*$limit)->limit($limit)->get();
@@ -73,7 +73,7 @@ class PostController extends Controller
 
     public function update($id = 0) {
         $data['url_referer'] = Request::server('HTTP_REFERER') ?? '/admin/post?status=1';
-        $data['categoryTree'] = Category::getTree();
+        $data['categoryTree'] = Category::getTree(1);
         $data['user_id'] = Auth::id();
         $data['level_id'] = Auth::user()->level_id;
 
@@ -94,7 +94,7 @@ class PostController extends Controller
             if (!empty($post_data['category'])) {
                 $post_category = $post_data['category'];
                 unset($post_data['category']);
-                // $post_data['category_primary_id'] = $post_category[0];
+                $post_data['category_primary_id'] = $post_category[0];
             }
             if (!empty($post_data['optional']))
                 $post_data['optional'] = json_encode($post_data['optional']);

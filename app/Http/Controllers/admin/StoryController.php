@@ -51,7 +51,7 @@ class StoryController extends Controller
         }
         // dd($condition);
         #
-        $data['categoryTree'] = Category::getTree();
+        $data['categoryTree'] = Category::getTree(0);
         $data['listUser'] = User::where('status', 1)->get();
         #
         if (!empty($_GET['category_id'])) {
@@ -83,7 +83,7 @@ class StoryController extends Controller
 
     public function update($id = 0) {
         $data['url_referer'] = Request::server('HTTP_REFERER') ?? '/admin/story?status=1';
-        $data['categoryTree'] = Category::getTree();
+        $data['categoryTree'] = Category::getTree(0);
         $data['user_id'] = Auth::id();
         $data['level_id'] = Auth::user()->level_id;
 
