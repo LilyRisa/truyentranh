@@ -488,6 +488,7 @@ a{
       font-family: Arial; 
       font-size: 14px; 
       display: block;
+      transition: all 0.3s linear;
 }
 
 .show-more {
@@ -504,8 +505,10 @@ a{
 
 .show-more-height 
     { 
+    transition: all 0.3s linear;
     height: 31.313rem; 
     overflow:hidden; 
+    
     }
 .show-more-chapter
     {
