@@ -104,7 +104,7 @@ class UploadImgController extends ApiController
             }catch(\Exception $e){
                 return \response()->json([
                     'status' => false,
-                    'messeges' => $e
+                    'messeges' => json_encode($e)
                 ]);
             }
 
