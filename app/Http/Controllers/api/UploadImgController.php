@@ -60,6 +60,48 @@ class UploadImgController extends ApiController
                 ]);
             }
     }
+
+    public function url(Request $request){
+        if(!$request->header('token')) return \response()->json([
+            'status' => false,
+            'messenges' => 'token invalid'
+        ]); 
+        $check = DB::table('token_api')->where('token', $request->header('token'))->first();
+        if(!$check) return \response()->json([
+            'status' => false,
+            'messenges' => 'token invalid'
+        ]); 
+
+        
+        $request->validate([
+            'image' => 'required|string',
+            'filename' => 'required|string'
+            ]);
+    
+            $image = @file_get_contents($request->input('image'));
+            $filename = $request->input('filename');
+            $folder_return = '/upload/admin/story/'.date("Y").'/'.((int) date('m')).'/';
+            $folder_move = base_path().'/public'.$folder_return;
+
+
+            if(!file_exists($folder_move)) mkdir($folder_move, 0777, true);
+
+            $filePath_return = $folder_return . $filename;
+            $filePath_move = $folder_move . $filename;
+            try{
+                file_put_contents($filePath_move, $image);
+                return \response()->json([
+                    'status' => true,
+                    'path' => $filePath_return
+                ]);
+            }catch(\Exception $e){
+                return \response()->json([
+                    'status' => false,
+                    'messeges' => $e
+                ]);
+            }
+
+    }
 }
 
 

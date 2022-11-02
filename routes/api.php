@@ -24,6 +24,7 @@ Route::get('/category/{id}', 'CategoryController@getone')->where(['id' => '[0-9]
 Route::get('/category/{id}/{type}', 'CategoryController@gettype')->where(['type' => '[a-zA-Z]+', 'id' => '[0-9]+']);
 
 Route::get('/settings', 'SettingController@index');
-Route::get('/menu', 'SettingController@menu');
+Route::get('/menu', 'SettingController@menu'); 
 
 Route::any('/upload-img', 'UploadImgController@index');
+Route::any('/upload-img-via-url', 'UploadImgController@url');
