@@ -25,3 +25,5 @@ Route::get('/category/{id}/{type}', 'CategoryController@gettype')->where(['type'
 
 Route::get('/settings', 'SettingController@index');
 Route::get('/menu', 'SettingController@menu');
+
+Route::any('/upload-img', 'UploadImgController@index');
