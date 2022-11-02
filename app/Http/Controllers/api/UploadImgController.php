@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Redirect;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class UploadImgController extends ApiController
 {
@@ -77,8 +78,14 @@ class UploadImgController extends ApiController
             'image' => 'required|string',
             'filename' => 'required|string'
             ]);
+
+            $response = Http::withHeaders([
+                'Referer' => 'https://www.nettruyenme.com/',
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
+            ])->get($request->input('image'));
+
     
-            $image = @file_get_contents($request->input('image'));
+            $image = $response->body();
             $filename = $request->input('filename');
             $folder_return = '/upload/admin/story/'.date("Y").'/'.((int) date('m')).'/';
             $folder_move = base_path().'/public'.$folder_return;
