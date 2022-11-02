@@ -7,11 +7,23 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Redirect;
+use Illuminate\Support\Facades\DB;
 
 class UploadImgController extends ApiController
 {
 
     public function index(Request $request){
+        if(!$request->header('token')) return \response()->json([
+            'status' => false,
+            'messenges' => 'token invalid'
+        ]); 
+        $check = DB::table('token_api')->where('token', $request->header('token'))->first();
+        if(!$check) return \response()->json([
+            'status' => false,
+            'messenges' => 'token invalid'
+        ]); 
+
+        
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'filename' => 'required|string'
@@ -48,21 +60,6 @@ class UploadImgController extends ApiController
                 ]);
             }
     }
-
-    private function folder_exist($folder)
-    {
-        // Get canonicalized absolute pathname
-        $path = realpath($folder);
-
-        // If it exist, check if it's a directory
-        if($path !== false AND is_dir($path))
-        {
-            // Return canonicalized absolute pathname
-            return $path;
-        }
-
-        // Path/folder does not exist
-        return false;
 }
 
-}
+
