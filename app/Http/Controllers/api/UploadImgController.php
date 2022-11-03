@@ -95,18 +95,18 @@ class UploadImgController extends ApiController
 
             $filePath_return = $folder_return . $filename;
             $filePath_move = $folder_move . $filename;
-            // try{
+            try{
                 file_put_contents($filePath_move, $image);
                 return \response()->json([
                     'status' => true,
                     'path' => $filePath_return
                 ]);
-            // }catch(\Exception $e){
-            //     return \response()->json([
-            //         'status' => false,
-            //         'messeges' => json_encode($e)
-            //     ]);
-            // }
+            }catch(\Exception $e){
+                return \response()->json([
+                    'status' => false,
+                    'messeges' => json_encode($e)
+                ]);
+            }
 
     }
 }
