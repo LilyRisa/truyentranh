@@ -4,13 +4,13 @@
         <div id="carouselExampleControls" class="carousel slide d-none d-lg-block" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="img/img1.jpeg" class="d-block w-100" alt="...">
+                    <img src="/images/banner.webp" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="img/img2.jpeg" class="d-block w-100" alt="...">
+                    <img src="/images/banner.webp" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="img/img3.jpeg" class="d-block w-100" alt="...">
+                    <img src="/images/banner.webp" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
