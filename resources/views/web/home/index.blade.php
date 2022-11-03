@@ -142,10 +142,10 @@
                 @foreach ($story_feature as $ft)
                     <div class="col-lg-2 col-6">
                         <div class="card mt-2 h-314">
-                            {!! genImage($ft->thumbnail, 200, 200,'card-img-top mt-2 rounded-circle w-100 h-100 p-0 img-fluid px-2', $ft->title) !!}
+                            {!! genImage($ft->thumbnail, 200, 200,'card-img-top mt-2 rounded-circle h-178 w-100 p-0 img-fluid px-2', $ft->title) !!}
                             <div class="card-body justify-content-center">
                                 <h5 class="card-title text-center max-line-2">{{ $ft->title }}</h5>
-                                <div class="w-100 d-flex justify-content-center">
+                                <div class="w-100 d-flex justify-content-center bottom-10">
                                     <a href="{{getUrlStory($ft)}}" class="btn btn-secondary">Đọc truyện</a>
                                 </div>
                             </div>
