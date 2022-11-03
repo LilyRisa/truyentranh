@@ -525,3 +525,40 @@ a{
 .h-178{
     height: 178px;
 }
+// checkbox like button
+.cat{
+    margin: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+ 
+    overflow: hidden;
+    float: left;
+  }
+  
+  .cat label {
+  }
+  
+  .cat label span {
+    text-align: center;
+    padding: 0px 0;
+    display: block;
+  }
+  
+  .cat label input {
+    position: absolute;
+    display: none;
+    color: #fff !important;
+  }
+
+  .cat label input + span{color: #fff;}
+
+
+/* This will declare how a selected input will look giving generic properties */
+.cat input:checked + span {
+    color: #ffffff;
+    text-shadow: 0 0  6px rgba(0, 0, 0, 0.8);
+    
+}
+.cat input:checked{
+    border:1px solid #F75A1B !important;
+}

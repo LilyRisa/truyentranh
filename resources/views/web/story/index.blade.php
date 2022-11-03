@@ -40,11 +40,11 @@
 <div class="container position-relative bg-white">
     <div class="row mt-0 pt-3">
     <div class="col-lg-9">
-        <div class="d-flex container mt-2">
+        <div class="d-flex container mt-2 mx-3">
         <p class="text-nowrap">
             Chương (321)
         </p>
-        <p class="text-end">
+        <p class="ms-auto">
             Cập nhật lần cuối 25/12/2021
         </p>
     </div>
@@ -71,7 +71,7 @@
         </div>
         <nav class="mt-2">
             <ul class="pagination justify-content-center post"> 
-               <button class="category-badge active show-more-chapter cursor-pointer" aria-current="page" data-url="load-more-posts">Xem thêm</button> 
+               <button class="category-badge active show-more-chapter border-0 cursor-pointer fs-16" aria-current="page" data-url="load-more-posts">Xem thêm</button> 
             </ul>
          </nav>
         </div>

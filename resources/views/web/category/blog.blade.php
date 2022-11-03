@@ -24,7 +24,7 @@
               <div class="thumb top-rounded">
                  <a href="{{ getUrlCate($p->category) }}" class="category-badge position-absolute">{{ $p->category->title }}</a>
                  <span class="post-format"> 
-                 <i class="icon-picture"></i> 
+                 <i class="icon-image"></i> 
                  </span> 
                  <a href="{{getUrlPost($p)}}">
                     <div class="inner"> 
@@ -45,25 +45,10 @@
                  </h5>
                  <p class="excerpt mb-0 fix-h"> {!! $p->desc !!}</p>
               </div>
-              <div class="post-bottom clearfix d-flex align-items-center">
-                 <div class="icon-share2 me-auto">
-                    <button class="toggle-button icon-share"></button> 
-                    <ul class="icons list-unstyled list-inline mb-0">
-                       <li class="list-inline-item">
-                          <a href="https://www.facebook.com/sharer/sharer.php?u={{getUrlPost($p)}}" target="_blank" rel="noopener noreferrer">
-                          <i class="icon-facebook1">
-                          </i>
-                          </a>
-                       </li>
-                       <li class="list-inline-item">
-                          <a href="https://twitter.com/share?url={{getUrlPost($p)}}" target="_blank" rel="noopener noreferrer">
-                          <i class="icon-twitter1">
-                          </i>
-                          </a>
-                       </li>
-                    </ul>
+              <div class="post-bottom clearfix d-flex align-items-center mx-2">
+                 <div class="icon-share2">
                  </div>
-                 <div class="more-button float-end"> 
+                 <div class="more-button ms-auto"> 
                     <a href="{{getUrlPost($p)}}">
                     <span class="icon-dots-three-horizontal"></span>
                     </a> 
