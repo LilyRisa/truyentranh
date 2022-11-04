@@ -69,11 +69,14 @@
             @endif
         </ul>
         </div>
+      
+        @if(count($oneItem->chapter)>11)
         <nav class="mt-2">
             <ul class="pagination justify-content-center post"> 
                <button class="category-badge active show-more-chapter border-0 cursor-pointer fs-16" aria-current="page" data-url="load-more-posts">Xem thêm</button> 
             </ul>
          </nav>
+         @endif
         </div>
         
     </div>
