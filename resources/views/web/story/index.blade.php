@@ -42,10 +42,11 @@
     <div class="col-lg-9">
         <div class="d-flex container mt-2 mx-3">
         <p class="text-nowrap">
-            Chương (321)
+            
+            Chương ({{ key(reset($oneItem->chapter)) }})
         </p>
         <p class="ms-auto">
-            Cập nhật lần cuối 25/12/2021
+            {{ last(reset($oneItem->chapter))->update_origin }}
         </p>
     </div>
 
