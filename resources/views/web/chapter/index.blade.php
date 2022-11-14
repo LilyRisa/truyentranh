@@ -38,7 +38,7 @@
             <a class="text-decoration-none text-danger ms-2" href="#"><i class="icon-menu1 fs-25"></i></a>
             <a class="text-decoration-none text-danger ms-2" href="#"><i class="icon-spinner11 fs-25"></i></a>
 
-            <a class="btn text-white btn-change-chapter btn-icon ps-2 w-5 ms-2 {{!empty($before) ? 'btn-danger' : 'btn-secondary'}}"  {!! empty($before) ? 'onclick="alert(\'Đã hết chap\');"' : '' !!}  href="{{!empty($before) ? getUrlChapter($before) : '#' }}" ><i class="icon-keyboard_arrow_left fs-25"></i></a>
+            <a class="btn text-white btn-change-chapter btn-icon ps-2 w-5 ms-2 {{!empty($before) ? 'btn-danger' : 'btn-secondary'}}"  {!! empty($before) ? 'onclick="alert(\'Đã hết chap\');"' : '' !!}  href="{{!empty($before) ? getUrlChapter($before) : '#' }}" ><i class="arrow-left2 fs-25"></i></a>
             <select class="form-select d-inline w-25 border_secondary pt-1 ms-2" name="" id="" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
                 @foreach ($list as $item)
                     @php
@@ -49,7 +49,7 @@
                     <option value="{{getUrlChapter($item)}}" {{$oneItem->id == $item->id ? 'selected' : ''}}>{{$title_chap}}</option>
                 @endforeach
             </select>
-            <a class="btn text-white btn-change-chapter w-5 ms-2 ps-2 btn-icon {{!empty($after) ? 'btn-danger' : 'btn-secondary'}}" {!! empty($after) ? 'onclick="alert(\'Đã hết chap\');"' : ''!!} href="{{!empty($after) ? getUrlChapter($after) : '#' }}" ><i class="icon-keyboard_arrow_right fs-25"></i></a>
+            <a class="btn text-white btn-change-chapter w-5 ms-2 ps-2 btn-icon {{!empty($after) ? 'btn-danger' : 'btn-secondary'}}" {!! empty($after) ? 'onclick="alert(\'Đã hết chap\');"' : ''!!} href="{{!empty($after) ? getUrlChapter($after) : '#' }}" ><i class="arrow-right2 fs-25"></i></a>
             <a class="btn btn-success d-flex ms-2" style="height:35px;"> <i class="icon-heart mt-1"></i><p class="d-none mb-0 ms-2 d-lg-block">Theo dõi</p></a>
         </div>
 
@@ -76,8 +76,8 @@
     </div>
 
     <div class="text-center mt-4">
-        <button class="btn btn-primary btn-change-chapter w-10"><i class="icon-keyboard_arrow_left  fs-25"></i></button>
-        <button class="btn btn-primary btn-change-chapter w-10 ms-2"><i class="icon-keyboard_arrow_right w-10 fs-25"></i></button>
+        <button class="btn btn-primary btn-change-chapter w-10"><i class="arrow-left2  fs-25"></i></button>
+        <button class="btn btn-primary btn-change-chapter w-10 ms-2"><i class="arrow-right2 w-10 fs-25"></i></button>
     </div>
 </div>
 
