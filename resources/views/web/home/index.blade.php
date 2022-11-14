@@ -4,7 +4,7 @@
         <div id="carouselExampleControls" class="carousel slide d-none d-lg-block" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/images/banner.webp" class="d-block w-100" alt="...">
+                    <img src="/images/banner.webp" width="" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="/images/banner.webp" class="d-block w-100" alt="...">

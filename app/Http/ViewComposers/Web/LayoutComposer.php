@@ -16,6 +16,7 @@ class LayoutComposer
             $site_settings = SiteSetting::all();
             Cache::set('site_settings_all', $site_settings, now()->addHours(24));
         }
+        dd()
         $data['site_settings'] = $site_settings;
         $view->with($data);
     }
