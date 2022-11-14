@@ -84,7 +84,7 @@
     <div class="col-lg-3">
         <div class="mt-2 d-flex">
             <p class="fs-16 text-uppercase">
-                Cùng tác giả
+                TRUYỆN HOT
             </p>
             <div class="ms-auto pe-0">
             <a class="text-end text_secondary text-decoration-none" href="#">
@@ -93,18 +93,22 @@
             </a>
         </div>
         <div class="">
-            @for ($i = 1; $i < 8; $i++)
-                <div class="mt-2 pb-2 border-bottom row">
-                    <div class="col-3"><img src="/img/book1.jpeg" class="img-fluid"></div>
-                    <div class="col-9">
-                        <div class="m-0 p-0">Tên truyện</div>
-                        <div class="row mt-2">
-                            <div class="col-9 fs-12">Chương 123</div>
-                            <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> 1205</p></div>
+            @if(!empty($view_hight))
+                    @foreach ($view_hight as $k => $v)
+                        <div class="ms-2 mt-2 pb-2 border-bottom d-flex d-nowrap">
+                            <div class="col-3">{!! genImage($v->thumbnail, 225, 330, 'img-fluid ps-2 w-100', $v->title) !!}</div>
+                            <div class="col-9">
+                                <a href="{{getUrlStory($v)}}" title="{{$v->title}}" class="d-block m-0 p-0 ps-2 max-line-2">{{$v->title}}</a>
+                                <div class="col-9 fs-12 ps-2 text-grey1">{{$v->author}}</div>
+                                <div class="row mt-1 ms-0">
+
+                                    <div class="col-9 fs-12 ps-2">{{$v->is_update}}</div>
+                                    <div class="col-3 text-end fs-12 fst-italic d-flex"><i class="icon-eye pt-1"></i><p class="ms-1"> {{$v->view_count}}</p></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            @endfor
+                    @endforeach
+                    @endif
         </div>
     </div>
 </div>
