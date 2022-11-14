@@ -70,8 +70,8 @@
                                         <a href="{{ getUrlStory($vh) }}"
                                             class="d-none d-lg-block p-0 m-0 text-white border-bottom fw-bold"
                                             title="{{ $vh->title }}">{{ $vh->title }}</a>
-                                        <a href="{{ getUrlCate($vh->categories[0]) }}" class="d-block p-0 m-0 text-info"
-                                            title="{{ $vh->categories[0]->title }}">{{ $vh->categories[0]->title }}</a>
+                                        {{-- <a href="{{ getUrlCate($vh->categories[0]) }}" class="d-block p-0 m-0 text-info"
+                                            title="{{ $vh->categories[0]->title }}">{{ $vh->categories[0]->title }}</a> --}}
                                         <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i
                                                 class="icon-eye pe-1"></i> Lượt xem: {{ $vh->view_count }}</p>
                                     </div>
@@ -194,7 +194,6 @@
                             @php
                                 $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
                                 $chap = end($chap);
-                                
                             @endphp
                             <div class="col-lg-3 col-6 mt-2">
                                 <a href="{{ getUrlStory($n) }}" class="card p-0 ml-2">
@@ -382,6 +381,7 @@
                             <ul class="list px-0">
                                 @foreach ($category as $value)
                                     <li class="d-flex {{ strpos($value['title'], '---') === false ? '' : 'ps-4' }}">
+                                        
                                         <a href="{{ getUrlCate((object) $value) }}">{!! str_replace('---', "<span class='mx-2'></span>", $value['title']) !!}</a>
                                         <span
                                             class="ms-1">({{ $value['count_post'] == 0 ? $value['count_story'] : $value['count_post'] }})</span>
