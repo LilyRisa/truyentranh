@@ -36,10 +36,30 @@
                 
                     <div class="fs-18 fw-bold mt-2">Sắp xếp theo</div> 
                     <div class="mt-2"> 
-                        <button class="d-inline btn bg-white mt-2 border text-secondary"> Chữ cái đầu tiên </button>
-                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Lượt đọc </button>
-                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Đánh giá </button>
-                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Số tập </button>
+                        <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                               <input type="checkbox" value="1" ><span class="text-dark">Chữ cái đầu tiên</span>
+                            </label>
+                         </div>
+
+                         <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                               <input type="checkbox" value="1" ><span class="text-dark">Lượt đọc</span>
+                            </label>
+                         </div>
+
+                         <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                               <input type="checkbox" value="1"><span class="text-dark">Đánh giá</span>
+                            </label>
+                         </div>
+
+                         <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                               <input type="checkbox" value="1" ><span class="text-dark">Số tập</span>
+                            </label>
+                         </div>
+                        
                     </div>
                 </div>
                 <div class="ms-lg-auto">

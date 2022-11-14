@@ -74,7 +74,7 @@
   
     <button
         type="button"
-        class="btn btn-dark bg_secondary ve-center btn-floating btn-lg rounded-circle justify-content-center"
+        class="btn btn-dark border-0 bg_secondary ve-center btn-floating btn-lg rounded-circle justify-content-center"
         id="btn-back-to-top"
         >
   <i class="icon-arrow-up2 fs-25 d-inline"></i>

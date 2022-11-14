@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Rate;
 use Illuminate\Support\Facades\DB;
 use Cookie;
+use Illuminate\Support\Facades\Cache;
 
 class StoryController extends Controller
 {   
@@ -51,6 +52,19 @@ class StoryController extends Controller
         }
         $user_view = array_slice($user_view, 0, 10);
         Cookie::queue('story_user_view', json_encode($user_view),4320);
+
+
+        $key = md5('story_view_highest');
+        if(Cache::has($key)){
+            $data['view_hight'] = Cache::get($key);
+        }else{
+            $data['view_hight'] = Story::with(['categories', 'chapter'])->orderBy('view_count', 'DESC')->limit(7)->get()->map(function ($query) {
+                $query->setRelation('chapter', $query->chapter->take(1));
+                return $query;
+            });
+            Cache::set($key, $data['view_hight'], now()->addHours(24));
+        }
+
 
 
         $data['schema'] = getSchemaLogo().getLocalBusiness().getSchemaStory($oneItem);
