@@ -275,6 +275,37 @@
                         @endfor
                     </div>
                 </div> --}}
+
+                <div class="d-flex p-0 rounded">
+                    <p class="fs-22 text-uppercase fw-bold">
+                        truyện full
+                    </p>
+                    <a class="ms-auto text-decoration-none" href="#">
+                        <p class="text_secondary fs-16 fw-bold">
+                            xem thêm >>
+                        </p>
+                    </a>
+                </div>
+                <div class="row justify-content-between mt-am-2">
+                    @if (!empty($category_full))
+                        @foreach ($category_full as $vh)
+                            <div class="col-lg-3 mt-2 col-6">
+                                <div class="card p-0 ml-2">
+                                    {!! genImage($vh->thumbnail, 225, 330, 'img-fluid', $vh->title) !!}
+                                    <div class="card-body dark-linear position-absolute fixed-bottom">
+                                        <a href="{{ getUrlStory($vh) }}"
+                                            class="d-none d-lg-block p-0 m-0 text-white border-bottom fw-bold"
+                                            title="{{ $vh->title }}">{{ $vh->title }}</a>
+                                        <a href="{{ getUrlCate($vh->categories[0]) }}" class="d-block p-0 m-0 text-info"
+                                            title="{{ $vh->categories[0]->title }}">{{ $vh->categories[0]->title }}</a>
+                                        <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i
+                                                class="icon-eye pe-1"></i> Lượt xem: {{ $vh->view_count }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
 
 

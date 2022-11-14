@@ -12,8 +12,7 @@
     </div>
    
     <div class="fs-11 text-secondary text-center pt-2">
-      Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law. © 2018 ThichDamMy. Current Time is GMT 14:35 PM.
-Our Email: service@thichdammy.com   service@thichdammy.net
+      {!! getSiteSetting('text_home') ?? '' !!}
     </div>
 
     {{-- <div class="d-flex pt-1 justify-content-center">
