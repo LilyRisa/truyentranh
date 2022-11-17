@@ -154,7 +154,7 @@
                                     $ft->title,
                                 ) !!}
                                 <div class="card-body justify-content-center">
-                                    <h5 class="card-title text-center max-line-2">{{ $ft->title }}</h5>
+                                    <a href="{{ getUrlStory($ft) }}"><h5 class="card-title text-center max-line-2">{{ $ft->title }}</h5></a>
                                     <div class="w-100 d-flex justify-content-center bottom-10">
                                         <a href="{{ getUrlStory($ft) }}" class="btn btn-secondary">Đọc truyện</a>
                                     </div>
