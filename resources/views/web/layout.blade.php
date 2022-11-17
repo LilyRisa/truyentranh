@@ -76,6 +76,7 @@
         type="button"
         class="btn btn-dark border-0 bg_secondary ve-center btn-floating btn-lg rounded-circle justify-content-center"
         id="btn-back-to-top"
+        style="z-index: 9090909"
         >
   <i class="icon-arrow-up2 fs-25 d-inline"></i>
 </button>
