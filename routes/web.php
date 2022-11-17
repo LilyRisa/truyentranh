@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 Route::any('/', 'HomeController@index');
 
+// site-map
+Route::get('/sitemap.xml', 'SitemapController@index');
+Route::get('/sitemap-category.xml', 'SitemapController@category');
+Route::get('/sitemap-news.xml', 'SitemapController@news');
+Route::get('/sitemap-page.xml', 'SitemapController@page');
+Route::get('/sitemap-posts-{year}-{month}.xml', 'SitemapController@post')->where(['year'=>'\d+', 'month'=>'\d+']);
+/*Ajax*/
+Route::post('/ajaxGetTeam', 'CategoryController@ajaxGetTeam');
+/*Rss*/
+Route::get('/rss-feed', 'RssController@index');
+Route::get('/feed/', 'RssController@home');
+Route::get('/rss/{slug}.rss', 'RssController@detail')->where(['slug' => '[\s\S]+']);
+
 Route::any('/book', 'MenuBookController@index');
 
 Route::any('/reading', 'ReadingController@index');
