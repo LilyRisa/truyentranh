@@ -54,7 +54,7 @@
                     <p class="fs-22 text-uppercase fw-bold">
                         truyện hot!
                     </p>
-                    <a class="ms-auto text-decoration-none" href="#">
+                    <a class="ms-auto text-decoration-none" href="https://thichdammy.com/truyen-full-c1">
                         <p class="text_secondary fs-16 fw-bold">
                             xem thêm >>
                         </p>
@@ -89,7 +89,7 @@
                         BXH
                     </p>
                     <div class="ms-auto pe-0">
-                        <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="#">
+                        <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="https://thichdammy.com/truyen-full-c1">
                             xem thêm >>
                     </div>
                     </a>
@@ -136,7 +136,7 @@
                     truyện đề cử!
                 </p>
                 <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="#">
+                    <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="https://thichdammy.com/truyen-full-c1">
                         xem thêm >>
                 </div>
                 </a>
@@ -180,7 +180,7 @@
                         mới cập nhật!
                     </p>
                     <div class="ms-auto pe-0">
-                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="#">
+                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="https://thichdammy.com/truyen-full-c1">
 
                             xem thêm >>
 
@@ -279,7 +279,7 @@
                     <p class="fs-22 text-uppercase fw-bold">
                         truyện full
                     </p>
-                    <a class="ms-auto text-decoration-none" href="#">
+                    <a class="ms-auto text-decoration-none" href="https://thichdammy.com/truyen-full-c1">
                         <p class="text_secondary fs-16 fw-bold">
                             xem thêm >>
                         </p>
@@ -316,7 +316,7 @@
                         xu hướng
                     </p>
                     <div class="ms-auto pt-lg-0 pt-4 pe-0">
-                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="#">
+                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="https://thichdammy.com/truyen-full-c1">
 
                             xem thêm >>
 
