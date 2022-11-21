@@ -29,7 +29,7 @@
                                     <td class="text-center">{{$item->id}}</td>
                                     <td>{{$item->title}}</td>
                                     <td>{{$item->position_banner}}</td>
-                                    <td>{{$item->type}}</td>
+                                    <td>{{$item->type == 1 ? 'local' : 'ads'}}</td>
                                     @if(!empty($item->thumb))<td><img style="width: 150px" src="{{$item->thumb}}" class="img-fluid d-block"></td>
                                     @endif
                                     <td class="text-center">
