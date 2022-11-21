@@ -30,7 +30,7 @@
         
                                             <div class="form-group">
                                                 <label>Vị trí</label>
-                                                <input class="form-control" required name="title"
+                                                <input class="form-control" required name="position_banner"
                                                     value="{{ !empty($oneItem->position_banner) ? $oneItem->position_banner : '' }}"
                                                     type="text" placeholder="Vị trí">
                                             </div>
