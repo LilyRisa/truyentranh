@@ -3,6 +3,15 @@
     <div>
         <div id="carouselExampleControls" class="carousel slide d-none d-lg-block" data-bs-ride="carousel">
             <div class="carousel-inner">
+               
+                @if(!empty($head_banner))
+                @foreach ($head_banner as $banner)
+                <div class="carousel-item active">
+                    {!! genImage($banner->thumb, 225, 70, 'img-fluid d-block w-100', $banner->title) !!}
+                </div>
+                @endforeach
+
+                @else
                 <div class="carousel-item active">
                     <img src="/images/banner.webp" style="height: 500px" class="d-block w-100" alt="...">
                 </div>
@@ -12,6 +21,7 @@
                 <div class="carousel-item">
                     <img src="/images/banner.webp" style="height: 500px" class="d-block w-100" alt="...">
                 </div>
+                @endif
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">

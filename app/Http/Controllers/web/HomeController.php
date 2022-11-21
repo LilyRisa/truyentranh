@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\Story;
 use App\Models\Menu;
+use App\Models\Banner;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +27,8 @@ class HomeController extends Controller
             $data['category'] = array_merge($cate, $cate2);
             Cache::set($key, $data['category'], now()->addHours(24));
         }
+
+        $data['head_banner'] = Banner::where('type',1)->where('position_banner','Home_header')->get();
 
         $key = md5('home_new');
         if(Cache::has($key)){
