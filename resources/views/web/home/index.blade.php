@@ -7,7 +7,7 @@
                 @if(!empty($head_banner))
                 @foreach ($head_banner as $banner)
                 <div class="carousel-item active">
-                    {!! genImage($banner->thumb, 225, 70, 'img-fluid d-block w-100', $banner->title) !!}
+                    {!! genImage($banner->thumb, 108, 20, 'img-fluid d-block w-100', $banner->title) !!}
                 </div>
                 @endforeach
 
