@@ -43,8 +43,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Thumbnail</label>
-                                        @if(!empty($oneItem->thumbnail))
-                                            <img style="width: 150px" src="{{$oneItem->thumbnail}}" id="lbl_img" class="img-fluid d-block" onclick="upload_file('chosefile','img')">
+                                        @if(!empty($oneItem->thumb))
+                                            <img style="width: 150px" src="{{$oneItem->thumb}}" id="lbl_img" class="img-fluid d-block" onclick="upload_file('chosefile','img')">
                                         @else
                                             <img style="width: 150px" src="{{url('admin/images/no-image.jpg')}}" id="lbl_img" class="img-fluid d-block" onclick="upload_file('chosefile','img')">
                                         @endif
