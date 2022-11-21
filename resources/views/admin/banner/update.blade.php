@@ -48,7 +48,7 @@
                                         @else
                                             <img style="width: 150px" src="{{url('admin/images/no-image.jpg')}}" id="lbl_img" class="img-fluid d-block" onclick="upload_file('chosefile','img')">
                                         @endif
-                                        <input type="hidden" name="thumb" id="hd_img" value="{{!empty($oneItem->thumbnail)? $oneItem->thumbnail: ''}}" required>
+                                        <input type="hidden" name="thumb" id="hd_img" value="{{!empty($oneItem->thumb)? $oneItem->thumb: ''}}" required>
                                     </div>
                                 </div>
                             </div>
