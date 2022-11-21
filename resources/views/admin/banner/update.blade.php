@@ -37,7 +37,7 @@
 
                                             <div class="form-group">
                                                 <label>Đường dẫn</label>
-                                                <input class="form-control" required name="link"
+                                                <input class="form-control" name="link"
                                                     value="{{ !empty($oneItem->link) ? $oneItem->link : '' }}"
                                                     type="text" placeholder="Đường dẫn">
                                             </div>
