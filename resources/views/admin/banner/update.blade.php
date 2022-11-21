@@ -5,7 +5,7 @@
             <div class="fade-in">
                 <form method="post" action="">
                     <div class="row">
-                        
+
                         <div class="col-8">
                             <div class="card">
                                 <div class="card-header"><strong>{{ !empty($oneItem) ? 'Chỉnh sửa' : 'Thêm mới' }}
@@ -21,13 +21,27 @@
                                                     <option value="2">Ads</option>
                                                 </select>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label>Tên banner</label>
+                                                <input class="form-control" required name="title"
+                                                    value="{{ !empty($oneItem->title) ? $oneItem->title : '' }}"
+                                                    type="text" placeholder="Tên banner">
+                                            </div>
+        
                                             <div class="form-group">
                                                 <label>Vị trí</label>
                                                 <input class="form-control" required name="title"
-                                                    value="{{ !empty($oneItem->title) ? $oneItem->title : '' }}"
+                                                    value="{{ !empty($oneItem->position_banner) ? $oneItem->position_banner : '' }}"
                                                     type="text" placeholder="Vị trí">
                                             </div>
+
+                                            <div class="form-group">
+                                                <label>Đường dẫn</label>
+                                                <input class="form-control" required name="link"
+                                                    value="{{ !empty($oneItem->link) ? $oneItem->link : '' }}"
+                                                    type="text" placeholder="Đường dẫn">
+                                            </div>
+
                                             <div class="form-group">
                                                 <label>Nội dung</label>
                                                 <textarea class="form-control" rows="15" name="content">{{ !empty($oneItem->content) ? $oneItem->content : '' }}</textarea>
@@ -43,12 +57,16 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Thumbnail</label>
-                                        @if(!empty($oneItem->thumb))
-                                            <img style="width: 150px" src="{{$oneItem->thumb}}" id="lbl_img" class="img-fluid d-block" onclick="upload_file('chosefile','img')">
+                                        @if (!empty($oneItem->thumb))
+                                            <img style="width: 150px" src="{{ $oneItem->thumb }}" id="lbl_img"
+                                                class="img-fluid d-block" onclick="upload_file('chosefile','img')">
                                         @else
-                                            <img style="width: 150px" src="{{url('admin/images/no-image.jpg')}}" id="lbl_img" class="img-fluid d-block" onclick="upload_file('chosefile','img')">
+                                            <img style="width: 150px" src="{{ url('admin/images/no-image.jpg') }}"
+                                                id="lbl_img" class="img-fluid d-block"
+                                                onclick="upload_file('chosefile','img')">
                                         @endif
-                                        <input type="hidden" name="thumb" id="hd_img" value="{{!empty($oneItem->thumb)? $oneItem->thumb: ''}}" required>
+                                        <input type="hidden" name="thumb" id="hd_img"
+                                            value="{{ !empty($oneItem->thumb) ? $oneItem->thumb : '' }}" required>
                                     </div>
                                 </div>
                             </div>

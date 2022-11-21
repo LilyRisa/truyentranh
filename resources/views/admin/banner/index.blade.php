@@ -16,7 +16,9 @@
                             <thead>
                             <tr>
                                 <th class="text-center w-5">ID</th>
+                                <th>Tên</th>
                                 <th>Vị trí</th>
+                                <th>Thumbnail</th>
                                 <th class="text-center w-15">Thao tác</th>
                             </tr>
                             </thead>
@@ -25,6 +27,9 @@
                                 <tr>
                                     <td class="text-center">{{$item->id}}</td>
                                     <td>{{$item->title}}</td>
+                                    <td>{{$item->position_banner}}</td>
+                                    @if(!empty($item->thumb))<td><img style="width: 150px" src="{{$item->thumb}}" class="img-fluid d-block"></td>
+                                    @endif
                                     <td class="text-center">
                                         <a class="btn btn-info" href="/admin/banner/update/{{$item->id}}"><svg class="c-icon"><use xlink:href="/admin/images/icon-svg/free.svg#cil-pencil"></use></svg></a>
                                         <a class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa?')" href="/admin/banner/delete/{{$item->id}}"><svg class="c-icon"><use xlink:href="/admin/images/icon-svg/free.svg#cil-trash"></use></svg></a>
