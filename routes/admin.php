@@ -16,6 +16,13 @@ Route::get('/',function(){
     return redirect('/admin/home');
 });
 //Login
+
+/*Banner*/
+Route::get('/banner','BannerController@index');
+Route::any('/banner/update','BannerController@update');
+Route::any('/banner/update/{id}','BannerController@update')->where(['id' => '[0-9]+']);
+Route::any('/banner/delete/{id}','BannerController@delete')->where(['id' => '[0-9]+']);
+
 Route::any('/login','UserController@login')->name('login');
 
 Route::group(['middleware' => ['auth', 'checkPermission']], function () {
@@ -89,11 +96,7 @@ Route::group(['middleware' => ['auth', 'checkPermission']], function () {
     Route::any('/menu/update','MenuController@update');
     Route::any('/menu/update/{id}','MenuController@update')->where(['id' => '[0-9]+']);
     Route::any('/menu/delete/{id}','MenuController@delete')->where(['id' => '[0-9]+']);
-    // /*Banner*/
-    // Route::get('/banner','BannerController@index');
-    // Route::any('/banner/update','BannerController@update');
-    // Route::any('/banner/update/{id}','BannerController@update')->where(['id' => '[0-9]+']);
-    // Route::any('/banner/delete/{id}','BannerController@delete')->where(['id' => '[0-9]+']);
+
     /*short code*/
     Route::get('/shortcode','ShortCodeController@index');
     Route::any('/shortcode/update','ShortCodeController@update');
