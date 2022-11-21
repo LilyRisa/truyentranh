@@ -18,6 +18,7 @@
                                 <th class="text-center w-5">ID</th>
                                 <th>Tên</th>
                                 <th>Vị trí</th>
+                                <th>type</th>
                                 <th>Thumbnail</th>
                                 <th class="text-center w-15">Thao tác</th>
                             </tr>
@@ -28,6 +29,7 @@
                                     <td class="text-center">{{$item->id}}</td>
                                     <td>{{$item->title}}</td>
                                     <td>{{$item->position_banner}}</td>
+                                    <td>{{$item->type}}</td>
                                     @if(!empty($item->thumb))<td><img style="width: 150px" src="{{$item->thumb}}" class="img-fluid d-block"></td>
                                     @endif
                                     <td class="text-center">
