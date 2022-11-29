@@ -36,6 +36,11 @@ class Redirect_301
             return Redirect::to(url($uri_redirect), 301);
         }
 
+        if (substr($uri, -3) == 'amp')
+            {
+                $uri = str_replace('amp','',$uri);
+                return Redirect::to(url($uri), 301);}
+
         if (substr($uri, -1) == '/' && $uri != '/')
             return Redirect::to(url($uri), 301);
 

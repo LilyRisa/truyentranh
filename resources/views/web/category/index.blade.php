@@ -21,7 +21,7 @@
             <div class="ms-lg-auto container d-flex flex-wrap bg-grey1">
                 <div class="col-lg-2">
                         <div class="d-flex fs-18 fw-bold mt-2">Thể loại</div>
-                        <div class="d-flex mt-2 flex-wrap">
+                        <div class="d-flex mt-3 flex-wrap">
                             @if(!empty($listCategory))
                             <select class="form-select" name="" id="" onchange="this.options[this.selectedIndex].dataset.url && (window.location = this.options[this.selectedIndex].dataset.url);">
                                 <option value="0">Chọn chuyên mục</option>
@@ -38,25 +38,25 @@
                     <div class="mt-2"> 
                         <div class="cat btn bg-white border comedy mt-2">
                             <label>
-                               <input type="checkbox" value="1" ><span class="text-dark">Chữ cái đầu tiên</span>
+                               <a  class="text-dark sort" id='alphabet'>Chữ cái đầu tiên</a>
                             </label>
                          </div>
 
                          <div class="cat btn bg-white border comedy mt-2">
                             <label>
-                               <input type="checkbox" value="1" ><span class="text-dark">Lượt đọc</span>
+                                <a id='view' class="text-dark sort">Lượt đọc</a>
                             </label>
                          </div>
 
                          <div class="cat btn bg-white border comedy mt-2">
                             <label>
-                               <input type="checkbox" value="1"><span class="text-dark">Đánh giá</span>
+                                <a id='rate' class="text-dark sort">Đánh giá</a>
                             </label>
                          </div>
 
                          <div class="cat btn bg-white border comedy mt-2">
                             <label>
-                               <input type="checkbox" value="1" ><span class="text-dark">Số tập</span>
+                                <a id='chapter' class="text-dark sort">Số tập</a>
                             </label>
                          </div>
                         
@@ -66,11 +66,29 @@
                    
                     <div class="fs-18 fw-bold mt-2">Trạng thái</div> 
                     <div class="mt-2">
-                        <button class="d-inline btn bg-white mt-2 border text-secondary"> Tất cả </button>
-                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Mới cập nhật </button>
-                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Hoàn thành </button>
-                        <button class="d-inline btn bg-white mt-2 border ms-2 text-secondary"> Đang tiến hành </button>
-                    
+                        <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                                <a id="all" class="text-dark status_category">Tất cả</a>
+                            </label>
+                         </div>
+
+                         <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                                <a id="new_up" class="text-dark status_category">Mới cập nhật</a>
+                            </label>
+                         </div>
+
+                         <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                                <a id="done" class="text-dark status_category">Hoàn thành</a>
+                            </label>
+                         </div>
+
+                         <div class="cat btn bg-white border comedy mt-2">
+                            <label>
+                                <a id="in_process" href="" class="text-dark status_category">Đang tiến hành</a>
+                            </label>
+                         </div>
                     </div>
                     </div>
                 </div>  
@@ -102,4 +120,6 @@
         @endif
     </div>
     </div>
+
+    
 @endsection

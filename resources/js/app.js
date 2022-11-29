@@ -364,6 +364,12 @@ const zoom_chapter = () => {
     });
 }
 
+
+
+
+
+
+
 $(document).ready(function(){
     voteStar();
     ajax_search();
