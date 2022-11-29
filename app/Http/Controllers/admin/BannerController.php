@@ -24,7 +24,6 @@ class BannerController extends Controller
         if ($id > 0) $data['oneItem'] = $oneItem = Banner::findOrFail($id);
         if (!empty(Request::post())) {
             $post_data = Request::post();          
-            $post_data['slug'] = toSlug($post_data['title']);
             Banner::updateOrInsert(['id' => $id], $post_data);
             return Redirect::to('/admin/banner');
         }

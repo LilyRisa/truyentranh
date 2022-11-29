@@ -102,6 +102,18 @@
             </li>
         @endif
 
+        @if(!empty($permission['post']))
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link"
+               href="/admin/banner">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="/admin/images/icon-svg/free.svg#cil-image-plus"></use>
+                </svg>
+                Quản lý Banner
+            </a>
+        </li>
+    @endif
+
         @if(!empty($permission['shortcode']))
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="/admin/shortcode">
