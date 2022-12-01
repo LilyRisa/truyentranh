@@ -7,9 +7,6 @@
                 @if(!empty($head_banner))
                 @foreach ($head_banner as $banner)
                 <div class="carousel-item active">
-<<<<<<< HEAD
-                    <img src="/images/banner.webp" width="" class="d-block w-100" alt="...">
-=======
                     {!! genImage($banner->thumb, 108, 20, 'img-fluid d-block w-100', $banner->title) !!}
                 </div>
                 @endforeach
@@ -17,7 +14,6 @@
                 @else
                 <div class="carousel-item active">
                     <img src="/images/banner.webp" style="height: 500px" class="d-block w-100" alt="...">
->>>>>>> 0ca807394d72468c5c55651410006c1f146f6bb5
                 </div>
                 <div class="carousel-item">
                     <img src="/images/banner.webp" style="height: 500px"  class="d-block w-100" alt="...">
