@@ -106,7 +106,7 @@ const insert_chapter = async (chapter, id, slug) => {
 
         if(rows.length > 0) {
             console.log('Duplicate url chapter: '+ chap);
-            if(update_chapter == 'true'){
+            if(update_chapter){
                 try{
                     let check = await CONNECT.execute('UPDATE chapters SET content=?, update_origin=?, slug_origin=? where id=?', [
                         content,
@@ -332,7 +332,7 @@ function request (element) {
 
     (async () => {
         try{
-            await index_main('https://www.nettruyentv.com/tim-truyen/dam-my', 1, false);
+            await index_main('https://www.nettruyentv.com/tim-truyen/dam-my', 1, true);
             process.exit(0);
         }catch(e){
             await writeFile('./log.txt', e.toString());
