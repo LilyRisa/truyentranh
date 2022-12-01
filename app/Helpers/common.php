@@ -544,7 +544,7 @@ switch ($type) {
             'meta_description' => strip_quotes(getSiteSetting('site_description')),
             'site_image' => env('SITE_LOGO'),
             'canonical' => str_replace('/amp', '', url()->current()),
-            'amphtml' => url(Request::getRequestUri()).'/amp/',
+            'amphtml' => url(Request::getRequestUri()).'',
             'index' => 'index,follow',
             'published_time' => '',
             'modified_time' => '',

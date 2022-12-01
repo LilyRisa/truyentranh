@@ -105,6 +105,11 @@ class Post extends Model
         if (isset($author)) {
             $data = $data->with('user');
         }
+
+        if (isset($status)) {
+            $data = $data->where($status);
+        }
+
         if(isset($exclude)){
             $data = $data->whereNotIn('post.id', $exclude);
         }

@@ -12,7 +12,11 @@
     </div>
    
     <div class="fs-11 text-secondary text-center pt-2">
+<<<<<<< HEAD
       {{}}
+=======
+      {!! getSiteSetting('text_home') ?? '' !!}
+>>>>>>> 0ca807394d72468c5c55651410006c1f146f6bb5
     </div>
 
     {{-- <div class="d-flex pt-1 justify-content-center">

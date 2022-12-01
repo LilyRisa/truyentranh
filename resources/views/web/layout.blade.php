@@ -76,6 +76,7 @@
         type="button"
         class="btn btn-dark border-0 bg_secondary ve-center btn-floating btn-lg rounded-circle justify-content-center"
         id="btn-back-to-top"
+        style="z-index: 9090909"
         >
   <i class="icon-arrow-up2 fs-25 d-inline"></i>
 </button>
@@ -111,7 +112,30 @@ function backToTop() {
 </script>
 
   
-  <script src="/js/app.js?1"></script>
+  <script src="/js/app.js?{{time()}}"></script>
+
+  <script>
+    $(document).ready(function() {
+      var uri = window.location.href;
+      index = uri.lastIndexOf("?sort");
+      if(index!=-1)
+      {
+      uri = uri.slice(0,index);
+      }
+
+      $(".sort").on('click',function() {
+        let url = uri + '/?sort=' + this.id;
+        window.location = url;
+
+      });
+      $(".status_category").on('click',function() {
+        let url = uri + '?status_category=' + this.id;
+        window.location = url;
+
+      });
+      
+    });
+  </script>
 </body>
 
 </html>

@@ -3,15 +3,29 @@
     <div>
         <div id="carouselExampleControls" class="carousel slide d-none d-lg-block" data-bs-ride="carousel">
             <div class="carousel-inner">
+               
+                @if(!empty($head_banner))
+                @foreach ($head_banner as $banner)
                 <div class="carousel-item active">
+<<<<<<< HEAD
                     <img src="/images/banner.webp" width="" class="d-block w-100" alt="...">
+=======
+                    {!! genImage($banner->thumb, 108, 20, 'img-fluid d-block w-100', $banner->title) !!}
+                </div>
+                @endforeach
+
+                @else
+                <div class="carousel-item active">
+                    <img src="/images/banner.webp" style="height: 500px" class="d-block w-100" alt="...">
+>>>>>>> 0ca807394d72468c5c55651410006c1f146f6bb5
                 </div>
                 <div class="carousel-item">
-                    <img src="/images/banner.webp" class="d-block w-100" alt="...">
+                    <img src="/images/banner.webp" style="height: 500px"  class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="/images/banner.webp" class="d-block w-100" alt="...">
+                    <img src="/images/banner.webp" style="height: 500px" class="d-block w-100" alt="...">
                 </div>
+                @endif
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -54,7 +68,7 @@
                     <p class="fs-22 text-uppercase fw-bold">
                         truyện hot!
                     </p>
-                    <a class="ms-auto text-decoration-none" href="#">
+                    <a class="ms-auto text-decoration-none" href="https://thichdammy.com/truyen-full-c1">
                         <p class="text_secondary fs-16 fw-bold">
                             xem thêm >>
                         </p>
@@ -70,8 +84,8 @@
                                         <a href="{{ getUrlStory($vh) }}"
                                             class="d-none d-lg-block p-0 m-0 text-white border-bottom fw-bold"
                                             title="{{ $vh->title }}">{{ $vh->title }}</a>
-                                        <a href="{{ getUrlCate($vh->categories[0]) }}" class="d-block p-0 m-0 text-info"
-                                            title="{{ $vh->categories[0]->title }}">{{ $vh->categories[0]->title }}</a>
+                                        {{-- <a href="{{ getUrlCate($vh->categories[0]) }}" class="d-block p-0 m-0 text-info"
+                                            title="{{ $vh->categories[0]->title }}">{{ $vh->categories[0]->title }}</a> --}}
                                         <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i
                                                 class="icon-eye pe-1"></i> Lượt xem: {{ $vh->view_count }}</p>
                                     </div>
@@ -89,7 +103,7 @@
                         BXH
                     </p>
                     <div class="ms-auto pe-0">
-                        <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="#">
+                        <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="https://thichdammy.com/truyen-full-c1">
                             xem thêm >>
                     </div>
                     </a>
@@ -136,7 +150,7 @@
                     truyện đề cử!
                 </p>
                 <div class="ms-auto pe-0">
-                    <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="#">
+                    <a class="text-end text_secondary text-decoration-none fs-18 fw-bold" href="https://thichdammy.com/truyen-full-c1">
                         xem thêm >>
                 </div>
                 </a>
@@ -154,7 +168,7 @@
                                     $ft->title,
                                 ) !!}
                                 <div class="card-body justify-content-center">
-                                    <h5 class="card-title text-center max-line-2">{{ $ft->title }}</h5>
+                                    <a href="{{ getUrlStory($ft) }}"><h5 class="card-title text-center max-line-2">{{ $ft->title }}</h5></a>
                                     <div class="w-100 d-flex justify-content-center bottom-10">
                                         <a href="{{ getUrlStory($ft) }}" class="btn btn-secondary">Đọc truyện</a>
                                     </div>
@@ -180,7 +194,7 @@
                         mới cập nhật!
                     </p>
                     <div class="ms-auto pe-0">
-                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="#">
+                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="https://thichdammy.com/truyen-full-c1">
 
                             xem thêm >>
 
@@ -194,7 +208,6 @@
                             @php
                                 $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
                                 $chap = end($chap);
-                                
                             @endphp
                             <div class="col-lg-3 col-6 mt-2">
                                 <a href="{{ getUrlStory($n) }}" class="card p-0 ml-2">
@@ -275,6 +288,37 @@
                         @endfor
                     </div>
                 </div> --}}
+
+                <div class="d-flex p-0 rounded">
+                    <p class="fs-22 text-uppercase fw-bold">
+                        truyện full
+                    </p>
+                    <a class="ms-auto text-decoration-none" href="https://thichdammy.com/truyen-full-c1">
+                        <p class="text_secondary fs-16 fw-bold">
+                            xem thêm >>
+                        </p>
+                    </a>
+                </div>
+                <div class="row justify-content-between mt-am-2">
+                    @if (!empty($category_full))
+                        @foreach ($category_full as $vh)
+                            <div class="col-lg-3 mt-2 col-6">
+                                <div class="card p-0 ml-2">
+                                    {!! genImage($vh->thumbnail, 225, 330, 'img-fluid', $vh->title) !!}
+                                    <div class="card-body dark-linear position-absolute fixed-bottom">
+                                        <a href="{{ getUrlStory($vh) }}"
+                                            class="d-none d-lg-block p-0 m-0 text-white border-bottom fw-bold"
+                                            title="{{ $vh->title }}">{{ $vh->title }}</a>
+                                        <a href="{{ getUrlCate($vh->categories[0]) }}" class="d-block p-0 m-0 text-info"
+                                            title="{{ $vh->categories[0]->title }}">{{ $vh->categories[0]->title }}</a>
+                                        <p class="p-0 m-0 text-grey1 d-flex align-items-center"><i
+                                                class="icon-eye pe-1"></i> Lượt xem: {{ $vh->view_count }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
 
 
@@ -286,7 +330,7 @@
                         xu hướng
                     </p>
                     <div class="ms-auto pt-lg-0 pt-4 pe-0">
-                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="#">
+                        <a class="text-end text_secondary text-decoration-none fw-bold fs-18" href="https://thichdammy.com/truyen-full-c1">
 
                             xem thêm >>
 
@@ -351,6 +395,7 @@
                             <ul class="list px-0">
                                 @foreach ($category as $value)
                                     <li class="d-flex {{ strpos($value['title'], '---') === false ? '' : 'ps-4' }}">
+                                        
                                         <a href="{{ getUrlCate((object) $value) }}">{!! str_replace('---', "<span class='mx-2'></span>", $value['title']) !!}</a>
                                         <span
                                             class="ms-1">({{ $value['count_post'] == 0 ? $value['count_story'] : $value['count_post'] }})</span>
