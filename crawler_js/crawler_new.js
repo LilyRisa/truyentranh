@@ -107,6 +107,7 @@ const insert_chapter = async (chapter, id, slug) => {
         if(rows.length > 0) {
             console.log('Duplicate url chapter: '+ chap);
             if(update_chapter){
+                console.log("update chapter"+rows[0].title);
                 try{
                     let check = await CONNECT.execute('UPDATE chapters SET content=?, update_origin=?, slug_origin=? where id=?', [
                         content,
