@@ -101,9 +101,11 @@
         @if(!empty($story))
         @foreach($story as $item)
         @php
-            $chap = explode('- ', $item->chapter[max(array_keys($item->chapter->toArray()))]->title);
-            $chap = end($chap);
-            
+            $chap = '';
+            if(!empty($n->chapter)){
+                $chap = explode('- ', $item->chapter[max(array_keys($item->chapter->toArray()))]->title);
+                $chap = end($chap);
+            }
         @endphp
         <div class="col-lg-2 col-6 mt-2">
                 <div class="card p-0 ml-2"> 

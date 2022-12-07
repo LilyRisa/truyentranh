@@ -202,8 +202,12 @@
                     @if (!empty($new))
                         @foreach ($new as $n)
                             @php
-                                $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
-                                $chap = end($chap);
+                                $chap = '';
+                                if(!empty($n->chapter)){
+                                    $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
+                                    $chap = end($chap);
+                                }
+                                
                             @endphp
                             <div class="col-lg-3 col-6 mt-2">
                                 <a href="{{ getUrlStory($n) }}" class="card p-0 ml-2">
