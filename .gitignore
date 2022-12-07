@@ -4,6 +4,7 @@
 /public/upload
 /public/thumb
 /storage/*.key
+/crawler_js/log.txt
 /vendor
 .env
 .env.backup
