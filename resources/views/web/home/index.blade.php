@@ -234,8 +234,9 @@
                         <ul class="follow">
                             @foreach ($follow as $fl)
                                 @php
+                                $chap = '';
                                 if($fl->chapter->isNotEmpty()){
-                                    $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
+                                    $chap = explode('- ', $fl->chapter[max(array_keys($fl->chapter->toArray()))]->title);
                                     $chap = end($chap);
                                 }
                                 @endphp
