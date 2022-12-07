@@ -102,7 +102,7 @@
         @foreach($story as $item)
         @php
             $chap = '';
-            if(!$n->chapter->isEmpty()){
+            if($n->chapter->isNotEmpty()){
                 $chap = explode('- ', $item->chapter[max(array_keys($item->chapter->toArray()))]->title);
                 $chap = end($chap);
             }
