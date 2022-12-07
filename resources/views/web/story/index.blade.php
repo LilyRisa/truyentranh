@@ -24,7 +24,7 @@
                 <li class="list-unstyled mt-3"><span>{!! $oneItem->content !!}</span></li>
                 <li class="list-unstyled d-flex mt-5"><a class="btn bg-green1 border-0 text-white follow-story" data-status="0" data-story="{{$oneItem->id}}"><i class="icon-heart text-white"></i> Thêm vào tủ</a></li>
               
-                <li class="list-unstyled d-flex mt-3"><a href="{{getUrlChapter($oneItem->chapter->last())}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{getUrlChapter($oneItem->chapter->first())}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
+                <li class="list-unstyled d-flex mt-3"><a href="{{ $oneItem->chapter->isNotEmpty() ? getUrlChapter($oneItem->chapter->last()) : '#'}}" class="btn btn-secondary bg_secondary text-white border-0">Đọc từ đầu</a><a href="{{$oneItem->chapter->isNotEmpty() ? getUrlChapter($oneItem->chapter->first()) : '#'}}" class="btn btn-secondary bg_secondary ms-2 text-white border-0">Đọc mới nhất</a></li>
            </ul>
            <ul class="ps-0">
             <li class="list-unstyled d-flex">
@@ -46,7 +46,8 @@
             Chương ({{ key(reset($oneItem->chapter)) }})
         </p>
         <p class="ms-auto">
-            {{ last(reset($oneItem->chapter))->update_origin }}
+           
+            {{-- last(reset($oneItem->chapter))->update_origin --}}
         </p>
     </div>
 
