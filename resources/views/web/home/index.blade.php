@@ -207,7 +207,6 @@
                                     $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
                                     $chap = end($chap);
                                 }
-                                
                             @endphp
                             <div class="col-lg-3 col-6 mt-2">
                                 <a href="{{ getUrlStory($n) }}" class="card p-0 ml-2">
@@ -235,8 +234,10 @@
                         <ul class="follow">
                             @foreach ($follow as $fl)
                                 @php
+                                if($fl->chapter->isNotEmpty()){
                                     $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
                                     $chap = end($chap);
+                                }
                                 @endphp
                                 <li class="item d-block">
                                     <a href="{{ getUrlStory($fl) }}" class="card p-0 ml-2">
