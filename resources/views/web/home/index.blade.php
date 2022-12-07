@@ -203,6 +203,7 @@
                         @foreach ($new as $n)
                             @php
                                 $chap = '';
+                                dd($n->chapter);
                                 if(!empty($n->chapter)){
                                     $chap = explode('- ', $n->chapter[max(array_keys($n->chapter->toArray()))]->title);
                                     $chap = end($chap);
